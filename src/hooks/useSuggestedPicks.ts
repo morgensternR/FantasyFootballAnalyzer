@@ -1,8 +1,15 @@
 import { useCallback, useMemo } from 'react';
+import playerContextJson from '@/data/playerContext.2026.json';
+import teamContextJson from '@/data/teamContext.2026.json';
 import type { PoolPlayer } from '@/types/draft';
 import type { UseDraftRoomReturn } from '@/hooks/useDraftRoom';
 import { useTargets } from '@/hooks/useTargets';
 import { marketAdp } from '@/utils/consensus';
+import {
+  contextLabelForPlayer,
+  type PlayerContextFile,
+  type TeamContextFile,
+} from '@/utils/contextLabels';
 import { availableHandcuffs } from '@/utils/stacks';
 import { suggestPicks } from '@/utils/suggestions';
 import { simulateTakenOdds } from '@/utils/survival';
@@ -17,6 +24,8 @@ export interface UseSuggestedPicksReturn {
 }
 
 const EMPTY: UseSuggestedPicksReturn = { suggested: new Map(), handcuffFor: new Map() };
+const PLAYER_CONTEXTS = (playerContextJson as PlayerContextFile).players;
+const TEAM_CONTEXTS = (teamContextJson as TeamContextFile).teams;
 
 // Snake-draft advice for the user's team, formerly SuggestionsPanel's guts:
 // survival odds + roster fit + tier urgency, with human-readable reasons.
@@ -42,6 +51,10 @@ export function useSuggestedPicks(room: UseDraftRoomReturn, enabled: boolean): U
   const adpOf = useCallback(
     (p: PoolPlayer) => marketAdp(p, scoring, superflex),
     [scoring, superflex],
+  );
+  const contextForPlayer = useCallback(
+    (p: PoolPlayer) => contextLabelForPlayer(p, PLAYER_CONTEXTS, TEAM_CONTEXTS),
+    [],
   );
 
   // Simulated odds each board player is gone before the user's next pick.
@@ -85,6 +98,7 @@ export function useSuggestedPicks(room: UseDraftRoomReturn, enabled: boolean): U
       starred,
       avoided,
       keeperPlayers,
+      contextForPlayer,
     });
     const suggested = new Map(picks.map(s => [s.player.id, s.reasons]));
 
@@ -95,5 +109,5 @@ export function useSuggestedPicks(room: UseDraftRoomReturn, enabled: boolean): U
         .map(({ starter, handcuff }) => [handcuff.id, starter.name]),
     );
     return { suggested, handcuffFor };
-  }, [enabled, me, derived, config.rosterSlots, config.teams, config.myTeamId, config.snakeFormat, scaledValues, scoring, takenOdds, starred, avoided, keeperPlayers]);
+  }, [enabled, me, derived, config.rosterSlots, config.teams, config.myTeamId, config.snakeFormat, scaledValues, scoring, takenOdds, starred, avoided, keeperPlayers, contextForPlayer]);
 }
