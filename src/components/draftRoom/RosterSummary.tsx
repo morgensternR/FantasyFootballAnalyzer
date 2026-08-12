@@ -8,6 +8,7 @@ import {
   type ReservedKeeper,
   type TeamDraftState,
 } from '@/utils/draftEngine';
+import { byeGroupTitle, byeRiskGroups, toneClass } from '@/utils/draftRisk';
 import { findStacks } from '@/utils/stacks';
 import styles from './Panels.module.css';
 
@@ -51,16 +52,9 @@ export function RosterSummary({ state, rosterSlots, reserved, listClassName, sho
   // (and worth finishing: a one-catcher stack invites adding the QB's TE).
   const stacks = useMemo(() => findStacks(players), [players]);
 
-  // Bye-week clustering: stacking three starters on the same bye is a
-  // self-inflicted 0-something week. K/DST are excluded (streamed anyway).
-  const byes = useMemo(() => {
-    const counts = new Map<number, number>();
-    for (const player of players) {
-      if (player.bye === null || player.pos === 'K' || player.pos === 'DST') continue;
-      counts.set(player.bye, (counts.get(player.bye) ?? 0) + 1);
-    }
-    return [...counts.entries()].sort((a, b) => a[0] - b[0]);
-  }, [players]);
+  // Bye-week clustering, now with composition: week counts alone hide whether
+  // the conflict is three core starters or one starter plus bench depth.
+  const byes = useMemo(() => byeRiskGroups(entries, rosterSlots), [entries, rosterSlots]);
 
   return (
     <>
@@ -123,11 +117,28 @@ export function RosterSummary({ state, rosterSlots, reserved, listClassName, sho
         </div>
       )}
       {byes.length > 0 && (
-        <div className={styles.byeLine} title="Skill-position byes on this roster (K/DST excluded)">
+        <div
+          className={styles.byeLine}
+          title="Bye risk by week. Core starters are QB/RB/WR/TE/FLEX/SUPERFLEX; bench, K, and DST are not core starters."
+        >
           <span>Byes:</span>
-          {byes.map(([week, n]) => (
-            <span key={week} className={n >= 3 ? styles.byeChipWarn : styles.byeChip}>
-              W{week}×{n}
+          {byes.map(group => (
+            <span
+              key={group.week}
+              className={group.tone === 'warn' || group.tone === 'bad' ? styles.byeChipWarn : styles.byeChip}
+              title={byeGroupTitle(group)}
+            >
+              W{group.week} {group.coreCount}C/{group.benchCount}B {group.label}
+            </span>
+          ))}
+        </div>
+      )}
+      {byes.some(group => group.totalCount >= 2) && (
+        <div className={styles.byeLine} title="Expanded bye groups: slot, position, and player for each non-K/DST bye overlap.">
+          <span>Bye detail:</span>
+          {byes.filter(group => group.totalCount >= 2).map(group => (
+            <span key={group.week} className={toneClass(group.tone, styles)} title={byeGroupTitle(group)}>
+              W{group.week}: {group.items.map(item => `${item.slotLabel} ${item.player.pos} ${item.player.name}`).join(' · ')}
             </span>
           ))}
         </div>
