@@ -1,5 +1,6 @@
 import type { PoolPlayer } from '@/types/draft';
 import type { PlayerContextLabel, RiskTone } from './draftRisk';
+import { normalizeName } from './playerNames';
 
 export type ContextConfidence = 'high' | 'medium' | 'low';
 export type CommitteeRisk = 'low' | 'medium' | 'high';
@@ -54,6 +55,28 @@ function contextTone(player?: PlayerContext, team?: TeamContext): RiskTone {
   return player || team ? 'neutral' : 'neutral';
 }
 
+export function playerContextKeysFor(player: PoolPlayer): string[] {
+  const normalized = normalizeName(player.name);
+  return [
+    player.id,
+    player.sleeperId,
+    normalized,
+    `${normalized}|${player.team}`,
+    `${player.name}|${player.team}`,
+  ].filter((key): key is string => !!key);
+}
+
+export function resolvePlayerContext(
+  player: PoolPlayer,
+  playerContexts: Record<string, PlayerContext>,
+): { key: string; context: PlayerContext } | null {
+  for (const key of playerContextKeysFor(player)) {
+    const context = playerContexts[key];
+    if (context) return { key, context };
+  }
+  return null;
+}
+
 export function teamContextSummary(ctx?: TeamContext): string | null {
   if (!ctx) return null;
   const parts: string[] = [];
@@ -95,7 +118,8 @@ export function contextLabelForPlayer(
   playerContexts: Record<string, PlayerContext>,
   teamContexts: Record<string, TeamContext>,
 ): PlayerContextLabel {
-  const playerContext = playerContexts[player.id];
+  const resolvedPlayerContext = resolvePlayerContext(player, playerContexts);
+  const playerContext = resolvedPlayerContext?.context;
   const teamContext = teamContexts[player.team];
   const playerSummary = playerContextSummary(playerContext);
   const teamSummary = teamContextSummary(teamContext);
@@ -104,13 +128,14 @@ export function contextLabelForPlayer(
     return {
       label: '—',
       tone: 'neutral',
-      title: `${CONTEXT_GLOSSARY}\n\nNo manual overlay note exists for ${player.name}.`,
+      title: `${CONTEXT_GLOSSARY}\n\nNo manual overlay note exists for ${player.name}. Supported player keys: ${playerContextKeysFor(player).join(', ')}.`,
     };
   }
 
   const sections = [
     `${CONTEXT_GLOSSARY}\n`,
     `Player: ${player.name}`,
+    resolvedPlayerContext ? `Matched player key: ${resolvedPlayerContext.key}` : null,
     playerSummary ? `Player context: ${playerSummary}` : null,
     teamSummary ? `Team context: ${teamSummary}` : null,
     playerContext?.sourceUrls?.length ? `Player sources: ${playerContext.sourceUrls.join(' · ')}` : null,
