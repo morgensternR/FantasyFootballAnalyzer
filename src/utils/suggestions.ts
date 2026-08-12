@@ -10,7 +10,8 @@ import type { PoolPlayer } from '@/types/draft';
 import type { StarterPos, TeamDraftState } from './draftEngine';
 import { STARTER_POSITIONS } from './draftEngine';
 import { marketAdp } from './consensus';
-import { byeFitPenalty, candidateByeFit } from './draftRisk';
+import { byeFitPenalty, candidateByeFit, type PlayerContextLabel } from './draftRisk';
+import { contextSuggestionAdjustment } from './contextLabels';
 import { handcuffPartner, stackPartner } from './stacks';
 import type { ScoringType } from './valueScaling';
 
@@ -47,6 +48,9 @@ export interface SuggestOptions {
   // The user's reserved keepers not yet auto-logged: they're roster for
   // stack/handcuff/bye purposes long before their cost round arrives.
   keeperPlayers?: PoolPlayer[];
+  // Optional manual context overlay label. It is deliberately a small
+  // tiebreaker, not a replacement for value, tier, roster fit, or survival.
+  contextForPlayer?: (player: PoolPlayer) => PlayerContextLabel;
 }
 
 export function suggestPicks(
@@ -203,6 +207,18 @@ export function suggestPicks(
       if (penalty > 0) {
         score -= penalty;
         reasons.push(fit.label.includes('core') ? `third week-${p.bye} bye` : `${fit.label} bye risk`);
+      }
+    }
+
+    // Manual context overlay: sourced notes such as role uncertainty, OL, OC,
+    // committee, camp, and scheme can only nudge startable players. A warning
+    // should not bury a strong roster-fit/value pick; a positive note should
+    // not make a backup QB jump the board.
+    if (startable) {
+      const adjustment = contextSuggestionAdjustment(opts.contextForPlayer?.(p));
+      if (adjustment.score !== 0) {
+        score += adjustment.score;
+        if (adjustment.reason) reasons.push(adjustment.reason);
       }
     }
 
