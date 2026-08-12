@@ -129,7 +129,6 @@ export function candidateByeFit(
 
   if (!group) return { label: 'Clean', tone: 'good', title: GLOSSARY.byeFit };
 
-  const slotPart = slotLabel(candidateSlot);
   const title = `${GLOSSARY.byeFit}\n\nIf drafted: ${byeGroupTitle(group)}`;
   if (group.coreCount >= 4) return { label: `W${group.week} major`, tone: 'bad', title };
   if (group.coreCount >= 3) return { label: `W${group.week} ${group.coreCount} core`, tone: 'warn', title };
