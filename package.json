@@ -11,6 +11,7 @@
     "build": "tsc -b && vite build && tsx scripts/prerender.tsx",
     "build:award-icons": "tsx scripts/sliceAwardIcons.ts",
     "build:draft-data": "tsx scripts/buildDraftPool.ts",
+    "context:check": "tsx scripts/validateContextOverlay.ts",
     "fetch:rankings": "tsx scripts/fetchRankings.ts",
     "update:rankings": "npm run fetch:rankings && npm run build:draft-data",
     "lint": "eslint .",
