@@ -37,7 +37,7 @@ export const GLOSSARY = {
   rank: 'Expert Consensus Rank. The average expert ranking for this scoring format. It is opinion, not market price.',
   tier: 'Players in the same tier are close enough to treat as similar. The drop between tiers matters more than small rank differences inside a tier.',
   adpDelta: 'ADP minus expert rank. Positive means the market usually drafts him later than experts rank him; negative means he usually costs more than his rank.',
-  role: 'Simplified role from Sleeper depth-chart order. It is a risk clue, not a snap-share projection.',
+  role: 'NFL role from Sleeper depth-chart order. It is a risk clue, not a snap-share projection or fantasy position rank.',
   byeFit: 'Whether drafting this player creates a bye-week pile-up on your roster. K/DST are ignored because they are normally streamed.',
   risk: 'Draft-risk tag from injury status, rookie flag, depth-chart order, and expert disagreement.',
   coreStarter: 'A player currently assigned to QB, RB, WR, TE, FLEX, or SUPERFLEX. Bench, K, and DST are not core starters.',
@@ -118,7 +118,7 @@ export function candidateByeFit(
   rosterSlots: RosterSlots,
 ): PlayerContextLabel {
   if (player.bye === null || STREAMED_POSITIONS.has(player.pos)) {
-    return { label: 'Clean', tone: 'good', title: GLOSSARY.byeFit };
+    return { label: 'Clean', tone: 'neutral', title: GLOSSARY.byeFit };
   }
 
   const candidateEntry: RosterEntry = { player };
@@ -127,7 +127,7 @@ export function candidateByeFit(
   const candidateSlot = candidateRow?.slot ?? 'BENCH';
   const group = byeRiskGroups([...currentEntries, candidateEntry], rosterSlots).find(g => g.week === player.bye);
 
-  if (!group) return { label: 'Clean', tone: 'good', title: GLOSSARY.byeFit };
+  if (!group) return { label: 'Clean', tone: 'neutral', title: GLOSSARY.byeFit };
 
   const title = `${GLOSSARY.byeFit}\n\nIf drafted: ${byeGroupTitle(group)}`;
   if (group.coreCount >= 4) return { label: `W${group.week} major`, tone: 'bad', title };
@@ -136,8 +136,8 @@ export function candidateByeFit(
     return { label: `W${group.week} bench`, tone: 'neutral', title };
   }
   if (group.totalCount >= 3) return { label: `W${group.week} minor`, tone: 'neutral', title };
-  if (group.totalCount === 2) return { label: `W${group.week} +1`, tone: 'good', title };
-  return { label: `W${group.week} clean`, tone: 'good', title: GLOSSARY.byeFit };
+  if (group.totalCount === 2) return { label: `W${group.week} +1`, tone: 'neutral', title };
+  return { label: 'Clean', tone: 'neutral', title };
 }
 
 export function byeFitPenalty(fit: PlayerContextLabel): number {
