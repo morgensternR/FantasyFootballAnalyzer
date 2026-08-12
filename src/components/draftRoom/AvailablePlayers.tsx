@@ -6,6 +6,7 @@ import { useSounds } from '@/hooks/useSounds';
 import { useTargets } from '@/hooks/useTargets';
 import { NflTeamLabel, PosBadge } from '@/components';
 import { marketAdp } from '@/utils/consensus';
+import { candidateByeFit, GLOSSARY, playerRisk, playerRole, toneClass } from '@/utils/draftRisk';
 import { inflateValue } from '@/utils/inflation';
 import { normalizeName } from '@/utils/playerNames';
 import { injuryAbbrev, injuryTitle } from '@/utils/injury';
@@ -83,6 +84,10 @@ export function AvailablePlayers({
   // Phones get a vertical-only list instead of the stats table: one scroll
   // axis, Draft beside the name, pos/team/bye folded into a sub-line.
   const isPhone = useMediaQuery('(max-width: 640px)');
+  const myRosterEntries = useMemo(
+    () => derived.teams.get(config.myTeamId)?.picks ?? [],
+    [derived.teams, config.myTeamId],
+  );
 
   // Bye weeks where the user already has two or more skill starters: one
   // more is a self-inflicted zero week.
@@ -208,7 +213,7 @@ export function AvailablePlayers({
 
   // Full-width rows (cutoff line, empty state) span every rendered column.
   const colCount =
-    (isAuction ? 12 : 9) + (showYahoo ? 1 : 0) + (onQuickDraft ? 1 : 0) + (queue ? 1 : 0);
+    (isAuction ? 15 : 12) + (showYahoo ? 1 : 0) + (onQuickDraft ? 1 : 0) + (queue ? 1 : 0);
 
   // "Your pick lands here": if every pick before the user's comes off the
   // top of this list, the rows above the line are gone and the user picks
@@ -287,7 +292,11 @@ export function AvailablePlayers({
       {isPhone ? (
         <>
           <ul className={styles.mList}>
-            {visible.map((p, i) => (
+            {visible.map((p, i) => {
+              const role = playerRole(p);
+              const byeFit = candidateByeFit(p, myRosterEntries, config.rosterSlots);
+              const risk = playerRisk(p);
+              return (
               <Fragment key={p.id}>
                 {i === cutoffAt && (
                   <li
@@ -337,6 +346,9 @@ export function AvailablePlayers({
                     <span className={styles.mSub}>
                       {p.pos}
                       {p.posRank} · {p.team} · Bye {p.bye ?? '-'}
+                      <span className={toneClass(role.tone, styles)} title={role.title}>Role: {role.label}</span>
+                      <span className={toneClass(byeFit.tone, styles)} title={byeFit.title}>Bye fit: {byeFit.label}</span>
+                      <span className={toneClass(risk.tone, styles)} title={risk.title}>Risk: {risk.label}</span>
                       {p.bye !== null && crowdedByes.has(p.bye) && (
                         <span className={styles.byeWarn} title="You already have two or more skill starters on this bye">
                           ⚠
@@ -399,7 +411,8 @@ export function AvailablePlayers({
                   )}
                 </li>
               </Fragment>
-            ))}
+              );
+            })}
             {visible.length === 0 && <li className={styles.mEmpty}>No available players match.</li>}
           </ul>
           {rows.length > MAX_ROWS && (
@@ -422,13 +435,13 @@ export function AvailablePlayers({
                 tabIndex={0}
                 onKeyDown={sortKeyDown('rank')}
                 aria-sort={ariaSortFor('rank')}
-                title="FantasyPros expert consensus rank (ECR): the average of every expert's overall rank for this scoring format. The board's default order."
+                title={GLOSSARY.rank}
               >
                 RK
               </th>
               <th
                 className={styles.num}
-                title="FantasyPros consensus tier. Players in the same tier are close enough to treat as interchangeable; the real drop-off is between tiers."
+                title={GLOSSARY.tier}
               >
                 Tier
               </th>
@@ -440,6 +453,9 @@ export function AvailablePlayers({
               <th title="Week the player's team sits out. ⚠ marks byes where you already have two or more skill starters.">
                 Bye
               </th>
+              <th title={GLOSSARY.role}>Role</th>
+              <th title={GLOSSARY.byeFit}>Bye Fit</th>
+              <th title={GLOSSARY.risk}>Risk</th>
               <th
                 className={`${styles.num} ${styles.sortable} ${sortBy === 'adp' ? styles.sorted : ''}`}
                 onClick={() => setSort('adp')}
@@ -447,7 +463,7 @@ export function AvailablePlayers({
                 tabIndex={0}
                 onKeyDown={sortKeyDown('adp')}
                 aria-sort={ariaSortFor('adp')}
-                title={`Average draft position: the pick where real drafters take him. Sleeper ${scoring.replace('_', ' ')} drafts, ESPN as fallback.`}
+                title={`${GLOSSARY.adp} Sleeper ${scoring.replace('_', ' ')} drafts, ESPN as fallback.`}
               >
                 ADP
               </th>
@@ -459,7 +475,7 @@ export function AvailablePlayers({
                   tabIndex={0}
                   onKeyDown={sortKeyDown('adpDelta')}
                   aria-sort={ariaSortFor('adpDelta')}
-                  title="ADP minus expert rank. Positive: rooms usually take him later than experts rank him, a discount."
+                  title={GLOSSARY.adpDelta}
                 >
                   Δ
                 </th>
@@ -529,7 +545,11 @@ export function AvailablePlayers({
             </tr>
           </thead>
           <tbody>
-            {visible.map((p, i) => (
+            {visible.map((p, i) => {
+              const role = playerRole(p);
+              const byeFit = candidateByeFit(p, myRosterEntries, config.rosterSlots);
+              const risk = playerRisk(p);
+              return (
               <Fragment key={p.id}>
               {i === cutoffAt && (
                 <tr className={styles.cutoffRow}>
@@ -654,6 +674,9 @@ export function AvailablePlayers({
                     </span>
                   )}
                 </td>
+                <td className={toneClass(role.tone, styles)} title={role.title}>{role.label}</td>
+                <td className={toneClass(byeFit.tone, styles)} title={byeFit.title}>{byeFit.label}</td>
+                <td className={toneClass(risk.tone, styles)} title={risk.title}>{risk.label}</td>
                 {(() => {
                   const a = adp(p);
                   // Still on the board past his ADP: the room usually takes
@@ -680,6 +703,7 @@ export function AvailablePlayers({
                               ? styles.deltaBad
                               : styles.dim
                         }`}
+                        title={GLOSSARY.adpDelta}
                       >
                         {d === null ? '-' : d > 0 ? `+${d}` : d}
                       </td>
@@ -734,7 +758,8 @@ export function AvailablePlayers({
                 )}
               </tr>
               </Fragment>
-            ))}
+              );
+            })}
             {visible.length === 0 && (
               <tr>
                 <td colSpan={colCount} className={styles.emptyRow}>
