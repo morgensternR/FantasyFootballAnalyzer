@@ -1,3 +1,6 @@
+import type { PoolPlayer } from '@/types/draft';
+import type { PlayerContextLabel, RiskTone } from './draftRisk';
+
 export type ContextConfidence = 'high' | 'medium' | 'low';
 export type CommitteeRisk = 'low' | 'medium' | 'high';
 export type SchemeFit = 'good' | 'neutral' | 'risk' | 'unknown';
@@ -23,8 +26,32 @@ export interface PlayerContext {
   sourceUrls?: string[];
 }
 
+export interface TeamContextFile {
+  teams: Record<string, TeamContext>;
+}
+
+export interface PlayerContextFile {
+  players: Record<string, PlayerContext>;
+}
+
+export const CONTEXT_GLOSSARY =
+  'Manual analyst overlay. Includes sourced notes such as offensive line rank, OC/play-caller change, committee risk, camp usage, scheme fit, and draft notes. Treat it as context, not a projection.';
+
 function confidenceSuffix(confidence?: ContextConfidence): string {
   return confidence ? ` (${confidence} confidence)` : '';
+}
+
+function contextTone(player?: PlayerContext, team?: TeamContext): RiskTone {
+  if (player?.committeeRisk === 'high' || player?.schemeFit === 'risk' || player?.confidence === 'low') {
+    return 'warn';
+  }
+  if (team?.offensiveLineRank && team.offensiveLineRank >= 24) return 'warn';
+  if (team?.runBlockRank && team.runBlockRank >= 24) return 'warn';
+  if (team?.passBlockRank && team.passBlockRank >= 24) return 'warn';
+  if (player?.schemeFit === 'good' || player?.committeeRisk === 'low' || team?.confidence === 'high') {
+    return 'good';
+  }
+  return player || team ? 'neutral' : 'neutral';
 }
 
 export function teamContextSummary(ctx?: TeamContext): string | null {
@@ -42,7 +69,57 @@ export function teamContextSummary(ctx?: TeamContext): string | null {
 
 export function playerContextSummary(ctx?: PlayerContext): string | null {
   if (!ctx) return null;
-  const parts = [ctx.roleTag, ctx.committeeRisk ? `committee ${ctx.committeeRisk}` : null, ctx.campSignal, ctx.schemeFit ? `scheme ${ctx.schemeFit}` : null, ctx.draftNote].filter(Boolean);
+  const parts = [
+    ctx.roleTag,
+    ctx.committeeRisk ? `committee ${ctx.committeeRisk}` : null,
+    ctx.campSignal,
+    ctx.schemeFit ? `scheme ${ctx.schemeFit}` : null,
+    ctx.draftNote,
+  ].filter(Boolean);
   if (parts.length === 0) return null;
   return `${parts.join(' · ')}${confidenceSuffix(ctx.confidence)}`;
+}
+
+function labelFromContext(player?: PlayerContext, team?: TeamContext): string {
+  if (player?.draftNote) return 'Note';
+  if (player?.committeeRisk === 'high') return 'Committee';
+  if (player?.campSignal) return 'Camp';
+  if (player?.schemeFit && player.schemeFit !== 'unknown') return `Scheme ${player.schemeFit}`;
+  if (team?.ocChange || team?.playCallerChange) return 'New OC';
+  if (team?.offensiveLineRank) return `OL #${team.offensiveLineRank}`;
+  return '—';
+}
+
+export function contextLabelForPlayer(
+  player: PoolPlayer,
+  playerContexts: Record<string, PlayerContext>,
+  teamContexts: Record<string, TeamContext>,
+): PlayerContextLabel {
+  const playerContext = playerContexts[player.id];
+  const teamContext = teamContexts[player.team];
+  const playerSummary = playerContextSummary(playerContext);
+  const teamSummary = teamContextSummary(teamContext);
+
+  if (!playerSummary && !teamSummary) {
+    return {
+      label: '—',
+      tone: 'neutral',
+      title: `${CONTEXT_GLOSSARY}\n\nNo manual overlay note exists for ${player.name}.`,
+    };
+  }
+
+  const sections = [
+    `${CONTEXT_GLOSSARY}\n`,
+    `Player: ${player.name}`,
+    playerSummary ? `Player context: ${playerSummary}` : null,
+    teamSummary ? `Team context: ${teamSummary}` : null,
+    playerContext?.sourceUrls?.length ? `Player sources: ${playerContext.sourceUrls.join(' · ')}` : null,
+    teamContext?.sourceUrls?.length ? `Team sources: ${teamContext.sourceUrls.join(' · ')}` : null,
+  ].filter(Boolean);
+
+  return {
+    label: labelFromContext(playerContext, teamContext),
+    tone: contextTone(playerContext, teamContext),
+    title: sections.join('\n'),
+  };
 }
