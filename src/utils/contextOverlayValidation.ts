@@ -8,6 +8,7 @@ export interface ContextValidationIssue {
 const CONFIDENCE = new Set(['high', 'medium', 'low']);
 const COMMITTEE_RISK = new Set(['low', 'medium', 'high']);
 const SCHEME_FIT = new Set(['good', 'neutral', 'risk', 'unknown']);
+const METADATA_FIELDS = new Set(['confidence', 'sourceUrls']);
 
 const TEAM_FIELDS = new Set([
   'ocChange',
@@ -78,17 +79,12 @@ function validateSourceUrls(value: unknown, path: string): ContextValidationIssu
   });
 }
 
-function hasSubstantiveFields(ctx: UnknownRecord, metadata: Set<string>): boolean {
-  return Object.keys(ctx).some(key => !metadata.has(key));
+function hasSubstantiveFields(ctx: UnknownRecord): boolean {
+  return Object.keys(ctx).some(key => !METADATA_FIELDS.has(key));
 }
 
-function validateManualSourceDiscipline(
-  ctx: UnknownRecord,
-  path: string,
-  metadataFields: Set<string>,
-): ContextValidationIssue[] {
-  const hasSubstance = hasSubstantiveFields(ctx, new Set([...metadataFields, 'confidence', 'sourceUrls']));
-  if (!hasSubstance) return [];
+function validateManualSourceDiscipline(ctx: UnknownRecord, path: string): ContextValidationIssue[] {
+  if (!hasSubstantiveFields(ctx)) return [];
   const issues: ContextValidationIssue[] = [];
   if (!ctx.confidence) issues.push(issue(`${path}.confidence`, 'is required when the context entry has draft notes'));
   if (!Array.isArray(ctx.sourceUrls) || ctx.sourceUrls.length === 0) {
@@ -119,7 +115,7 @@ export function validateTeamContext(ctx: unknown, path: string): ContextValidati
     ...validateOptionalString(ctx.schemeNote, `${path}.schemeNote`),
     ...validateEnum(ctx.confidence, CONFIDENCE, `${path}.confidence`),
     ...validateSourceUrls(ctx.sourceUrls, `${path}.sourceUrls`),
-    ...validateManualSourceDiscipline(ctx, path, TEAM_FIELDS),
+    ...validateManualSourceDiscipline(ctx, path),
   ];
 }
 
@@ -134,7 +130,7 @@ export function validatePlayerContext(ctx: unknown, path: string): ContextValida
     ...validateOptionalString(ctx.draftNote, `${path}.draftNote`),
     ...validateEnum(ctx.confidence, CONFIDENCE, `${path}.confidence`),
     ...validateSourceUrls(ctx.sourceUrls, `${path}.sourceUrls`),
-    ...validateManualSourceDiscipline(ctx, path, PLAYER_FIELDS),
+    ...validateManualSourceDiscipline(ctx, path),
   ];
 }
 
