@@ -10,6 +10,7 @@ import type { PoolPlayer } from '@/types/draft';
 import type { StarterPos, TeamDraftState } from './draftEngine';
 import { STARTER_POSITIONS } from './draftEngine';
 import { marketAdp } from './consensus';
+import { byeFitPenalty, candidateByeFit } from './draftRisk';
 import { handcuffPartner, stackPartner } from './stacks';
 import type { ScoringType } from './valueScaling';
 
@@ -75,13 +76,7 @@ export function suggestPicks(
   // Reserved keepers count as roster: a keeper RB wants his cuff and a
   // keeper QB wants his catchers well before the cost round logs the pick.
   const roster = [...team.picks.map(pick => pick.player), ...(opts.keeperPlayers ?? [])];
-  // Skill-position starters already sharing a bye week; a third is a
-  // self-inflicted zero.
-  const byeCounts = new Map<number, number>();
-  for (const p of roster) {
-    if (p.bye === null || p.pos === 'K' || p.pos === 'DST') continue;
-    byeCounts.set(p.bye, (byeCounts.get(p.bye) ?? 0) + 1);
-  }
+  const byeEntries = [...team.picks, ...(opts.keeperPlayers ?? []).map(player => ({ player }))];
 
   const suggestions: PickSuggestion[] = [];
   for (const p of available.slice(0, CANDIDATE_DEPTH)) {
@@ -199,10 +194,16 @@ export function suggestPicks(
       }
     }
 
-    // Bye pile-up penalty: warn before the third same-week skill starter.
-    if (p.bye !== null && p.pos !== 'K' && p.pos !== 'DST' && (byeCounts.get(p.bye) ?? 0) >= 2) {
-      score -= 2;
-      reasons.push(`third week-${p.bye} bye`);
+    // Bye pile-up penalty: use lineup-aware core/bench composition instead of
+    // a plain count. This keeps byes as a tiebreaker and avoids punishing a
+    // bench-only overlap like a true core-starter pile-up.
+    if (startable) {
+      const fit = candidateByeFit(p, byeEntries, rosterSlots);
+      const penalty = byeFitPenalty(fit);
+      if (penalty > 0) {
+        score -= penalty;
+        reasons.push(`${fit.label} bye risk`);
+      }
     }
 
     suggestions.push({ player: p, score, reasons });
