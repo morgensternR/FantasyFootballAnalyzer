@@ -35,6 +35,11 @@ export interface PlayerContextFile {
   players: Record<string, PlayerContext>;
 }
 
+export interface ContextSuggestionAdjustment {
+  score: number;
+  reason?: string;
+}
+
 export const CONTEXT_GLOSSARY =
   'Manual analyst overlay. Includes sourced notes such as offensive line rank, OC/play-caller change, committee risk, camp usage, scheme fit, and draft notes. Treat it as context, not a projection.';
 
@@ -111,6 +116,14 @@ function labelFromContext(player?: PlayerContext, team?: TeamContext): string {
   if (team?.ocChange || team?.playCallerChange) return 'New OC';
   if (team?.offensiveLineRank) return `OL #${team.offensiveLineRank}`;
   return '—';
+}
+
+export function contextSuggestionAdjustment(label?: PlayerContextLabel): ContextSuggestionAdjustment {
+  if (!label || label.label === '—') return { score: 0 };
+  if (label.tone === 'good') return { score: 1, reason: `context plus: ${label.label}` };
+  if (label.tone === 'warn') return { score: -1.5, reason: `context risk: ${label.label}` };
+  if (label.tone === 'bad') return { score: -3, reason: `context red flag: ${label.label}` };
+  return { score: 0.25, reason: `context note: ${label.label}` };
 }
 
 export function contextLabelForPlayer(
