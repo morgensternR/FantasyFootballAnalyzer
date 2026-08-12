@@ -31,10 +31,11 @@ The draft board combines both through:
 src/utils/contextLabels.ts
 ```
 
-Validation lives in:
+Validation and key coverage checks live in:
 
 ```text
 src/utils/contextOverlayValidation.ts
+src/utils/contextOverlayCoverage.ts
 scripts/validateContextOverlay.ts
 ```
 
@@ -57,12 +58,14 @@ scripts/validateContextOverlay.ts
 }
 ```
 
+Team keys must match current draft-pool NFL abbreviations such as `ATL`, `BUF`, `KC`, or `SF`.
+
 ## Player entry example
 
 ```json
 {
   "players": {
-    "sleeper-player-id": {
+    "bijan-robinson-rb": {
       "roleTag": "Lead committee",
       "committeeRisk": "medium",
       "campSignal": "Rotating with starters",
@@ -73,6 +76,34 @@ scripts/validateContextOverlay.ts
     }
   }
 }
+```
+
+Player entries can be keyed by any of these current-pool keys:
+
+```text
+stable generated id       bijan-robinson-rb
+Sleeper id                9758
+normalized name           bijan robinson
+normalized name + team    bijan robinson|ATL
+raw name + team           Bijan Robinson|ATL
+```
+
+The stable generated id is preferred because it survives source refreshes better than display names.
+
+## Finding player keys
+
+Run all keys:
+
+```powershell
+npm run context:keys
+```
+
+Search by player, team, position, or partial name:
+
+```powershell
+npm run context:keys -- bijan
+npm run context:keys -- ATL
+npm run context:keys -- RB
 ```
 
 ## Source discipline
@@ -93,6 +124,8 @@ Run:
 ```powershell
 npm run context:check
 ```
+
+This now checks both schema validity and whether team/player keys match the current draft pool.
 
 Before a real draft data refresh, run the full check:
 
