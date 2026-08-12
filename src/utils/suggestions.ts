@@ -202,7 +202,7 @@ export function suggestPicks(
       const penalty = byeFitPenalty(fit);
       if (penalty > 0) {
         score -= penalty;
-        reasons.push(`${fit.label} bye risk`);
+        reasons.push(fit.label.includes('core') ? `third week-${p.bye} bye` : `${fit.label} bye risk`);
       }
     }
 
