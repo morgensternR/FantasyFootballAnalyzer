@@ -1,0 +1,16 @@
+{
+  "_schema": {
+    "description": "Manual team-level draft context overlay. Keep sourced and dated when populated.",
+    "fields": {
+      "ocChange": "boolean; true when the offensive coordinator changed materially for this season",
+      "playCallerChange": "boolean; true when the likely offensive play caller changed",
+      "offensiveLineRank": "number; lower is better, overall offensive line rank",
+      "runBlockRank": "number; lower is better, run-blocking context for RBs",
+      "passBlockRank": "number; lower is better, pass-protection context for QBs/deep-route WRs",
+      "schemeNote": "short note visible in player/tooltips once wired",
+      "confidence": "high | medium | low",
+      "sourceUrls": "array of source URLs used to maintain the note"
+    }
+  },
+  "teams": {}
+}
