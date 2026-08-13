@@ -12,11 +12,14 @@ import './index.css'
 initSentry()
 sweepStaleCacheVersions()
 
-// Hydrate the draft pool from today's compact Sleeper cache synchronously, then
-// refresh it in the background when the cache date/build is stale. The live
-// updater emits a browser event when fresh facts land so mounted draft/ranking
-// surfaces can re-derive without blocking app startup on the network.
-void prepareSleeperDraftContext()
+// Hydrate from today's compact cache synchronously. If the cache is stale,
+// refresh Sleeper in the background; one controlled reload follows a successful
+// live refresh so every memoized Draft Room surface sees the new player facts.
+// The reload does not loop: the second boot finds a same-day fresh cache and
+// therefore does not perform another live refresh.
+void prepareSleeperDraftContext().then(result => {
+  if (result.source === 'live') window.location.reload()
+})
 
 // A redeploy rehashes every lazy chunk, so a visitor whose index.html (or a
 // prerendered /rankings, /draft-room shell) predates the current build asks
