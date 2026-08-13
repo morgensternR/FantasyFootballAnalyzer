@@ -1,43 +1,50 @@
 # Draft context overlay
 
-The draft room has a manual context overlay for information that the base ranking feeds do not reliably encode:
+The Draft Room uses two context layers that stay separate from the base ranking/ADP projection pipeline.
 
-- offensive coordinator or play-caller changes
-- offensive line, run-blocking, and pass-blocking context
-- committee risk
-- camp or beat-writer usage signal
-- scheme fit
-- short draft notes
+## 1. Live Sleeper player facts
 
-The overlay is intentionally separate from the fetched rank/ADP pipeline. It should be maintained as sourced analyst context, not as a replacement projection model.
+`src/api/sleeperLiveContext.ts` refreshes current Sleeper player facts when the app is opened and the local cache is stale for the current date or bundled pool build.
 
-## Files
+The compact cache carries only draft-relevant fields for players already in the pool:
 
-Team-level notes live in:
+- current NFL team
+- status / injury status and details
+- depth-chart order
+- rookie status
+- additional Sleeper facts retained for future use (practice participation and depth-chart position)
+- NFL season/week state
+
+The app uses a same-day local cache first, refreshes in the background when stale, and keeps the bundled/stale data when Sleeper is unavailable. A successful refresh rerenders the app in place; it does not reset an in-progress draft.
+
+Sleeper facts remain factual inputs. Depth-chart order is a role clue, not a snap-share or workload projection.
+
+## 2. Sourced team/player context
+
+Team context lives in:
 
 ```text
 src/data/teamContext.2026.json
 ```
 
-Player-level notes live in:
+Player-specific analyst context lives in:
 
 ```text
 src/data/playerContext.2026.json
 ```
 
-The draft board combines both through:
+The team file exposes four compact fantasy-facing signals:
 
-```text
-src/utils/contextLabels.ts
-```
+- `OFF`: consensus offensive environment
+- `DEF`: consensus defensive strength
+- `SOS`: consensus schedule difficulty (`1` easiest, `32` hardest)
+- `CTX`: coaching/play-caller/scheme uncertainty
 
-Validation and key coverage checks live in:
+The raw UI does not show every contributing source metric. Source URLs, confidence, checked date, and supporting fields remain in the JSON/tooltips for auditability.
 
-```text
-src/utils/contextOverlayValidation.ts
-src/utils/contextOverlayCoverage.ts
-scripts/validateContextOverlay.ts
-```
+The current 2026 baseline uses the sourced Mike Clay / ESPN FPI / Sharp inputs researched for this project. `scheduleConfidence: low` means the underlying schedule models materially disagree rather than pretending the consensus rank is precise.
+
+Live player injuries are intentionally not frozen into `CTX`; Sleeper handles those separately so a dated team snapshot does not leave an old injury warning behind.
 
 ## Team entry example
 
@@ -45,12 +52,15 @@ scripts/validateContextOverlay.ts
 {
   "teams": {
     "DET": {
+      "offenseRank": 3,
+      "defenseRank": 9,
+      "scheduleRank": 1,
+      "scheduleConfidence": "high",
+      "contextTrend": "down",
+      "contextNote": "New offensive play-caller; elite underlying offense and favorable schedule.",
       "ocChange": true,
       "playCallerChange": true,
-      "offensiveLineRank": 3,
-      "runBlockRank": 2,
-      "passBlockRank": 6,
-      "schemeNote": "New play caller; strong line context remains a positive input.",
+      "contextDate": "2026-08-13",
       "confidence": "medium",
       "sourceUrls": ["https://example.com/source"]
     }
@@ -58,7 +68,7 @@ scripts/validateContextOverlay.ts
 }
 ```
 
-Team keys must match current draft-pool NFL abbreviations such as `ATL`, `BUF`, `KC`, or `SF`.
+Team keys must use this repository's canonical draft-pool abbreviations. For example, Jacksonville is `JAC` even though Sleeper/ESPN commonly use `JAX`.
 
 ## Player entry example
 
@@ -70,7 +80,7 @@ Team keys must match current draft-pool NFL abbreviations such as `ATL`, `BUF`, 
       "committeeRisk": "medium",
       "campSignal": "Rotating with starters",
       "schemeFit": "neutral",
-      "draftNote": "Do not reach above same-tier RB/WR unless roster need is strong.",
+      "draftNote": "Role note backed by current reporting.",
       "confidence": "medium",
       "sourceUrls": ["https://example.com/source"]
     }
@@ -78,7 +88,7 @@ Team keys must match current draft-pool NFL abbreviations such as `ATL`, `BUF`, 
 }
 ```
 
-Player entries can be keyed by any of these current-pool keys:
+Player entries can be keyed by any supported current-pool key:
 
 ```text
 stable generated id       bijan-robinson-rb
@@ -88,71 +98,57 @@ normalized name + team    bijan robinson|ATL
 raw name + team           Bijan Robinson|ATL
 ```
 
-The stable generated id is preferred because it survives source refreshes better than display names.
+The stable generated id is preferred.
 
-## Finding player keys
+## UI behavior
 
-Run all keys:
+The board keeps the display compact. A team-only context cell can look like:
 
-```powershell
-npm run context:keys
+```text
+Elite · Very easy
+Strong · Neutral
+Weak · Hard
 ```
 
-Search by player, team, position, or partial name:
+Hovering exposes OFF/DEF/SOS/CTX ranks, confidence, notes, checked date, and source URLs. Player-specific committee/camp/scheme notes take priority when present.
 
-```powershell
-npm run context:keys -- bijan
-npm run context:keys -- ATL
-npm run context:keys -- RB
-```
+Context remains a small suggestion tiebreaker. It must not override a clear value/tier/roster-fit advantage by itself.
 
 ## Source discipline
 
-Any populated note must include:
+Every populated sourced context entry must include:
 
 ```text
 confidence
 sourceUrls
 ```
 
-The validator fails if a note has draft content but no source URL. That is intentional. Empty overlay files are valid.
+Do not populate analyst context from memory. If a claim cannot be sourced, omit it.
 
 ## Validation
 
-Run:
+Find supported player keys:
+
+```powershell
+npm run context:keys -- bijan
+```
+
+Validate source/schema/pool coverage:
 
 ```powershell
 npm run context:check
 ```
 
-This now checks both schema validity and whether team/player keys match the current draft pool.
-
-Before a real draft data refresh, run the full check:
+Before merging or using the branch for a real draft:
 
 ```powershell
 npm run context:check
-npm run build
 npm run test:run
+npm run build
 ```
 
-## UI behavior
+## Refresh policy
 
-The board shows a compact `Context` label and puts details in the hover tooltip.
-
-Typical labels:
-
-```text
-—
-Note
-Committee
-Camp
-Scheme good
-New OC
-OL #12
-```
-
-`—` means the player has no manual overlay note and no team-level context note.
-
-## Maintenance rule
-
-Do not populate this overlay from memory. Use current sources and keep source URLs in the JSON entry. If a note cannot be sourced, leave the player/team blank.
+- Sleeper injury/team/depth facts: refresh on app use when the daily cache/build is stale.
+- Base ranking feeds: existing daily GitHub Actions refresh/rebuild/deploy pipeline.
+- Clay/FPI/Sharp/coaching team model: keep its real checked/source dates. Do not change `contextDate` merely because the app opened; refresh the snapshot only after the underlying sources are actually checked.
