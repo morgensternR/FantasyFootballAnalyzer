@@ -8,6 +8,7 @@ import { getAllPlayers, getNFLState } from './sleeper';
 const CACHE_KEY = 'ffa:sleeper-draft-context:v1';
 const CACHE_VERSION = 1;
 const FIRST_LOAD_TIMEOUT_MS = 6_000;
+export const SLEEPER_CONTEXT_UPDATED_EVENT = 'ffa:sleeper-context-updated';
 
 interface SleeperLiveRawPlayer extends SleeperAPI.Player {
   depth_chart_order?: number | null;
@@ -61,6 +62,13 @@ function localDateKey(date = new Date()): string {
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
   return `${year}-${month}-${day}`;
+}
+
+function notifyContextUpdated(result: SleeperDraftContextResult): void {
+  if (typeof window === 'undefined') return;
+  window.dispatchEvent(new CustomEvent<SleeperDraftContextResult>(SLEEPER_CONTEXT_UPDATED_EVENT, {
+    detail: result,
+  }));
 }
 
 function severeRosterStatus(status?: string | null): string | undefined {
@@ -125,9 +133,6 @@ export function applySleeperFactsToPlayer(player: PoolPlayer, facts: SleeperPlay
     if (facts.injuryStartDate) player.injuryStartDate = facts.injuryStartDate;
     else delete player.injuryStartDate;
   } else {
-    // A daily healthy response must clear an injury that was true when the
-    // bundled pool was generated; otherwise the Draft Room can remain stale
-    // for the rest of preseason even though Sleeper has cleared the player.
     delete player.injuryStatus;
     delete player.injuryBodyPart;
     delete player.injuryNotes;
@@ -176,8 +181,6 @@ function writeCache(cache: SleeperDraftContextCache): void {
   try {
     window.localStorage.setItem(CACHE_KEY, JSON.stringify(cache));
   } catch (error) {
-    // The compact cache should be far below common localStorage quotas, but a
-    // private-mode/quota failure must never prevent the Draft Room from loading.
     logger.warn('[Sleeper] could not persist draft-context cache:', error);
   }
 }
@@ -234,11 +237,10 @@ function withTimeout<T>(promise: Promise<T>, timeoutMs: number): Promise<T> {
 }
 
 /**
- * Hydrates the bundled draft pool with current Sleeper player facts before the
- * first React render. Same-day cache hits are synchronous and network-free.
- * A stale cache is applied immediately as a fallback, then replaced by a live
- * response when available. Failure is deliberately non-fatal: the bundled
- * pool remains usable offline.
+ * Hydrates the bundled draft pool from a same-day compact cache immediately.
+ * When stale, the old cache remains a fallback while a live Sleeper refresh
+ * runs in the background. A CustomEvent tells mounted consumers to re-derive
+ * once fresh facts land; the app never waits on this request to render.
  */
 export async function prepareSleeperDraftContext(): Promise<SleeperDraftContextResult> {
   if (typeof window === 'undefined') {
@@ -275,12 +277,14 @@ export async function prepareSleeperDraftContext(): Promise<SleeperDraftContextR
     };
     applySleeperFactsToPool(POOL.players, players);
     writeCache(cache);
-    return {
+    const result: SleeperDraftContextResult = {
       contextDate: cache.contextDate,
       fetchedAt: cache.fetchedAt,
       source: 'live',
       nflState,
     };
+    notifyContextUpdated(result);
+    return result;
   } catch (error) {
     logger.warn('[Sleeper] live draft context unavailable; using fallback:', error);
     if (cached) {
