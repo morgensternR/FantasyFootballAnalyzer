@@ -5,8 +5,18 @@ import { normalizeName } from './playerNames';
 export type ContextConfidence = 'high' | 'medium' | 'low';
 export type CommitteeRisk = 'low' | 'medium' | 'high';
 export type SchemeFit = 'good' | 'neutral' | 'risk' | 'unknown';
+export type TeamContextTrend = 'up' | 'stable' | 'down' | 'major_concern';
 
 export interface TeamContext {
+  // Compact, fantasy-facing team model. Lower rank is better/easier.
+  offenseRank?: number;
+  defenseRank?: number;
+  scheduleRank?: number;
+  scheduleConfidence?: ContextConfidence;
+  contextTrend?: TeamContextTrend;
+  contextNote?: string;
+  contextDate?: string;
+  // Slower-moving supporting context retained for audit/tooltips.
   ocChange?: boolean;
   playCallerChange?: boolean;
   offensiveLineRank?: number;
@@ -28,6 +38,7 @@ export interface PlayerContext {
 }
 
 export interface TeamContextFile {
+  contextDate?: string;
   teams: Record<string, TeamContext>;
 }
 
@@ -41,23 +52,47 @@ export interface ContextSuggestionAdjustment {
 }
 
 export const CONTEXT_GLOSSARY =
-  'Manual analyst overlay. Includes sourced notes such as offensive line rank, OC/play-caller change, committee risk, camp usage, scheme fit, and draft notes. Treat it as context, not a projection.';
+  'Compact 2026 team/player context. OFF, DEF and SOS are consensus preseason signals; CTX captures coaching/scheme transition and other sourced uncertainty. Live Sleeper injury and depth facts are handled separately. Treat context as a tiebreaker, not a replacement projection.';
 
 function confidenceSuffix(confidence?: ContextConfidence): string {
   return confidence ? ` (${confidence} confidence)` : '';
+}
+
+export function offenseLabel(rank?: number): string | null {
+  if (!rank) return null;
+  if (rank <= 5) return 'Elite';
+  if (rank <= 11) return 'Strong';
+  if (rank <= 21) return 'Average';
+  if (rank <= 27) return 'Weak';
+  return 'Very weak';
+}
+
+export function defenseLabel(rank?: number): string | null {
+  return offenseLabel(rank);
+}
+
+export function scheduleLabel(rank?: number): string | null {
+  if (!rank) return null;
+  if (rank <= 6) return 'Very easy';
+  if (rank <= 12) return 'Easy';
+  if (rank <= 20) return 'Neutral';
+  if (rank <= 26) return 'Hard';
+  return 'Very hard';
 }
 
 function contextTone(player?: PlayerContext, team?: TeamContext): RiskTone {
   if (player?.committeeRisk === 'high' || player?.schemeFit === 'risk' || player?.confidence === 'low') {
     return 'warn';
   }
+  if (team?.contextTrend === 'major_concern') return 'bad';
+  if (team?.contextTrend === 'down' || team?.confidence === 'low') return 'warn';
   if (team?.offensiveLineRank && team.offensiveLineRank >= 24) return 'warn';
   if (team?.runBlockRank && team.runBlockRank >= 24) return 'warn';
   if (team?.passBlockRank && team.passBlockRank >= 24) return 'warn';
-  if (player?.schemeFit === 'good' || player?.committeeRisk === 'low' || team?.confidence === 'high') {
+  if (player?.schemeFit === 'good' || player?.committeeRisk === 'low' || team?.contextTrend === 'up') {
     return 'good';
   }
-  return player || team ? 'neutral' : 'neutral';
+  return 'neutral';
 }
 
 export function playerContextKeysFor(player: PoolPlayer): string[] {
@@ -85,12 +120,21 @@ export function resolvePlayerContext(
 export function teamContextSummary(ctx?: TeamContext): string | null {
   if (!ctx) return null;
   const parts: string[] = [];
+  const off = offenseLabel(ctx.offenseRank);
+  const def = defenseLabel(ctx.defenseRank);
+  const sos = scheduleLabel(ctx.scheduleRank);
+  if (off) parts.push(`OFF ${off} #${ctx.offenseRank}`);
+  if (def) parts.push(`DEF ${def} #${ctx.defenseRank}`);
+  if (sos) parts.push(`SOS ${sos} #${ctx.scheduleRank}${ctx.scheduleConfidence === 'low' ? ' (mixed)' : ''}`);
+  if (ctx.contextTrend) parts.push(`CTX ${ctx.contextTrend.replace('_', ' ')}`);
+  if (ctx.contextNote) parts.push(ctx.contextNote);
   if (ctx.ocChange) parts.push('OC change');
   if (ctx.playCallerChange) parts.push('play-caller change');
   if (ctx.offensiveLineRank) parts.push(`OL #${ctx.offensiveLineRank}`);
   if (ctx.runBlockRank) parts.push(`run block #${ctx.runBlockRank}`);
   if (ctx.passBlockRank) parts.push(`pass block #${ctx.passBlockRank}`);
   if (ctx.schemeNote) parts.push(ctx.schemeNote);
+  if (ctx.contextDate) parts.push(`checked ${ctx.contextDate}`);
   if (parts.length === 0) return null;
   return `${parts.join(' · ')}${confidenceSuffix(ctx.confidence)}`;
 }
@@ -113,6 +157,11 @@ function labelFromContext(player?: PlayerContext, team?: TeamContext): string {
   if (player?.committeeRisk === 'high') return 'Committee';
   if (player?.campSignal) return 'Camp';
   if (player?.schemeFit && player.schemeFit !== 'unknown') return `Scheme ${player.schemeFit}`;
+  if (team?.offenseRank || team?.scheduleRank) {
+    const off = offenseLabel(team.offenseRank) ?? '—';
+    const sos = scheduleLabel(team.scheduleRank) ?? '—';
+    return `${off} · ${sos}`;
+  }
   if (team?.ocChange || team?.playCallerChange) return 'New OC';
   if (team?.offensiveLineRank) return `OL #${team.offensiveLineRank}`;
   return '—';
@@ -141,7 +190,7 @@ export function contextLabelForPlayer(
     return {
       label: '—',
       tone: 'neutral',
-      title: `${CONTEXT_GLOSSARY}\n\nNo manual overlay note exists for ${player.name}. Supported player keys: ${playerContextKeysFor(player).join(', ')}.`,
+      title: `${CONTEXT_GLOSSARY}\n\nNo context note exists for ${player.name}. Supported player keys: ${playerContextKeysFor(player).join(', ')}.`,
     };
   }
 
