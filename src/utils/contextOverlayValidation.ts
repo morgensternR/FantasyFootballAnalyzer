@@ -8,9 +8,17 @@ export interface ContextValidationIssue {
 const CONFIDENCE = new Set(['high', 'medium', 'low']);
 const COMMITTEE_RISK = new Set(['low', 'medium', 'high']);
 const SCHEME_FIT = new Set(['good', 'neutral', 'risk', 'unknown']);
-const METADATA_FIELDS = new Set(['confidence', 'sourceUrls']);
+const CONTEXT_TREND = new Set(['up', 'stable', 'down', 'major_concern']);
+const METADATA_FIELDS = new Set(['confidence', 'sourceUrls', 'contextDate', 'scheduleConfidence']);
 
 const TEAM_FIELDS = new Set([
+  'offenseRank',
+  'defenseRank',
+  'scheduleRank',
+  'scheduleConfidence',
+  'contextTrend',
+  'contextNote',
+  'contextDate',
   'ocChange',
   'playCallerChange',
   'offensiveLineRank',
@@ -53,7 +61,7 @@ function validateRank(value: unknown, path: string): ContextValidationIssue[] {
   if (value === undefined) return [];
   return Number.isInteger(value) && Number(value) >= 1 && Number(value) <= 32
     ? []
-    : [issue(path, 'must be an integer from 1 to 32, where lower is better')];
+    : [issue(path, 'must be an integer from 1 to 32, where lower is better/easier')];
 }
 
 function validateEnum(value: unknown, allowed: Set<string>, path: string): ContextValidationIssue[] {
@@ -107,6 +115,13 @@ export function validateTeamContext(ctx: unknown, path: string): ContextValidati
   if (!isRecord(ctx)) return [issue(path, 'must be an object')];
   return [
     ...validateUnknownFields(ctx, TEAM_FIELDS, path),
+    ...validateRank(ctx.offenseRank, `${path}.offenseRank`),
+    ...validateRank(ctx.defenseRank, `${path}.defenseRank`),
+    ...validateRank(ctx.scheduleRank, `${path}.scheduleRank`),
+    ...validateEnum(ctx.scheduleConfidence, CONFIDENCE, `${path}.scheduleConfidence`),
+    ...validateEnum(ctx.contextTrend, CONTEXT_TREND, `${path}.contextTrend`),
+    ...validateOptionalString(ctx.contextNote, `${path}.contextNote`),
+    ...validateOptionalString(ctx.contextDate, `${path}.contextDate`),
     ...(ctx.ocChange === undefined ? [] : validateBoolean(ctx.ocChange, `${path}.ocChange`)),
     ...(ctx.playCallerChange === undefined ? [] : validateBoolean(ctx.playCallerChange, `${path}.playCallerChange`)),
     ...validateRank(ctx.offensiveLineRank, `${path}.offensiveLineRank`),
@@ -170,5 +185,4 @@ export function formatContextValidationIssues(issues: ContextValidationIssue[]):
   return issues.map(item => `- ${item.path}: ${item.message}`).join('\n');
 }
 
-// Re-export runtime shapes for scripts/tests that construct valid examples.
 export type { PlayerContext, TeamContext };
