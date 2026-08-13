@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { ErrorBoundary } from './components/ErrorBoundary'
+import { prepareSleeperDraftContext } from './api/sleeperLiveContext'
 import { sweepStaleCacheVersions } from './utils/leagueCache'
 import { initSentry } from './utils/sentry'
 import App from './App.tsx'
@@ -10,6 +11,12 @@ import './index.css'
 
 initSentry()
 sweepStaleCacheVersions()
+
+// Hydrate the draft pool from today's compact Sleeper cache synchronously, then
+// refresh it in the background when the cache date/build is stale. The live
+// updater emits a browser event when fresh facts land so mounted draft/ranking
+// surfaces can re-derive without blocking app startup on the network.
+void prepareSleeperDraftContext()
 
 // A redeploy rehashes every lazy chunk, so a visitor whose index.html (or a
 // prerendered /rankings, /draft-room shell) predates the current build asks
