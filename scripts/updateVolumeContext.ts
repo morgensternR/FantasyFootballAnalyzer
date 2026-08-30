@@ -281,7 +281,7 @@ async function fetchFantasyPros(): Promise<{ rows: ProjectionRow[]; meta: Source
           passAttempts: finite(stats.pass_att ?? raw.pass_att),
           rushAttempts: finite(stats.rush_att ?? raw.rush_att),
           targets: finite(stats.rec_tgt ?? stats.targets ?? raw.rec_tgt ?? raw.targets),
-          receptions: finite(stats.rec ?? stats.receptions ?? raw.rec ?? raw.receptions),
+          receptions: finite(stats.rec_rec ?? stats.rec ?? stats.receptions ?? raw.rec_rec ?? raw.rec ?? raw.receptions),
         };
         if (Object.keys(compactProjection(row)).length > 0) rows.push(row);
       }
