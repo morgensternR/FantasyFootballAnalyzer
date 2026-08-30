@@ -185,14 +185,30 @@ export function volumeTooltip(
 }
 
 export function volumeEntryByRenderedPlayerText(text: string): { id: string; context: VolumePlayerContext } | null {
-  const normalized = text.trim().toLowerCase();
+  const display = text.trim();
+  const normalized = display.toLowerCase();
+  if (!normalized) return null;
+
   let best: { id: string; context: VolumePlayerContext } | null = null;
   for (const [id, context] of Object.entries(DATA.players)) {
     const name = context.name.toLowerCase();
     if (!normalized.startsWith(name)) continue;
     if (!best || context.name.length > best.context.name.length) best = { id, context };
   }
-  return best;
+  if (best) return best;
+
+  // Keep players without an offensive-volume record (notably K and D/ST)
+  // participating in the table sort with a null workload. The sorter always
+  // places null workloads after projected offensive players in either sort
+  // direction. This synthetic context is not shown as a volume label.
+  return {
+    id: `unprojected:${normalized}`,
+    context: {
+      name: display,
+      team: '',
+      pos: 'OTHER',
+    },
+  };
 }
 
 export function volumeDataStatus(): { generatedAt?: string; playerCount: number; sourceCount: number } {
