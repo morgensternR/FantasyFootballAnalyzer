@@ -169,6 +169,10 @@ export interface PoolPlayer {
   injuryBodyPart?: string;
   injuryNotes?: string;
   injuryStartDate?: string;
+  // Live Sleeper practice/depth details. These are deliberately overlay-only:
+  // the bundled pool may omit them, while app-open hydration can populate them.
+  practiceParticipation?: string;
+  depthChartPosition?: string;
   rookie?: boolean;
   // 1 = listed starter at the position on Sleeper's depth chart.
   depthChartOrder?: number;
