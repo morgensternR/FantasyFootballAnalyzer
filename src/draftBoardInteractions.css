@@ -90,7 +90,7 @@ body.draft-column-resizing * {
   content: "PICK CLOCK  " attr(data-draft-pick-clock);
   flex: none;
   min-width: 12rem;
-  margin-left: auto;
+  margin-left: 1rem;
   padding: 0.43rem 0.9rem;
   border: 2px solid var(--bone-dim);
   background: var(--ink);
