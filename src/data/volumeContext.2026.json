@@ -1,12 +1,12 @@
 {
   "season": 2026,
   "actualSeason": 2025,
-  "generatedAt": "2026-08-30T21:08:06.536Z",
+  "generatedAt": "2026-08-30T21:14:08.825Z",
   "sources": [
     {
       "id": "fantasypros",
       "label": "FantasyPros consensus projections",
-      "fetchedAt": "2026-08-30T21:08:06.094Z",
+      "fetchedAt": "2026-08-30T21:14:08.114Z",
       "url": "https://api.fantasypros.com/public/v2/docs/",
       "kind": "projection",
       "note": "Preseason consensus statistical projections."
@@ -14,7 +14,7 @@
     {
       "id": "sleeper",
       "label": "Sleeper season projections",
-      "fetchedAt": "2026-08-30T21:08:06.155Z",
+      "fetchedAt": "2026-08-30T21:14:08.176Z",
       "url": "https://api.sleeper.com/projections/nfl/2026?season_type=regular",
       "kind": "projection",
       "note": "Public Sleeper projection feed; undocumented, so treated as an independent model input rather than ground truth."
@@ -22,7 +22,7 @@
     {
       "id": "nflverse-snaps",
       "label": "nflverse/PFR 2025 snap counts",
-      "fetchedAt": "2026-08-30T21:08:06.157Z",
+      "fetchedAt": "2026-08-30T21:14:08.178Z",
       "url": "https://github.com/nflverse/nflverse-data/releases/download/snap_counts/snap_counts_2025.csv",
       "kind": "actual",
       "note": "Previous-season regular-season game-level offensive snaps. Actual usage, not a 2026 projection."
