@@ -1,45 +1,15 @@
-import { StrictMode, useEffect, useState } from 'react'
+import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { ErrorBoundary } from './components/ErrorBoundary'
-import {
-  prepareSleeperDraftContext,
-  SLEEPER_CONTEXT_UPDATED_EVENT,
-} from './api/sleeperLiveContext'
-import { installDraftBoardEnhancements } from './utils/draftBoardEnhancements'
-import { installDraftFreshnessPlacement } from './utils/draftFreshnessPlacement'
 import { sweepStaleCacheVersions } from './utils/leagueCache'
 import { initSentry } from './utils/sentry'
 import App from './App.tsx'
 import './fonts.css'
 import './index.css'
-import './draftBoardEnhancements.css'
 
 initSentry()
 sweepStaleCacheVersions()
-installDraftBoardEnhancements()
-installDraftFreshnessPlacement()
-
-// Apply a same-day compact Sleeper cache immediately; when the cache date or
-// bundled pool build is stale, refresh in the background. The app remains
-// usable while that request runs and falls back cleanly when offline.
-void prepareSleeperDraftContext()
-
-// Sleeper refresh mutates the shared PoolPlayer records in place so stable
-// player IDs, saved drafts, rankings and projection values do not need a
-// parallel data store. This tiny wrapper supplies the React render pulse after
-// a successful live refresh without reloading the page or resetting a draft.
-function ContextAwareApp() {
-  const [, setContextVersion] = useState(0)
-
-  useEffect(() => {
-    const onContextUpdate = () => setContextVersion(version => version + 1)
-    window.addEventListener(SLEEPER_CONTEXT_UPDATED_EVENT, onContextUpdate)
-    return () => window.removeEventListener(SLEEPER_CONTEXT_UPDATED_EVENT, onContextUpdate)
-  }, [])
-
-  return <App />
-}
 
 // A redeploy rehashes every lazy chunk, so a visitor whose index.html (or a
 // prerendered /rankings, /draft-room shell) predates the current build asks
@@ -80,7 +50,7 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ErrorBoundary>
       <BrowserRouter basename={import.meta.env.BASE_URL}>
-        <ContextAwareApp />
+        <App />
       </BrowserRouter>
     </ErrorBoundary>
   </StrictMode>,
