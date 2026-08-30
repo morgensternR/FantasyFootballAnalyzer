@@ -84,6 +84,9 @@ export function volumeLabel(player: PoolPlayer, context = volumeContextForPlayer
       if (projection.rushAttempts != null && projection.targets != null) {
         return `${rounded(projection.rushAttempts)} CAR · ${rounded(projection.targets)} TGT`;
       }
+      if (projection.rushAttempts != null && projection.receptions != null) {
+        return `${rounded(projection.rushAttempts)} CAR · ${rounded(projection.receptions)} REC`;
+      }
       if (projection.opportunities != null) return `${rounded(projection.opportunities)} OPP`;
       if (projection.rushAttempts != null) return `${rounded(projection.rushAttempts)} CAR`;
     }
@@ -116,6 +119,7 @@ function projectionLine(
     return [
       projection.rushAttempts != null ? `${rounded(projection.rushAttempts)} carries` : null,
       projection.targets != null ? `${rounded(projection.targets)} targets` : null,
+      projection.receptions != null ? `${rounded(projection.receptions)} receptions` : null,
       projection.opportunities != null ? `${rounded(projection.opportunities)} projected opportunities` : null,
     ].filter(Boolean).join(' · ');
   }
@@ -164,7 +168,7 @@ export function volumeTooltip(
   }
 
   lines.push('• Snap share is previous-season actual usage, not a projected snap percentage.');
-  lines.push('• Carries + targets are used as projected opportunities for RBs; targets are the primary volume signal for WR/TE; pass attempts are primary for QBs.');
+  lines.push('• For RBs, carries + targets are true opportunities when target projections exist; otherwise carries + receptions are shown as a conservative receiving-volume proxy. WR/TE use targets when available and receptions otherwise; QBs use pass attempts plus rushing attempts.');
 
   const sourceUrls = new Set<string>();
   for (const id of Object.keys(context.projection?.sources ?? {})) {
