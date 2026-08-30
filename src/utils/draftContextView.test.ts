@@ -64,6 +64,23 @@ describe('split draft context views', () => {
     expect(outlook.title).toContain('DEF measures this NFL team’s defense against opposing offenses.');
   });
 
+  it('does not fake a healthy single-player injury state or apply offensive infrastructure to D/ST', () => {
+    const dst = player({ id: 'dst-atl', team: 'ATL', pos: 'DST' });
+    const injury = injuryContextForPlayer(dst);
+    const changes = teamChangesForPlayer(dst, contexts('ATL', {
+      ocChange: true,
+      playCallerChange: true,
+      contextTrend: 'major_concern',
+    }));
+
+    expect(injury.label).toBe('—');
+    expect(injury.tone).toBe('neutral');
+    expect(injury.title).toContain('entire defensive unit');
+    expect(changes.label).toBe('DEF only');
+    expect(changes.tone).toBe('neutral');
+    expect(changes.title).toContain('not applied to D/ST');
+  });
+
   it('treats a first-time play caller as neutral uncertainty rather than automatically bad', () => {
     const changes = teamChangesForPlayer(
       player({ team: 'BAL' }),
@@ -132,6 +149,21 @@ describe('split draft context views', () => {
     expect(unavailable.label).toBe('High Risk');
     expect(unavailable.tone).toBe('bad');
     expect(unavailable.title).toContain('• Injury: PUP');
+  });
+
+  it('keeps D/ST Overall CTX based on defense + schedule rather than offensive context trend', () => {
+    const dst = player({ id: 'dst-atl', team: 'ATL', pos: 'DST' });
+    const overall = overallContextForPlayer(dst, {}, contexts('ATL', {
+      defenseRank: 3,
+      offenseRank: 32,
+      scheduleRank: 4,
+      contextTrend: 'major_concern',
+    }));
+
+    expect(overall.label).toBe('Excellent');
+    expect(overall.title).toContain('• Season Outlook: Elite · Very easy');
+    expect(overall.title).toContain('offensive infrastructure excluded for D/ST');
+    expect(overall.title).not.toContain('• Injury:');
   });
 
   it('formats scan details as bullet lines instead of a paragraph wall', () => {
