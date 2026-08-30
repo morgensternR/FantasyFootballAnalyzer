@@ -1,4 +1,5 @@
 import { logger } from './logger';
+import { installDraftVolumeOverlay } from './draftVolumeOverlay';
 
 const DRAFTROOM_PREFIX = 'ffa:draftroom:v1:';
 const CLOCK_CACHE_PREFIX = 'ffa:draft-pick-clock:v1:';
@@ -252,6 +253,7 @@ function formatRemaining(seconds: number): string {
 export function installDraftPickClock(): () => void {
   if (typeof window === 'undefined' || typeof document === 'undefined') return () => {};
 
+  const removeVolumeOverlay = installDraftVolumeOverlay();
   let disposed = false;
   let identity: ActiveDraftIdentity | null = null;
   let setting: DraftPickClockSetting | null = null;
@@ -320,6 +322,7 @@ export function installDraftPickClock(): () => void {
 
   return () => {
     disposed = true;
+    removeVolumeOverlay();
     window.clearInterval(interval);
     const tabs = draftTabs();
     if (tabs) {
