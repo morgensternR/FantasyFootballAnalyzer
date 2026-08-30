@@ -6,10 +6,10 @@ import type { UseDraftRoomReturn } from '@/hooks/useDraftRoom';
 import { useTargets } from '@/hooks/useTargets';
 import { marketAdp } from '@/utils/consensus';
 import {
-  contextLabelForPlayer,
   type PlayerContextFile,
   type TeamContextFile,
 } from '@/utils/contextLabels';
+import { overallContextForPlayer } from '@/utils/draftContextView';
 import { availableHandcuffs } from '@/utils/stacks';
 import { suggestPicks } from '@/utils/suggestions';
 import { simulateTakenOdds } from '@/utils/survival';
@@ -27,15 +27,14 @@ const EMPTY: UseSuggestedPicksReturn = { suggested: new Map(), handcuffFor: new 
 const PLAYER_CONTEXTS = (playerContextJson as PlayerContextFile).players;
 const TEAM_CONTEXTS = (teamContextJson as TeamContextFile).teams;
 
-// Snake-draft advice for the user's team, formerly SuggestionsPanel's guts:
-// survival odds + roster fit + tier urgency, with human-readable reasons.
+// Snake-draft advice for the user's team: survival odds + roster fit + tier
+// urgency. Overall CTX is deliberately only a small tiebreaker, not a
+// replacement for rank/value/need/survival.
 export function useSuggestedPicks(room: UseDraftRoomReturn, enabled: boolean): UseSuggestedPicksReturn {
   const { config, derived, scaledValues, scoring, pool } = room;
   const { starred, avoided } = useTargets(config.season);
   const me = derived.teams.get(config.myTeamId);
 
-  // The user's reserved keepers count as roster for advice purposes
-  // (handcuffs, stacks, byes) before the cost round logs the pick.
   const keeperPlayers = useMemo(() => {
     const mine = (config.keepers ?? []).filter(
       k => k.teamId === config.myTeamId && derived.reservedPlayerIds.has(k.playerId),
@@ -53,11 +52,10 @@ export function useSuggestedPicks(room: UseDraftRoomReturn, enabled: boolean): U
     [scoring, superflex],
   );
   const contextForPlayer = useCallback(
-    (p: PoolPlayer) => contextLabelForPlayer(p, PLAYER_CONTEXTS, TEAM_CONTEXTS),
+    (p: PoolPlayer) => overallContextForPlayer(p, PLAYER_CONTEXTS, TEAM_CONTEXTS),
     [],
   );
 
-  // Simulated odds each board player is gone before the user's next pick.
   const takenOdds = useMemo(() => {
     if (!enabled || !me) return null;
     return simulateTakenOdds({
