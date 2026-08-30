@@ -6,14 +6,17 @@ import {
   prepareSleeperDraftContext,
   SLEEPER_CONTEXT_UPDATED_EVENT,
 } from './api/sleeperLiveContext'
+import { installDraftBoardEnhancements } from './utils/draftBoardEnhancements'
 import { sweepStaleCacheVersions } from './utils/leagueCache'
 import { initSentry } from './utils/sentry'
 import App from './App.tsx'
 import './fonts.css'
 import './index.css'
+import './draftBoardEnhancements.css'
 
 initSentry()
 sweepStaleCacheVersions()
+installDraftBoardEnhancements()
 
 // Apply a same-day compact Sleeper cache immediately; when the cache date or
 // bundled pool build is stale, refresh in the background. The app remains
