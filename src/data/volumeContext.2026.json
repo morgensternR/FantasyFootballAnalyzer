@@ -1,12 +1,12 @@
 {
   "season": 2026,
   "actualSeason": 2025,
-  "generatedAt": "2026-08-30T20:48:46.811Z",
+  "generatedAt": "2026-08-30T20:52:03.910Z",
   "sources": [
     {
       "id": "fantasypros",
       "label": "FantasyPros consensus projections",
-      "fetchedAt": "2026-08-30T20:48:46.353Z",
+      "fetchedAt": "2026-08-30T20:52:03.280Z",
       "url": "https://api.fantasypros.com/public/v2/docs/",
       "kind": "projection",
       "note": "Preseason consensus statistical projections."
@@ -14,7 +14,7 @@
     {
       "id": "sleeper",
       "label": "Sleeper season projections",
-      "fetchedAt": "2026-08-30T20:48:46.407Z",
+      "fetchedAt": "2026-08-30T20:52:03.331Z",
       "url": "https://api.sleeper.com/projections/nfl/2026?season_type=regular",
       "kind": "projection",
       "note": "Public Sleeper projection feed; undocumented, so treated as an independent model input rather than ground truth."
@@ -22,7 +22,7 @@
     {
       "id": "nflverse-snaps",
       "label": "nflverse/PFR 2025 snap counts",
-      "fetchedAt": "2026-08-30T20:48:46.408Z",
+      "fetchedAt": "2026-08-30T20:52:03.332Z",
       "url": "https://github.com/nflverse/nflverse-data/releases/download/snap_counts/snap_counts_2025.csv",
       "kind": "actual",
       "note": "Previous-season regular-season game-level offensive snaps. Actual usage, not a 2026 projection."
@@ -35,13 +35,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 264.9,
-        "receptions": 63,
+        "receptions": 67.2,
         "sourceCount": 2,
         "confidence": "high",
         "spreadPct": 7.4,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 274.7
+            "rushAttempts": 274.7,
+            "receptions": 71.3
           },
           "sleeper": {
             "rushAttempts": 255,
@@ -63,13 +64,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 282.6,
-        "receptions": 64,
+        "receptions": 70.7,
         "sourceCount": 2,
         "confidence": "high",
         "spreadPct": 1.8,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 285.2
+            "rushAttempts": 285.2,
+            "receptions": 77.3
           },
           "sleeper": {
             "rushAttempts": 280,
@@ -91,12 +93,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 3,
-        "receptions": 109,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 115.1,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 10.6,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 3
+            "rushAttempts": 3,
+            "receptions": 121.2
           },
           "sleeper": {
             "rushAttempts": 3,
@@ -118,12 +122,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 11.8,
-        "receptions": 107,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 112,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 8.9,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 13.6
+            "rushAttempts": 13.6,
+            "receptions": 117
           },
           "sleeper": {
             "rushAttempts": 10,
@@ -145,12 +151,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 5.8,
-        "receptions": 99,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 105,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 11.3,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 5.5
+            "rushAttempts": 5.5,
+            "receptions": 110.9
           },
           "sleeper": {
             "rushAttempts": 6,
@@ -172,12 +180,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 3.1,
-        "receptions": 106,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 111.7,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 10.2,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 3.1
+            "rushAttempts": 3.1,
+            "receptions": 117.4
           },
           "sleeper": {
             "rushAttempts": 3,
@@ -199,13 +209,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 254.9,
-        "receptions": 70,
+        "receptions": 74.2,
         "sourceCount": 2,
         "confidence": "medium",
         "spreadPct": 11.7,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 269.7
+            "rushAttempts": 269.7,
+            "receptions": 78.4
           },
           "sleeper": {
             "rushAttempts": 240,
@@ -227,13 +238,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 306.8,
-        "receptions": 36,
+        "receptions": 39.5,
         "sourceCount": 2,
         "confidence": "medium",
         "spreadPct": 12.9,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 326.6
+            "rushAttempts": 326.6,
+            "receptions": 42.9
           },
           "sleeper": {
             "rushAttempts": 287,
@@ -255,12 +267,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 2.7,
-        "receptions": 96,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 96.8,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 1.6,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 2.4
+            "rushAttempts": 2.4,
+            "receptions": 97.5
           },
           "sleeper": {
             "rushAttempts": 3,
@@ -282,12 +296,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 1.2,
-        "receptions": 90,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 94.5,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 9.4,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 1.3
+            "rushAttempts": 1.3,
+            "receptions": 98.9
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -309,13 +325,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 275.9,
-        "receptions": 31,
+        "receptions": 32.2,
         "sourceCount": 2,
         "confidence": "high",
         "spreadPct": 8.6,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 287.7
+            "rushAttempts": 287.7,
+            "receptions": 33.3
           },
           "sleeper": {
             "rushAttempts": 264,
@@ -337,13 +354,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 251,
-        "receptions": 45,
+        "receptions": 50.9,
         "sourceCount": 2,
         "confidence": "high",
         "spreadPct": 5.6,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 258
+            "rushAttempts": 258,
+            "receptions": 56.7
           },
           "sleeper": {
             "rushAttempts": 244,
@@ -365,12 +383,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.5,
-        "receptions": 90,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 94.2,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 8.9,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 98.4
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -392,12 +412,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.5,
-        "receptions": 79,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 83.3,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 10.3,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 87.6
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -419,13 +441,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 229.4,
-        "receptions": 57,
+        "receptions": 60.4,
         "sourceCount": 2,
         "confidence": "high",
         "spreadPct": 8.2,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 238.8
+            "rushAttempts": 238.8,
+            "receptions": 63.8
           },
           "sleeper": {
             "rushAttempts": 220,
@@ -440,10 +463,14 @@
       "pos": "TE",
       "projection": {
         "rushAttempts": 4,
-        "receptions": 102,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 99.3,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 5.4,
         "sources": {
+          "fantasypros": {
+            "receptions": 96.6
+          },
           "sleeper": {
             "rushAttempts": 4,
             "receptions": 102
@@ -464,13 +491,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 283.4,
-        "receptions": 37,
+        "receptions": 39.4,
         "sourceCount": 2,
         "confidence": "high",
         "spreadPct": 8.8,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 295.8
+            "rushAttempts": 295.8,
+            "receptions": 41.7
           },
           "sleeper": {
             "rushAttempts": 271,
@@ -492,13 +520,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 238.7,
-        "receptions": 55,
+        "receptions": 60.1,
         "sourceCount": 2,
         "confidence": "high",
         "spreadPct": 0.3,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 238.3
+            "rushAttempts": 238.3,
+            "receptions": 65.2
           },
           "sleeper": {
             "rushAttempts": 239,
@@ -520,13 +549,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 237.9,
-        "receptions": 48,
+        "receptions": 49.1,
         "sourceCount": 2,
         "confidence": "high",
         "spreadPct": 4.9,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 243.7
+            "rushAttempts": 243.7,
+            "receptions": 50.2
           },
           "sleeper": {
             "rushAttempts": 232,
@@ -548,12 +578,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 2.2,
-        "receptions": 84,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 83.3,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 1.8,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 1.4
+            "rushAttempts": 1.4,
+            "receptions": 82.5
           },
           "sleeper": {
             "rushAttempts": 3,
@@ -575,13 +607,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 297.5,
-        "receptions": 17,
+        "receptions": 17.6,
         "sourceCount": 2,
         "confidence": "medium",
         "spreadPct": 11.1,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 314
+            "rushAttempts": 314,
+            "receptions": 18.1
           },
           "sleeper": {
             "rushAttempts": 281,
@@ -603,12 +636,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.7,
-        "receptions": 80,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 81.3,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 3.1,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0.3
+            "rushAttempts": 0.3,
+            "receptions": 82.5
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -630,13 +665,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 260.8,
-        "receptions": 37,
+        "receptions": 41.4,
         "sourceCount": 2,
         "confidence": "high",
         "spreadPct": 1.3,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 262.5
+            "rushAttempts": 262.5,
+            "receptions": 45.8
           },
           "sleeper": {
             "rushAttempts": 259,
@@ -657,10 +693,14 @@
       "team": "ARI",
       "pos": "TE",
       "projection": {
-        "receptions": 96,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 102.5,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 12.6,
         "sources": {
+          "fantasypros": {
+            "receptions": 108.9
+          },
           "sleeper": {
             "receptions": 96
           }
@@ -680,12 +720,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.7,
-        "receptions": 82,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 88.9,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 15.5,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0.3
+            "rushAttempts": 0.3,
+            "receptions": 95.8
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -707,12 +749,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 5.7,
-        "receptions": 88,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 92.5,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 9.6,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 5.4
+            "rushAttempts": 5.4,
+            "receptions": 96.9
           },
           "sleeper": {
             "rushAttempts": 6,
@@ -763,12 +807,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.5,
-        "receptions": 80,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 83.9,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 9.3,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 87.8
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -790,12 +836,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 7.5,
-        "receptions": 81,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 81.1,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 0.2,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 9.9
+            "rushAttempts": 9.9,
+            "receptions": 81.2
           },
           "sleeper": {
             "rushAttempts": 5,
@@ -817,12 +865,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 2.9,
-        "receptions": 86,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 83.7,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 5.5,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 2.8
+            "rushAttempts": 2.8,
+            "receptions": 81.4
           },
           "sleeper": {
             "rushAttempts": 3,
@@ -844,13 +894,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 234.1,
-        "receptions": 32,
+        "receptions": 32.9,
         "sourceCount": 2,
         "confidence": "high",
         "spreadPct": 5.2,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 240.2
+            "rushAttempts": 240.2,
+            "receptions": 33.8
           },
           "sleeper": {
             "rushAttempts": 228,
@@ -872,12 +923,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.5,
-        "receptions": 75,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 72.9,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 5.8,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 70.8
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -899,13 +952,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 221.1,
-        "receptions": 47,
+        "receptions": 50.9,
         "sourceCount": 2,
         "confidence": "medium",
         "spreadPct": 14.6,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 237.2
+            "rushAttempts": 237.2,
+            "receptions": 54.7
           },
           "sleeper": {
             "rushAttempts": 205,
@@ -920,12 +974,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.5,
-        "receptions": 77,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 79.1,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 5.3,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 81.2
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -947,12 +1003,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 2.2,
-        "receptions": 77,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 75.1,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 5.1,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 1.4
+            "rushAttempts": 1.4,
+            "receptions": 73.2
           },
           "sleeper": {
             "rushAttempts": 3,
@@ -974,13 +1032,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 245.6,
-        "receptions": 33,
+        "receptions": 33.7,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 23.3,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 274.2
+            "rushAttempts": 274.2,
+            "receptions": 34.3
           },
           "sleeper": {
             "rushAttempts": 217,
@@ -1031,13 +1090,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 234.5,
-        "receptions": 37,
+        "receptions": 41.7,
         "sourceCount": 2,
         "confidence": "medium",
         "spreadPct": 12.4,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 249
+            "rushAttempts": 249,
+            "receptions": 46.4
           },
           "sleeper": {
             "rushAttempts": 220,
@@ -1059,13 +1119,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 247.6,
-        "receptions": 37,
+        "receptions": 35,
         "sourceCount": 2,
         "confidence": "high",
         "spreadPct": 6.9,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 256.2
+            "rushAttempts": 256.2,
+            "receptions": 33
           },
           "sleeper": {
             "rushAttempts": 239,
@@ -1087,12 +1148,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 1,
-        "receptions": 81,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 80.1,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 2.2,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 79.2
           },
           "sleeper": {
             "rushAttempts": 2,
@@ -1114,12 +1177,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 2.1,
-        "receptions": 83,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 89.7,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 14.9,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 1.1
+            "rushAttempts": 1.1,
+            "receptions": 96.4
           },
           "sleeper": {
             "rushAttempts": 3,
@@ -1141,10 +1206,14 @@
       "pos": "TE",
       "projection": {
         "rushAttempts": 1,
-        "receptions": 84,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 81.6,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 6,
         "sources": {
+          "fantasypros": {
+            "receptions": 79.1
+          },
           "sleeper": {
             "rushAttempts": 1,
             "receptions": 84
@@ -1165,12 +1234,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 2.4,
-        "receptions": 77,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 75.6,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 3.7,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 1.7
+            "rushAttempts": 1.7,
+            "receptions": 74.2
           },
           "sleeper": {
             "rushAttempts": 3,
@@ -1221,12 +1292,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.7,
-        "receptions": 74,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 71.5,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 7,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0.3
+            "rushAttempts": 0.3,
+            "receptions": 69
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -1248,12 +1321,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 8.9,
-        "receptions": 72,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 72.4,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 1,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 7.7
+            "rushAttempts": 7.7,
+            "receptions": 72.7
           },
           "sleeper": {
             "rushAttempts": 10,
@@ -1275,13 +1350,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 239.6,
-        "receptions": 36,
+        "receptions": 40.7,
         "sourceCount": 2,
         "confidence": "medium",
         "spreadPct": 11.4,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 253.2
+            "rushAttempts": 253.2,
+            "receptions": 45.3
           },
           "sleeper": {
             "rushAttempts": 226,
@@ -1303,12 +1379,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
-        "receptions": 63,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 65.8,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 8.4,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 68.5
           },
           "sleeper": {
             "receptions": 63
@@ -1358,13 +1436,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 225.4,
-        "receptions": 42,
+        "receptions": 42.7,
         "sourceCount": 2,
         "confidence": "medium",
         "spreadPct": 10.1,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 236.7
+            "rushAttempts": 236.7,
+            "receptions": 43.3
           },
           "sleeper": {
             "rushAttempts": 214,
@@ -1386,12 +1465,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 7.7,
-        "receptions": 60,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 62.2,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 7.1,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 7.3
+            "rushAttempts": 7.3,
+            "receptions": 64.4
           },
           "sleeper": {
             "rushAttempts": 8,
@@ -1442,13 +1523,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 225.2,
-        "receptions": 37,
+        "receptions": 36.1,
         "sourceCount": 2,
         "confidence": "high",
         "spreadPct": 7.3,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 233.4
+            "rushAttempts": 233.4,
+            "receptions": 35.1
           },
           "sleeper": {
             "rushAttempts": 217,
@@ -1470,13 +1552,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 231.9,
-        "receptions": 36,
+        "receptions": 37.8,
         "sourceCount": 2,
         "confidence": "medium",
         "spreadPct": 18,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 252.8
+            "rushAttempts": 252.8,
+            "receptions": 39.6
           },
           "sleeper": {
             "rushAttempts": 211,
@@ -1498,10 +1581,14 @@
       "pos": "TE",
       "projection": {
         "rushAttempts": 5,
-        "receptions": 83,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 81,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 4.9,
         "sources": {
+          "fantasypros": {
+            "receptions": 79
+          },
           "sleeper": {
             "rushAttempts": 5,
             "receptions": 83
@@ -1522,13 +1609,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 267,
-        "receptions": 32,
+        "receptions": 32.5,
         "sourceCount": 2,
         "confidence": "medium",
         "spreadPct": 17.2,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 289.9
+            "rushAttempts": 289.9,
+            "receptions": 33
           },
           "sleeper": {
             "rushAttempts": 244,
@@ -1550,12 +1638,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
-        "receptions": 70,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 68.6,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 4.1,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 67.2
           },
           "sleeper": {
             "receptions": 70
@@ -1576,12 +1666,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 1.9,
-        "receptions": 63,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 60.3,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 9,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 1.8
+            "rushAttempts": 1.8,
+            "receptions": 57.6
           },
           "sleeper": {
             "rushAttempts": 2,
@@ -1603,13 +1695,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 233.8,
-        "receptions": 32,
+        "receptions": 31.4,
         "sourceCount": 2,
         "confidence": "high",
         "spreadPct": 1.9,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 231.5
+            "rushAttempts": 231.5,
+            "receptions": 30.8
           },
           "sleeper": {
             "rushAttempts": 236,
@@ -1631,12 +1724,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 7.7,
-        "receptions": 63,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 66.2,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 9.7,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 10.3
+            "rushAttempts": 10.3,
+            "receptions": 69.4
           },
           "sleeper": {
             "rushAttempts": 5,
@@ -1658,13 +1753,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 177.9,
-        "receptions": 35,
+        "receptions": 35.1,
         "sourceCount": 2,
         "confidence": "high",
         "spreadPct": 8.9,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 185.8
+            "rushAttempts": 185.8,
+            "receptions": 35.2
           },
           "sleeper": {
             "rushAttempts": 170,
@@ -1686,12 +1782,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.7,
-        "receptions": 68,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 65.2,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 8.6,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0.3
+            "rushAttempts": 0.3,
+            "receptions": 62.4
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -1742,13 +1840,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 211.7,
-        "receptions": 32,
+        "receptions": 30.6,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 26.2,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 239.4
+            "rushAttempts": 239.4,
+            "receptions": 29.2
           },
           "sleeper": {
             "rushAttempts": 184,
@@ -1770,13 +1869,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 213.8,
-        "receptions": 19,
+        "receptions": 22.7,
         "sourceCount": 2,
         "confidence": "high",
         "spreadPct": 1.6,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 215.5
+            "rushAttempts": 215.5,
+            "receptions": 26.4
           },
           "sleeper": {
             "rushAttempts": 212,
@@ -1790,10 +1890,14 @@
       "team": "GB",
       "pos": "TE",
       "projection": {
-        "receptions": 67,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 63.9,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 9.7,
         "sources": {
+          "fantasypros": {
+            "receptions": 60.8
+          },
           "sleeper": {
             "receptions": 67
           }
@@ -1871,13 +1975,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 180.1,
-        "receptions": 36,
+        "receptions": 39.2,
         "sourceCount": 2,
         "confidence": "high",
         "spreadPct": 8.9,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 188.1
+            "rushAttempts": 188.1,
+            "receptions": 42.4
           },
           "sleeper": {
             "rushAttempts": 172,
@@ -1899,12 +2004,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 1.4,
-        "receptions": 65,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 65.1,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 0.3,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0.7
+            "rushAttempts": 0.7,
+            "receptions": 65.2
           },
           "sleeper": {
             "rushAttempts": 2,
@@ -1919,12 +2026,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
-        "receptions": 62,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 64.7,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 8.2,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 67.3
           },
           "sleeper": {
             "receptions": 62
@@ -1945,13 +2054,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 212.6,
-        "receptions": 28,
+        "receptions": 30,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 22.2,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 236.2
+            "rushAttempts": 236.2,
+            "receptions": 31.9
           },
           "sleeper": {
             "rushAttempts": 189,
@@ -1973,12 +2083,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 7.5,
-        "receptions": 72,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 67.3,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 14,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 5
+            "rushAttempts": 5,
+            "receptions": 62.6
           },
           "sleeper": {
             "rushAttempts": 10,
@@ -2000,12 +2112,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 1.4,
-        "receptions": 62,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 63.2,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 3.6,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0.7
+            "rushAttempts": 0.7,
+            "receptions": 64.3
           },
           "sleeper": {
             "rushAttempts": 2,
@@ -2027,12 +2141,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 2.9,
-        "receptions": 62,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 60,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 6.7,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 2.7
+            "rushAttempts": 2.7,
+            "receptions": 58
           },
           "sleeper": {
             "rushAttempts": 3,
@@ -2054,10 +2170,14 @@
       "pos": "TE",
       "projection": {
         "rushAttempts": 6,
-        "receptions": 74,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 78.3,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 11,
         "sources": {
+          "fantasypros": {
+            "receptions": 82.6
+          },
           "sleeper": {
             "rushAttempts": 6,
             "receptions": 74
@@ -2078,13 +2198,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 175.8,
-        "receptions": 29,
+        "receptions": 34.3,
         "sourceCount": 2,
         "confidence": "high",
         "spreadPct": 8.2,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 168.6
+            "rushAttempts": 168.6,
+            "receptions": 39.5
           },
           "sleeper": {
             "rushAttempts": 183,
@@ -2164,10 +2285,14 @@
       "pos": "TE",
       "projection": {
         "rushAttempts": 1,
-        "receptions": 76,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 73.2,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 7.7,
         "sources": {
+          "fantasypros": {
+            "receptions": 70.4
+          },
           "sleeper": {
             "rushAttempts": 1,
             "receptions": 76
@@ -2188,13 +2313,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 179.6,
-        "receptions": 22,
+        "receptions": 29.2,
         "sourceCount": 2,
         "confidence": "high",
         "spreadPct": 1.6,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 178.2
+            "rushAttempts": 178.2,
+            "receptions": 36.4
           },
           "sleeper": {
             "rushAttempts": 181,
@@ -2216,12 +2342,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.5,
-        "receptions": 54,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 55.3,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 4.5,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 56.5
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -2242,10 +2370,14 @@
       "team": "ATL",
       "pos": "TE",
       "projection": {
-        "receptions": 66,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 71.6,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 15.6,
         "sources": {
+          "fantasypros": {
+            "receptions": 77.2
+          },
           "sleeper": {
             "receptions": 66
           }
@@ -2265,12 +2397,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
-        "receptions": 59,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 63.2,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 13.3,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 67.4
           },
           "sleeper": {
             "receptions": 59
@@ -2291,13 +2425,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 179.5,
-        "receptions": 38,
+        "receptions": 34.9,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 22.8,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 200
+            "rushAttempts": 200,
+            "receptions": 31.8
           },
           "sleeper": {
             "rushAttempts": 159,
@@ -2319,12 +2454,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.7,
-        "receptions": 68,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 67.9,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 0.3,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0.3
+            "rushAttempts": 0.3,
+            "receptions": 67.8
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -2346,12 +2483,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 1,
-        "receptions": 41,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 39.4,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 8.1,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 1
+            "rushAttempts": 1,
+            "receptions": 37.8
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -2395,13 +2534,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 195.5,
-        "receptions": 26,
+        "receptions": 22.8,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 25,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 219.9
+            "rushAttempts": 219.9,
+            "receptions": 19.5
           },
           "sleeper": {
             "rushAttempts": 171,
@@ -2423,12 +2563,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.5,
-        "receptions": 69,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 74.8,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 15.4,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 80.5
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -2450,12 +2592,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.5,
-        "receptions": 59,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 63.3,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 13.4,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 67.5
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -2477,13 +2621,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 115.8,
-        "receptions": 37,
+        "receptions": 41.5,
         "sourceCount": 2,
         "confidence": "medium",
         "spreadPct": 14.2,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 107.6
+            "rushAttempts": 107.6,
+            "receptions": 45.9
           },
           "sleeper": {
             "rushAttempts": 124,
@@ -2534,12 +2679,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 1.9,
-        "receptions": 58,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 55.8,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 7.9,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 1.7
+            "rushAttempts": 1.7,
+            "receptions": 53.6
           },
           "sleeper": {
             "rushAttempts": 2,
@@ -2567,7 +2714,8 @@
         "spreadPct": 14.2,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 191.3
+            "rushAttempts": 191.3,
+            "receptions": 22.9
           },
           "sleeper": {
             "rushAttempts": 166,
@@ -2589,13 +2737,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 169.9,
-        "receptions": 15,
+        "receptions": 13.5,
         "sourceCount": 2,
         "confidence": "high",
         "spreadPct": 2.5,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 167.7
+            "rushAttempts": 167.7,
+            "receptions": 11.9
           },
           "sleeper": {
             "rushAttempts": 172,
@@ -2617,12 +2766,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 1.7,
-        "receptions": 70,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 69.4,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 1.7,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 1.4
+            "rushAttempts": 1.4,
+            "receptions": 68.8
           },
           "sleeper": {
             "rushAttempts": 2,
@@ -2644,12 +2795,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 2.5,
-        "receptions": 71,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 75.5,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 11.8,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 2
+            "rushAttempts": 2,
+            "receptions": 79.9
           },
           "sleeper": {
             "rushAttempts": 3,
@@ -2729,12 +2882,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 1.8,
-        "receptions": 60,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 56.4,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 12.8,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 1.5
+            "rushAttempts": 1.5,
+            "receptions": 52.8
           },
           "sleeper": {
             "rushAttempts": 2,
@@ -2777,10 +2932,14 @@
       "team": "KC",
       "pos": "TE",
       "projection": {
-        "receptions": 70,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 72.7,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 7.3,
         "sources": {
+          "fantasypros": {
+            "receptions": 75.3
+          },
           "sleeper": {
             "receptions": 70
           }
@@ -2800,13 +2959,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 174.2,
-        "receptions": 34,
+        "receptions": 31.8,
         "sourceCount": 2,
         "confidence": "medium",
         "spreadPct": 16.3,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 188.3
+            "rushAttempts": 188.3,
+            "receptions": 29.6
           },
           "sleeper": {
             "rushAttempts": 160,
@@ -2821,12 +2981,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 3.4,
-        "receptions": 60,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 57.6,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 8.3,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 2.7
+            "rushAttempts": 2.7,
+            "receptions": 55.2
           },
           "sleeper": {
             "rushAttempts": 4,
@@ -2847,10 +3009,14 @@
       "team": "SF",
       "pos": "TE",
       "projection": {
-        "receptions": 62,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 65.7,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 11.3,
         "sources": {
+          "fantasypros": {
+            "receptions": 69.4
+          },
           "sleeper": {
             "receptions": 62
           }
@@ -2870,13 +3036,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 107.8,
-        "receptions": 47,
+        "receptions": 48.4,
         "sourceCount": 2,
         "confidence": "medium",
         "spreadPct": 16.3,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 116.6
+            "rushAttempts": 116.6,
+            "receptions": 49.7
           },
           "sleeper": {
             "rushAttempts": 99,
@@ -2891,13 +3058,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 125.5,
-        "receptions": 34,
+        "receptions": 34.9,
         "sourceCount": 2,
         "confidence": "medium",
         "spreadPct": 18.3,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 137
+            "rushAttempts": 137,
+            "receptions": 35.8
           },
           "sleeper": {
             "rushAttempts": 114,
@@ -2919,12 +3087,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 4.2,
-        "receptions": 64,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 66.2,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 6.5,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 4.3
+            "rushAttempts": 4.3,
+            "receptions": 68.3
           },
           "sleeper": {
             "rushAttempts": 4,
@@ -2946,13 +3116,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 163.1,
-        "receptions": 19,
+        "receptions": 15.7,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 27,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 185.1
+            "rushAttempts": 185.1,
+            "receptions": 12.4
           },
           "sleeper": {
             "rushAttempts": 141,
@@ -3003,12 +3174,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 13.4,
-        "receptions": 70,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 66.4,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 10.8,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 12.7
+            "rushAttempts": 12.7,
+            "receptions": 62.8
           },
           "sleeper": {
             "rushAttempts": 14,
@@ -3029,10 +3202,14 @@
       "team": "BUF",
       "pos": "TE",
       "projection": {
-        "receptions": 66,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 61.6,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 14.5,
         "sources": {
+          "fantasypros": {
+            "receptions": 57.1
+          },
           "sleeper": {
             "receptions": 66
           }
@@ -3052,13 +3229,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 140.5,
-        "receptions": 34,
+        "receptions": 37.4,
         "sourceCount": 2,
         "confidence": "medium",
         "spreadPct": 13.5,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 149.9
+            "rushAttempts": 149.9,
+            "receptions": 40.7
           },
           "sleeper": {
             "rushAttempts": 131,
@@ -3080,13 +3258,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 191.4,
-        "receptions": 20,
+        "receptions": 17.3,
         "sourceCount": 2,
         "confidence": "high",
         "spreadPct": 1.5,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 192.8
+            "rushAttempts": 192.8,
+            "receptions": 14.5
           },
           "sleeper": {
             "rushAttempts": 190,
@@ -3136,10 +3315,14 @@
       "team": "DAL",
       "pos": "TE",
       "projection": {
-        "receptions": 70,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 72,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 5.6,
         "sources": {
+          "fantasypros": {
+            "receptions": 74
+          },
           "sleeper": {
             "receptions": 70
           }
@@ -3158,10 +3341,14 @@
       "team": "PHI",
       "pos": "TE",
       "projection": {
-        "receptions": 53,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 59.3,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 21.1,
         "sources": {
+          "fantasypros": {
+            "receptions": 65.5
+          },
           "sleeper": {
             "receptions": 53
           }
@@ -3209,10 +3396,14 @@
       "team": "NYG",
       "pos": "TE",
       "projection": {
-        "receptions": 62,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 62.6,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 1.8,
         "sources": {
+          "fantasypros": {
+            "receptions": 63.1
+          },
           "sleeper": {
             "receptions": 62
           }
@@ -3261,10 +3452,14 @@
       "pos": "TE",
       "projection": {
         "rushAttempts": 6,
-        "receptions": 60,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 59.9,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 0.5,
         "sources": {
+          "fantasypros": {
+            "receptions": 59.7
+          },
           "sleeper": {
             "rushAttempts": 6,
             "receptions": 60
@@ -3285,12 +3480,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 16.3,
-        "receptions": 55,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 55.1,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 0.4,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 15.5
+            "rushAttempts": 15.5,
+            "receptions": 55.2
           },
           "sleeper": {
             "rushAttempts": 17,
@@ -3353,13 +3550,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 105.3,
-        "receptions": 21,
+        "receptions": 22.3,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 35.6,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 86.5
+            "rushAttempts": 86.5,
+            "receptions": 23.6
           },
           "sleeper": {
             "rushAttempts": 124,
@@ -3381,13 +3579,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 153.3,
-        "receptions": 15,
+        "receptions": 10.2,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 23.2,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 135.5
+            "rushAttempts": 135.5,
+            "receptions": 5.4
           },
           "sleeper": {
             "rushAttempts": 171,
@@ -3409,12 +3608,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 1.6,
-        "receptions": 71,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 70.4,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 1.8,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 1.1
+            "rushAttempts": 1.1,
+            "receptions": 69.7
           },
           "sleeper": {
             "rushAttempts": 2,
@@ -3436,12 +3637,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.5,
-        "receptions": 60,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 60.4,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 1.2,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 60.7
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -3463,12 +3666,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
-        "receptions": 57,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 57.1,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 0.2,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 57.1
           },
           "sleeper": {
             "receptions": 57
@@ -3489,13 +3694,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 114.4,
-        "receptions": 19,
+        "receptions": 21.6,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 49.6,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 142.7
+            "rushAttempts": 142.7,
+            "receptions": 24.1
           },
           "sleeper": {
             "rushAttempts": 86,
@@ -3546,13 +3752,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 110.4,
-        "receptions": 9,
+        "receptions": 13.1,
         "sourceCount": 2,
         "confidence": "high",
         "spreadPct": 2.4,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 111.7
+            "rushAttempts": 111.7,
+            "receptions": 17.1
           },
           "sleeper": {
             "rushAttempts": 109,
@@ -3574,12 +3781,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 6.6,
-        "receptions": 58,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 61.4,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 11.1,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 4.2
+            "rushAttempts": 4.2,
+            "receptions": 64.8
           },
           "sleeper": {
             "rushAttempts": 9,
@@ -3594,12 +3803,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 7.1,
-        "receptions": 58,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 56.8,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 4.2,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 6.2
+            "rushAttempts": 6.2,
+            "receptions": 55.6
           },
           "sleeper": {
             "rushAttempts": 8,
@@ -3621,13 +3832,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 93.4,
-        "receptions": 35,
+        "receptions": 40.5,
         "sourceCount": 2,
         "confidence": "high",
         "spreadPct": 3,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 94.8
+            "rushAttempts": 94.8,
+            "receptions": 45.9
           },
           "sleeper": {
             "rushAttempts": 92,
@@ -3649,12 +3861,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 10.7,
-        "receptions": 45,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 47.5,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 10.3,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 13.4
+            "rushAttempts": 13.4,
+            "receptions": 49.9
           },
           "sleeper": {
             "rushAttempts": 8,
@@ -3676,13 +3890,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 79.5,
-        "receptions": 20,
+        "receptions": 26.3,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 86.8,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 114
+            "rushAttempts": 114,
+            "receptions": 32.6
           },
           "sleeper": {
             "rushAttempts": 45,
@@ -3703,10 +3918,14 @@
       "team": "NO",
       "pos": "TE",
       "projection": {
-        "receptions": 56,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 60.4,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 14.4,
         "sources": {
+          "fantasypros": {
+            "receptions": 64.7
+          },
           "sleeper": {
             "receptions": 56
           }
@@ -3784,13 +4003,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 97.8,
-        "receptions": 11,
+        "receptions": 15.4,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 67,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 130.5
+            "rushAttempts": 130.5,
+            "receptions": 19.8
           },
           "sleeper": {
             "rushAttempts": 65,
@@ -3812,13 +4032,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 76.1,
-        "receptions": 23,
+        "receptions": 30.5,
         "sourceCount": 2,
         "confidence": "high",
         "spreadPct": 5,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 74.2
+            "rushAttempts": 74.2,
+            "receptions": 38
           },
           "sleeper": {
             "rushAttempts": 78,
@@ -3839,10 +4060,14 @@
       "team": "JAC",
       "pos": "TE",
       "projection": {
-        "receptions": 63,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 61.5,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 4.9,
         "sources": {
+          "fantasypros": {
+            "receptions": 60
+          },
           "sleeper": {
             "receptions": 63
           }
@@ -3861,10 +4086,14 @@
       "team": "WAS",
       "pos": "TE",
       "projection": {
-        "receptions": 61,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 56.9,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 14.4,
         "sources": {
+          "fantasypros": {
+            "receptions": 52.8
+          },
           "sleeper": {
             "receptions": 61
           }
@@ -3877,13 +4106,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 91.8,
-        "receptions": 18,
+        "receptions": 16.8,
         "sourceCount": 2,
         "confidence": "high",
         "spreadPct": 8.3,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 95.6
+            "rushAttempts": 95.6,
+            "receptions": 15.5
           },
           "sleeper": {
             "rushAttempts": 88,
@@ -3905,13 +4135,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 107.7,
-        "receptions": 10,
+        "receptions": 15.8,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 75.5,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 148.3
+            "rushAttempts": 148.3,
+            "receptions": 21.6
           },
           "sleeper": {
             "rushAttempts": 67,
@@ -3933,13 +4164,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 93.3,
-        "receptions": 8,
+        "receptions": 5.9,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 24.2,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 104.6
+            "rushAttempts": 104.6,
+            "receptions": 3.8
           },
           "sleeper": {
             "rushAttempts": 82,
@@ -3961,13 +4193,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 103.6,
-        "receptions": 13,
+        "receptions": 10.2,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 32,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 120.2
+            "rushAttempts": 120.2,
+            "receptions": 7.3
           },
           "sleeper": {
             "rushAttempts": 87,
@@ -3988,10 +4221,14 @@
       "team": "NE",
       "pos": "TE",
       "projection": {
-        "receptions": 58,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 56.8,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 4.4,
         "sources": {
+          "fantasypros": {
+            "receptions": 55.5
+          },
           "sleeper": {
             "receptions": 58
           }
@@ -4040,12 +4277,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 23.1,
-        "receptions": 56,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 56.2,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 0.5,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 29.1
+            "rushAttempts": 29.1,
+            "receptions": 56.3
           },
           "sleeper": {
             "rushAttempts": 17,
@@ -4067,12 +4306,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.7,
-        "receptions": 64,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 65.5,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 4.6,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0.3
+            "rushAttempts": 0.3,
+            "receptions": 67
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -4093,10 +4334,14 @@
       "team": "LAC",
       "pos": "TE",
       "projection": {
-        "receptions": 56,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 46.9,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 38.8,
         "sources": {
+          "fantasypros": {
+            "receptions": 37.8
+          },
           "sleeper": {
             "receptions": 56
           }
@@ -4116,12 +4361,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
-        "receptions": 39,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 43.9,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 22.1,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 48.7
           },
           "sleeper": {
             "receptions": 39
@@ -4171,13 +4418,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 68.8,
-        "receptions": 10,
+        "receptions": 13.7,
         "sourceCount": 2,
         "confidence": "high",
         "spreadPct": 9.5,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 65.5
+            "rushAttempts": 65.5,
+            "receptions": 17.4
           },
           "sleeper": {
             "rushAttempts": 72,
@@ -4192,12 +4440,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 1.6,
-        "receptions": 35,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 37.5,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 13.1,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 2.1
+            "rushAttempts": 2.1,
+            "receptions": 39.9
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -4218,10 +4468,14 @@
       "team": "HOU",
       "pos": "TE",
       "projection": {
-        "receptions": 64,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 64.9,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 2.8,
         "sources": {
+          "fantasypros": {
+            "receptions": 65.8
+          },
           "sleeper": {
             "receptions": 64
           }
@@ -4241,12 +4495,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 1.5,
-        "receptions": 46,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 50,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 16,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 1.5
+            "rushAttempts": 1.5,
+            "receptions": 54
           },
           "sleeper": {
             "receptions": 46
@@ -4289,12 +4545,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.8,
-        "receptions": 43,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 51,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 31.4,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0.5
+            "rushAttempts": 0.5,
+            "receptions": 59
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -4316,12 +4574,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 9.1,
-        "receptions": 46,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 48.1,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 8.7,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 11.2
+            "rushAttempts": 11.2,
+            "receptions": 50.2
           },
           "sleeper": {
             "rushAttempts": 7,
@@ -4343,12 +4603,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 5.4,
-        "receptions": 44,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 45.3,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 5.7,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 4.7
+            "rushAttempts": 4.7,
+            "receptions": 46.6
           },
           "sleeper": {
             "rushAttempts": 6,
@@ -4370,12 +4632,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 1.5,
-        "receptions": 53,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 57.6,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 16,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 1
+            "rushAttempts": 1,
+            "receptions": 62.2
           },
           "sleeper": {
             "rushAttempts": 2,
@@ -4390,12 +4654,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 2.6,
-        "receptions": 45,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 41.7,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 15.8,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 2.1
+            "rushAttempts": 2.1,
+            "receptions": 38.4
           },
           "sleeper": {
             "rushAttempts": 3,
@@ -4409,10 +4675,14 @@
       "team": "MIN",
       "pos": "TE",
       "projection": {
-        "receptions": 66,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 65,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 3.2,
         "sources": {
+          "fantasypros": {
+            "receptions": 63.9
+          },
           "sleeper": {
             "receptions": 66
           }
@@ -4432,13 +4702,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 84.4,
-        "receptions": 10,
+        "receptions": 12,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 64.9,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 111.8
+            "rushAttempts": 111.8,
+            "receptions": 13.9
           },
           "sleeper": {
             "rushAttempts": 57,
@@ -4460,10 +4731,14 @@
       "pos": "TE",
       "projection": {
         "rushAttempts": 10,
-        "receptions": 58,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 53.3,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 17.6,
         "sources": {
+          "fantasypros": {
+            "receptions": 48.6
+          },
           "sleeper": {
             "rushAttempts": 10,
             "receptions": 58
@@ -4484,12 +4759,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 3,
-        "receptions": 35,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 38.3,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 17.2,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 2
+            "rushAttempts": 2,
+            "receptions": 41.6
           },
           "sleeper": {
             "rushAttempts": 4,
@@ -4511,13 +4788,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 52.7,
-        "receptions": 8,
+        "receptions": 4.8,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 50.7,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 39.3
+            "rushAttempts": 39.3,
+            "receptions": 1.5
           },
           "sleeper": {
             "rushAttempts": 66,
@@ -4539,12 +4817,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 2.1,
-        "receptions": 47,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 40.4,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 32.7,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 2.2
+            "rushAttempts": 2.2,
+            "receptions": 33.8
           },
           "sleeper": {
             "rushAttempts": 2,
@@ -4566,12 +4846,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.5,
-        "receptions": 39,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 36.8,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 12.2,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 34.5
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -4593,13 +4875,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 52.7,
-        "receptions": 9,
+        "receptions": 8.4,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 77.3,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 32.3
+            "rushAttempts": 32.3,
+            "receptions": 7.8
           },
           "sleeper": {
             "rushAttempts": 73,
@@ -4621,12 +4904,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
-        "receptions": 41,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 40.5,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 2.7,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 39.9
           },
           "sleeper": {
             "receptions": 41
@@ -4676,10 +4961,14 @@
       "pos": "TE",
       "projection": {
         "rushAttempts": 2,
-        "receptions": 40,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 44.5,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 20.2,
         "sources": {
+          "fantasypros": {
+            "receptions": 49
+          },
           "sleeper": {
             "rushAttempts": 2,
             "receptions": 40
@@ -4693,13 +4982,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 60.1,
-        "receptions": 14,
+        "receptions": 13,
         "sourceCount": 2,
         "confidence": "high",
         "spreadPct": 0.3,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 60.2
+            "rushAttempts": 60.2,
+            "receptions": 11.9
           },
           "sleeper": {
             "rushAttempts": 60,
@@ -4721,12 +5011,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 2.5,
-        "receptions": 46,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 44.9,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 5.1,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 2
+            "rushAttempts": 2,
+            "receptions": 43.7
           },
           "sleeper": {
             "rushAttempts": 3,
@@ -4748,13 +5040,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 53.4,
-        "receptions": 12,
+        "receptions": 8.9,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 50.9,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 39.8
+            "rushAttempts": 39.8,
+            "receptions": 5.7
           },
           "sleeper": {
             "rushAttempts": 67,
@@ -4769,13 +5062,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 65.6,
-        "receptions": 11,
+        "receptions": 9.4,
         "sourceCount": 2,
         "confidence": "medium",
         "spreadPct": 14,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 70.2
+            "rushAttempts": 70.2,
+            "receptions": 7.7
           },
           "sleeper": {
             "rushAttempts": 61,
@@ -4797,13 +5091,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 47.8,
-        "receptions": 11,
+        "receptions": 14.5,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 22,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 42.5
+            "rushAttempts": 42.5,
+            "receptions": 18
           },
           "sleeper": {
             "rushAttempts": 53,
@@ -4824,10 +5119,14 @@
       "team": "TEN",
       "pos": "TE",
       "projection": {
-        "receptions": 57,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 53,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 15.3,
         "sources": {
+          "fantasypros": {
+            "receptions": 48.9
+          },
           "sleeper": {
             "receptions": 57
           }
@@ -4847,13 +5146,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 95.6,
-        "receptions": 7,
+        "receptions": 10.9,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 57.7,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 123.2
+            "rushAttempts": 123.2,
+            "receptions": 14.7
           },
           "sleeper": {
             "rushAttempts": 68,
@@ -4867,10 +5167,14 @@
       "team": "LAR",
       "pos": "TE",
       "projection": {
-        "receptions": 35,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 37,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 10.8,
         "sources": {
+          "fantasypros": {
+            "receptions": 39
+          },
           "sleeper": {
             "receptions": 35
           }
@@ -4890,12 +5194,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.8,
-        "receptions": 26,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 32.4,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 39.5,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0.5
+            "rushAttempts": 0.5,
+            "receptions": 38.8
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -4917,12 +5223,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 17.8,
-        "receptions": 48,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 46.7,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 5.6,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 13.5
+            "rushAttempts": 13.5,
+            "receptions": 45.4
           },
           "sleeper": {
             "rushAttempts": 22,
@@ -4944,12 +5252,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 2.8,
-        "receptions": 27,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 36.9,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 53.5,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 4.6
+            "rushAttempts": 4.6,
+            "receptions": 46.7
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -4970,10 +5280,14 @@
       "team": "PIT",
       "pos": "TE",
       "projection": {
-        "receptions": 51,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 52,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 3.8,
         "sources": {
+          "fantasypros": {
+            "receptions": 53
+          },
           "sleeper": {
             "receptions": 51
           }
@@ -4992,10 +5306,14 @@
       "team": "TB",
       "pos": "TE",
       "projection": {
-        "receptions": 53,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 53.9,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 3.3,
         "sources": {
+          "fantasypros": {
+            "receptions": 54.8
+          },
           "sleeper": {
             "receptions": 53
           }
@@ -5015,12 +5333,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 1.6,
-        "receptions": 25,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 24.6,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 3.7,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 2.2
+            "rushAttempts": 2.2,
+            "receptions": 24.1
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -5042,13 +5362,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 65.2,
-        "receptions": 9,
+        "receptions": 8.9,
         "sourceCount": 2,
         "confidence": "high",
         "spreadPct": 8.6,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 62.4
+            "rushAttempts": 62.4,
+            "receptions": 8.7
           },
           "sleeper": {
             "rushAttempts": 68,
@@ -5099,13 +5420,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 42.7,
-        "receptions": 12,
+        "receptions": 8.2,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 104.8,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 20.3
+            "rushAttempts": 20.3,
+            "receptions": 4.3
           },
           "sleeper": {
             "rushAttempts": 65,
@@ -5120,12 +5442,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 2.5,
-        "receptions": 24,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 30.3,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 41.3,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 3
+            "rushAttempts": 3,
+            "receptions": 36.5
           },
           "sleeper": {
             "rushAttempts": 2,
@@ -5147,12 +5471,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 1,
-        "receptions": 28,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 26.7,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 9.7,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 25.4
           },
           "sleeper": {
             "rushAttempts": 2,
@@ -5174,12 +5500,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
-        "receptions": 36,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 37.4,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 7.5,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 38.8
           },
           "sleeper": {
             "receptions": 36
@@ -5200,12 +5528,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 1,
-        "receptions": 35,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 31.7,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 20.8,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 28.4
           },
           "sleeper": {
             "rushAttempts": 2,
@@ -5227,13 +5557,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 118.5,
-        "receptions": 16,
+        "receptions": 16.9,
         "sourceCount": 2,
         "confidence": "medium",
         "spreadPct": 12.7,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 126
+            "rushAttempts": 126,
+            "receptions": 17.7
           },
           "sleeper": {
             "rushAttempts": 111,
@@ -5248,12 +5579,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 6.6,
-        "receptions": 32,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 35.9,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 21.7,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 5.1
+            "rushAttempts": 5.1,
+            "receptions": 39.8
           },
           "sleeper": {
             "rushAttempts": 8,
@@ -5275,13 +5608,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 66.5,
-        "receptions": 6,
+        "receptions": 6.6,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 40.6,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 80
+            "rushAttempts": 80,
+            "receptions": 7.2
           },
           "sleeper": {
             "rushAttempts": 53,
@@ -5303,12 +5637,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.5,
-        "receptions": 32,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 39.7,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 38.8,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0.5
+            "rushAttempts": 0.5,
+            "receptions": 47.4
           },
           "sleeper": {
             "receptions": 32
@@ -5329,13 +5665,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 38.3,
-        "receptions": 8,
+        "receptions": 5.5,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 76.8,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 23.6
+            "rushAttempts": 23.6,
+            "receptions": 3
           },
           "sleeper": {
             "rushAttempts": 53,
@@ -5379,12 +5716,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 6.1,
-        "receptions": 17,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 29.7,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 85.3,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 10.2
+            "rushAttempts": 10.2,
+            "receptions": 42.3
           },
           "sleeper": {
             "rushAttempts": 2,
@@ -5398,10 +5737,14 @@
       "team": "LAC",
       "pos": "TE",
       "projection": {
-        "receptions": 23,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 32.7,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 59.1,
         "sources": {
+          "fantasypros": {
+            "receptions": 42.3
+          },
           "sleeper": {
             "receptions": 23
           }
@@ -5420,10 +5763,14 @@
       "team": "LAR",
       "pos": "TE",
       "projection": {
-        "receptions": 29,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 31.2,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 13.8,
         "sources": {
+          "fantasypros": {
+            "receptions": 33.3
+          },
           "sleeper": {
             "receptions": 29
           }
@@ -5464,10 +5811,14 @@
       "team": "DEN",
       "pos": "TE",
       "projection": {
-        "receptions": 31,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 42.2,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 53.1,
         "sources": {
+          "fantasypros": {
+            "receptions": 53.4
+          },
           "sleeper": {
             "receptions": 31
           }
@@ -5487,13 +5838,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 39.7,
-        "receptions": 3,
+        "receptions": 3.5,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 48.9,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 49.4
+            "rushAttempts": 49.4,
+            "receptions": 3.9
           },
           "sleeper": {
             "rushAttempts": 30,
@@ -5515,13 +5867,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 34.5,
-        "receptions": 4,
+        "receptions": 6,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 25.8,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 38.9
+            "rushAttempts": 38.9,
+            "receptions": 8
           },
           "sleeper": {
             "rushAttempts": 30,
@@ -5542,10 +5895,14 @@
       "team": "NO",
       "pos": "TE",
       "projection": {
-        "receptions": 17,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 13.2,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 57.6,
         "sources": {
+          "fantasypros": {
+            "receptions": 9.4
+          },
           "sleeper": {
             "receptions": 17
           }
@@ -5558,12 +5915,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 2.8,
-        "receptions": 28,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 31.8,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 23.6,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 3.6
+            "rushAttempts": 3.6,
+            "receptions": 35.5
           },
           "sleeper": {
             "rushAttempts": 2,
@@ -5578,13 +5937,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 44.7,
-        "receptions": 24,
+        "receptions": 28.4,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 52.3,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 56.4
+            "rushAttempts": 56.4,
+            "receptions": 32.7
           },
           "sleeper": {
             "rushAttempts": 33,
@@ -5606,13 +5966,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 74.4,
-        "receptions": 11,
+        "receptions": 12.6,
         "sourceCount": 2,
         "confidence": "medium",
         "spreadPct": 17.1,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 80.7
+            "rushAttempts": 80.7,
+            "receptions": 14.1
           },
           "sleeper": {
             "rushAttempts": 68,
@@ -5634,12 +5995,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 1.5,
-        "receptions": 29,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 26.7,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 17.2,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 24.4
           },
           "sleeper": {
             "rushAttempts": 3,
@@ -5661,13 +6024,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 48.6,
-        "receptions": 13,
+        "receptions": 11.5,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 55.4,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 35.1
+            "rushAttempts": 35.1,
+            "receptions": 9.9
           },
           "sleeper": {
             "rushAttempts": 62,
@@ -5718,12 +6082,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 2.1,
-        "receptions": 36,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 38.6,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 13.5,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 2.1
+            "rushAttempts": 2.1,
+            "receptions": 41.2
           },
           "sleeper": {
             "rushAttempts": 2,
@@ -5738,12 +6104,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 8.1,
-        "receptions": 38,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 32.9,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 31,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 10.1
+            "rushAttempts": 10.1,
+            "receptions": 27.8
           },
           "sleeper": {
             "rushAttempts": 6,
@@ -5765,12 +6133,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
-        "receptions": 30,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 30.7,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 4.6,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 31.4
           },
           "sleeper": {
             "receptions": 30
@@ -5784,12 +6154,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
-        "receptions": 20,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 22.7,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 23.8,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 25.4
           },
           "sleeper": {
             "receptions": 20
@@ -5809,10 +6181,14 @@
       "team": "MIA",
       "pos": "TE",
       "projection": {
-        "receptions": 47,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 50.8,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 15,
         "sources": {
+          "fantasypros": {
+            "receptions": 54.6
+          },
           "sleeper": {
             "receptions": 47
           }
@@ -5832,12 +6208,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.8,
-        "receptions": 31,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 30.7,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 2.3,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0.5
+            "rushAttempts": 0.5,
+            "receptions": 30.3
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -5859,12 +6237,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
-        "receptions": 20,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 22.7,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 23.8,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 25.4
           },
           "sleeper": {
             "receptions": 20
@@ -5885,13 +6265,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 25.3,
-        "receptions": 4,
+        "receptions": 3.7,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 29.2,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 21.6
+            "rushAttempts": 21.6,
+            "receptions": 3.3
           },
           "sleeper": {
             "rushAttempts": 29,
@@ -5906,13 +6287,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 44.9,
-        "receptions": 14,
+        "receptions": 12.5,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 23,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 39.7
+            "rushAttempts": 39.7,
+            "receptions": 10.9
           },
           "sleeper": {
             "rushAttempts": 50,
@@ -5934,13 +6316,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 82.3,
-        "receptions": 14,
+        "receptions": 16,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 39.5,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 98.5
+            "rushAttempts": 98.5,
+            "receptions": 17.9
           },
           "sleeper": {
             "rushAttempts": 66,
@@ -5955,12 +6338,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.5,
-        "receptions": 19,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 25.7,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 52.1,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 32.4
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -5982,10 +6367,14 @@
       "pos": "TE",
       "projection": {
         "rushAttempts": 2,
-        "receptions": 31,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 26,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 38.9,
         "sources": {
+          "fantasypros": {
+            "receptions": 20.9
+          },
           "sleeper": {
             "rushAttempts": 2,
             "receptions": 31
@@ -5999,12 +6388,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.5,
-        "receptions": 30,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 28.9,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 8,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 27.7
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -6026,12 +6417,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.5,
-        "receptions": 38,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 32.2,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 36.4,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 26.3
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -6046,13 +6439,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 33.2,
-        "receptions": 6,
+        "receptions": 7.2,
         "sourceCount": 2,
         "confidence": "high",
         "spreadPct": 0.9,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 33.3
+            "rushAttempts": 33.3,
+            "receptions": 8.4
           },
           "sleeper": {
             "rushAttempts": 33,
@@ -6074,12 +6468,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 1,
-        "receptions": 25,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 31.1,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 39.2,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 1
+            "rushAttempts": 1,
+            "receptions": 37.2
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -6094,12 +6490,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 1.6,
-        "receptions": 26,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 30.9,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 31.7,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 1.6
+            "rushAttempts": 1.6,
+            "receptions": 35.8
           },
           "sleeper": {
             "receptions": 26
@@ -6120,13 +6518,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 32.5,
-        "receptions": 18,
+        "receptions": 16.7,
         "sourceCount": 2,
         "confidence": "high",
         "spreadPct": 3.1,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 32
+            "rushAttempts": 32,
+            "receptions": 15.3
           },
           "sleeper": {
             "rushAttempts": 33,
@@ -6148,12 +6547,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.5,
-        "receptions": 22,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 16.6,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 65.9,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 11.1
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -6168,13 +6569,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 81.3,
-        "receptions": 6,
+        "receptions": 8.3,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 79.5,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 113.6
+            "rushAttempts": 113.6,
+            "receptions": 10.6
           },
           "sleeper": {
             "rushAttempts": 49,
@@ -6189,12 +6591,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.5,
-        "receptions": 42,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 44.7,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 11.9,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 47.3
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -6216,13 +6620,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 58.8,
-        "receptions": 6,
+        "receptions": 6.3,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 50.3,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 73.6
+            "rushAttempts": 73.6,
+            "receptions": 6.6
           },
           "sleeper": {
             "rushAttempts": 44,
@@ -6244,13 +6649,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 42,
-        "receptions": 17,
+        "receptions": 19.9,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 47.4,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 51.9
+            "rushAttempts": 51.9,
+            "receptions": 22.8
           },
           "sleeper": {
             "rushAttempts": 32,
@@ -6329,10 +6735,14 @@
       "team": "NYJ",
       "pos": "TE",
       "projection": {
-        "receptions": 40,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 43.1,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 14.4,
         "sources": {
+          "fantasypros": {
+            "receptions": 46.2
+          },
           "sleeper": {
             "receptions": 40
           }
@@ -6352,12 +6762,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 1.6,
-        "receptions": 24,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 30,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 39.7,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 2.1
+            "rushAttempts": 2.1,
+            "receptions": 35.9
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -6379,11 +6791,13 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 0,
+        "receptions": 0,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 0
           }
         }
       },
@@ -6430,12 +6844,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 7.1,
-        "receptions": 27,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 25.6,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 11.4,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 8.2
+            "rushAttempts": 8.2,
+            "receptions": 24.1
           },
           "sleeper": {
             "rushAttempts": 6,
@@ -6457,13 +6873,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 52.9,
-        "receptions": 12,
+        "receptions": 14.2,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 90.4,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 76.8
+            "rushAttempts": 76.8,
+            "receptions": 16.4
           },
           "sleeper": {
             "rushAttempts": 29,
@@ -6507,12 +6924,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 1.5,
-        "receptions": 36,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 32.5,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 21.9,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 1
+            "rushAttempts": 1,
+            "receptions": 28.9
           },
           "sleeper": {
             "rushAttempts": 2,
@@ -6527,13 +6946,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 25.3,
-        "receptions": 5,
+        "receptions": 2.5,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 132,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 8.6
+            "rushAttempts": 8.6,
+            "receptions": 0
           },
           "sleeper": {
             "rushAttempts": 42,
@@ -6554,10 +6974,14 @@
       "team": "NYG",
       "pos": "TE",
       "projection": {
-        "receptions": 31,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 29.4,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 10.9,
         "sources": {
+          "fantasypros": {
+            "receptions": 27.8
+          },
           "sleeper": {
             "receptions": 31
           }
@@ -6577,13 +7001,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 31,
-        "receptions": 7,
+        "receptions": 4.8,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 51.6,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 23
+            "rushAttempts": 23,
+            "receptions": 2.5
           },
           "sleeper": {
             "rushAttempts": 39,
@@ -6605,13 +7030,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 10,
-        "receptions": 10,
+        "receptions": 5,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 200,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 0
           },
           "sleeper": {
             "rushAttempts": 20,
@@ -6633,11 +7059,13 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
+        "receptions": 28.2,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 28.2
           }
         }
       }
@@ -6648,12 +7076,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
-        "receptions": 44,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 51.3,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 28.5,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 58.6
           },
           "sleeper": {
             "receptions": 44
@@ -6673,10 +7103,14 @@
       "team": "CIN",
       "pos": "TE",
       "projection": {
-        "receptions": 42,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 41.7,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 1.4,
         "sources": {
+          "fantasypros": {
+            "receptions": 41.4
+          },
           "sleeper": {
             "receptions": 42
           }
@@ -6696,12 +7130,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.5,
-        "receptions": 20,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 20.8,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 7.2,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 21.5
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -6723,13 +7159,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 17.2,
-        "receptions": 2,
+        "receptions": 1.9,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 141.9,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 29.4
+            "rushAttempts": 29.4,
+            "receptions": 1.8
           },
           "sleeper": {
             "rushAttempts": 5,
@@ -6751,12 +7188,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 1.3,
-        "receptions": 35,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 36.4,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 7.7,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 1.5
+            "rushAttempts": 1.5,
+            "receptions": 37.8
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -6771,13 +7210,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 20.5,
-        "receptions": 4,
+        "receptions": 7.3,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 43.9,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 25
+            "rushAttempts": 25,
+            "receptions": 10.5
           },
           "sleeper": {
             "rushAttempts": 16,
@@ -6799,11 +7239,13 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 35,
+        "receptions": 8,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 35
+            "rushAttempts": 35,
+            "receptions": 8
           }
         }
       },
@@ -6821,12 +7263,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 2.6,
-        "receptions": 10,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 13,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 46.2,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 4.1
+            "rushAttempts": 4.1,
+            "receptions": 16
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -6848,13 +7292,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 40.1,
-        "receptions": 8,
+        "receptions": 9.4,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 75.2,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 55.1
+            "rushAttempts": 55.1,
+            "receptions": 10.8
           },
           "sleeper": {
             "rushAttempts": 25,
@@ -6884,13 +7329,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 31.7,
-        "receptions": 3,
+        "receptions": 1.5,
         "sourceCount": 2,
         "confidence": "high",
         "spreadPct": 8.5,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 30.3
+            "rushAttempts": 30.3,
+            "receptions": 0
           },
           "sleeper": {
             "rushAttempts": 33,
@@ -6905,13 +7351,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 61.7,
-        "receptions": 5,
+        "receptions": 7.8,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 102.8,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 93.4
+            "rushAttempts": 93.4,
+            "receptions": 10.6
           },
           "sleeper": {
             "rushAttempts": 30,
@@ -6933,13 +7380,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 26.2,
-        "receptions": 8,
+        "receptions": 6.1,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 105.9,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 12.3
+            "rushAttempts": 12.3,
+            "receptions": 4.1
           },
           "sleeper": {
             "rushAttempts": 40,
@@ -6961,13 +7409,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 33.2,
-        "receptions": 7,
+        "receptions": 5.1,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 65.5,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 22.3
+            "rushAttempts": 22.3,
+            "receptions": 3.2
           },
           "sleeper": {
             "rushAttempts": 44,
@@ -6982,12 +7431,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 3.7,
-        "receptions": 22,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 16,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 75,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 4.3
+            "rushAttempts": 4.3,
+            "receptions": 10
           },
           "sleeper": {
             "rushAttempts": 3,
@@ -7026,13 +7477,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 13.8,
-        "receptions": 1,
+        "receptions": 1.5,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 40,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 16.5
+            "rushAttempts": 16.5,
+            "receptions": 2
           },
           "sleeper": {
             "rushAttempts": 11,
@@ -7094,10 +7546,14 @@
       "team": "SF",
       "pos": "TE",
       "projection": {
-        "receptions": 30,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 23.9,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 51.6,
         "sources": {
+          "fantasypros": {
+            "receptions": 17.7
+          },
           "sleeper": {
             "receptions": 30
           }
@@ -7117,12 +7573,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 1,
-        "receptions": 34,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 36.8,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 15,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 1
+            "rushAttempts": 1,
+            "receptions": 39.5
           },
           "sleeper": {
             "receptions": 34
@@ -7136,12 +7594,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.5,
-        "receptions": 22,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 16.1,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 74.1,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 10.1
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -7162,7 +7622,8 @@
         "spreadPct": 0,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 30
+            "rushAttempts": 30,
+            "receptions": 3
           },
           "sleeper": {
             "rushAttempts": 30,
@@ -7184,12 +7645,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 2.3,
-        "receptions": 32,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 29.9,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 14,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 2.5
+            "rushAttempts": 2.5,
+            "receptions": 27.8
           },
           "sleeper": {
             "rushAttempts": 2,
@@ -7210,10 +7673,14 @@
       "team": "PIT",
       "pos": "TE",
       "projection": {
-        "receptions": 33,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 31.9,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 7.2,
         "sources": {
+          "fantasypros": {
+            "receptions": 30.7
+          },
           "sleeper": {
             "receptions": 33
           }
@@ -7233,12 +7700,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
-        "receptions": 34,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 26.7,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 54.7,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 19.4
           },
           "sleeper": {
             "receptions": 34
@@ -7252,13 +7721,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 17.2,
-        "receptions": 10,
+        "receptions": 10.7,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 91.5,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 9.3
+            "rushAttempts": 9.3,
+            "receptions": 11.3
           },
           "sleeper": {
             "rushAttempts": 25,
@@ -7355,12 +7825,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
-        "receptions": 13,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 23.1,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 87.4,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 33.2
           },
           "sleeper": {
             "receptions": 13
@@ -7381,12 +7853,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 1,
-        "receptions": 26,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 30.6,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 30.1,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 35.2
           },
           "sleeper": {
             "rushAttempts": 2,
@@ -7420,12 +7894,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
-        "receptions": 4,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 9.2,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 113,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 14.4
           },
           "sleeper": {
             "receptions": 4
@@ -7468,12 +7944,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 3.2,
-        "receptions": 14,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 10.4,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 70.5,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 4.4
+            "rushAttempts": 4.4,
+            "receptions": 6.7
           },
           "sleeper": {
             "rushAttempts": 2,
@@ -7495,12 +7973,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
-        "receptions": 16,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 13,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 47.1,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 9.9
           },
           "sleeper": {
             "receptions": 16
@@ -7521,12 +8001,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 4.6,
-        "receptions": 29,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 29.6,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 4.1,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 4.1
+            "rushAttempts": 4.1,
+            "receptions": 30.2
           },
           "sleeper": {
             "rushAttempts": 5,
@@ -7548,12 +8030,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.5,
-        "receptions": 13,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 9.9,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 62.6,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 6.8
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -7574,10 +8058,14 @@
       "team": "SEA",
       "pos": "TE",
       "projection": {
-        "receptions": 29,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 24,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 41.7,
         "sources": {
+          "fantasypros": {
+            "receptions": 19
+          },
           "sleeper": {
             "receptions": 29
           }
@@ -7625,10 +8113,14 @@
       "team": "LAR",
       "pos": "TE",
       "projection": {
-        "receptions": 22,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 15,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 93.3,
         "sources": {
+          "fantasypros": {
+            "receptions": 8
+          },
           "sleeper": {
             "receptions": 22
           }
@@ -7640,10 +8132,14 @@
       "team": "CHI",
       "pos": "TE",
       "projection": {
-        "receptions": 34,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 30.1,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 25.9,
         "sources": {
+          "fantasypros": {
+            "receptions": 26.2
+          },
           "sleeper": {
             "receptions": 34
           }
@@ -7662,10 +8158,14 @@
       "team": "KC",
       "pos": "TE",
       "projection": {
-        "receptions": 24,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 22.6,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 12.9,
         "sources": {
+          "fantasypros": {
+            "receptions": 21.1
+          },
           "sleeper": {
             "receptions": 24
           }
@@ -7685,12 +8185,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 1,
-        "receptions": 30,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 22.2,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 70.9,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 14.3
           },
           "sleeper": {
             "rushAttempts": 2,
@@ -7711,10 +8213,14 @@
       "team": "LV",
       "pos": "TE",
       "projection": {
-        "receptions": 34,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 37,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 16.2,
         "sources": {
+          "fantasypros": {
+            "receptions": 40
+          },
           "sleeper": {
             "receptions": 34
           }
@@ -7728,15 +8234,34 @@
         "last4SnapPct": 72.8
       }
     },
+    "erick-all-te": {
+      "name": "Erick All Jr.",
+      "team": "CIN",
+      "pos": "TE",
+      "projection": {
+        "receptions": 30.5,
+        "sourceCount": 1,
+        "confidence": "single",
+        "sources": {
+          "fantasypros": {
+            "receptions": 30.5
+          }
+        }
+      }
+    },
     "tyler-higbee-te": {
       "name": "Tyler Higbee",
       "team": "LAR",
       "pos": "TE",
       "projection": {
-        "receptions": 14,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 19.6,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 56.8,
         "sources": {
+          "fantasypros": {
+            "receptions": 25.1
+          },
           "sleeper": {
             "receptions": 14
           }
@@ -7755,10 +8280,14 @@
       "team": "BUF",
       "pos": "TE",
       "projection": {
-        "receptions": 28,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 28.4,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 2.5,
         "sources": {
+          "fantasypros": {
+            "receptions": 28.7
+          },
           "sleeper": {
             "receptions": 28
           }
@@ -7778,11 +8307,13 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 0,
+        "receptions": 0,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 0
           }
         }
       }
@@ -7815,12 +8346,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
-        "receptions": 12,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 19,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 73.4,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 25.9
           },
           "sleeper": {
             "receptions": 12
@@ -7833,10 +8366,14 @@
       "team": "CAR",
       "pos": "TE",
       "projection": {
-        "receptions": 10,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 16.2,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 76.2,
         "sources": {
+          "fantasypros": {
+            "receptions": 22.3
+          },
           "sleeper": {
             "receptions": 10
           }
@@ -7856,12 +8393,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
-        "receptions": 15,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 15.1,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 0.7,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 15.1
           },
           "sleeper": {
             "receptions": 15
@@ -7904,12 +8443,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 1.5,
-        "receptions": 12,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 13.5,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 22.2,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 15
           },
           "sleeper": {
             "rushAttempts": 3,
@@ -7931,12 +8472,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
-        "receptions": 31,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 26.9,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 30.5,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 22.8
           },
           "sleeper": {
             "receptions": 31
@@ -7957,12 +8500,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 2.1,
-        "receptions": 14,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 11.8,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 38.3,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 2.1
+            "rushAttempts": 2.1,
+            "receptions": 9.5
           },
           "sleeper": {
             "receptions": 14
@@ -7976,12 +8521,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 1,
-        "receptions": 14,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 13.2,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 12.1,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 12.4
           },
           "sleeper": {
             "rushAttempts": 2,
@@ -8050,10 +8597,14 @@
       "team": "NE",
       "pos": "TE",
       "projection": {
-        "receptions": 14,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 16.4,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 29.3,
         "sources": {
+          "fantasypros": {
+            "receptions": 18.8
+          },
           "sleeper": {
             "receptions": 14
           }
@@ -8065,10 +8616,14 @@
       "team": "DEN",
       "pos": "TE",
       "projection": {
-        "receptions": 23,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 15.5,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 96.8,
         "sources": {
+          "fantasypros": {
+            "receptions": 8
+          },
           "sleeper": {
             "receptions": 23
           }
@@ -8110,12 +8665,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
-        "receptions": 2,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 4,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 100,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 6
           },
           "sleeper": {
             "receptions": 2
@@ -8136,13 +8693,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 41.2,
-        "receptions": 5,
+        "receptions": 8,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 49.3,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 51.3
+            "rushAttempts": 51.3,
+            "receptions": 11
           },
           "sleeper": {
             "rushAttempts": 31,
@@ -8164,12 +8722,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 2.1,
-        "receptions": 14,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 22.5,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 75.3,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 2.1
+            "rushAttempts": 2.1,
+            "receptions": 30.9
           },
           "sleeper": {
             "receptions": 14
@@ -8189,10 +8749,14 @@
       "team": "NO",
       "pos": "TE",
       "projection": {
-        "receptions": 15,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 22.2,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 64.6,
         "sources": {
+          "fantasypros": {
+            "receptions": 29.3
+          },
           "sleeper": {
             "receptions": 15
           }
@@ -8248,12 +8812,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 7.5,
-        "receptions": 10,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 15.3,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 68.9,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 9
+            "rushAttempts": 9,
+            "receptions": 20.5
           },
           "sleeper": {
             "rushAttempts": 6,
@@ -8275,12 +8841,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 15.9,
-        "receptions": 21,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 19.6,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 14.8,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 17.8
+            "rushAttempts": 17.8,
+            "receptions": 18.1
           },
           "sleeper": {
             "rushAttempts": 14,
@@ -8330,10 +8898,14 @@
       "team": "GB",
       "pos": "TE",
       "projection": {
-        "receptions": 17,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 17.9,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 10.1,
         "sources": {
+          "fantasypros": {
+            "receptions": 18.8
+          },
           "sleeper": {
             "receptions": 17
           }
@@ -8370,12 +8942,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
-        "receptions": 10,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 8.1,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 48.4,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 6.1
           },
           "sleeper": {
             "receptions": 10
@@ -8396,9 +8970,13 @@
       "pos": "TE",
       "projection": {
         "receptions": 8,
-        "sourceCount": 1,
-        "confidence": "single",
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 0,
         "sources": {
+          "fantasypros": {
+            "receptions": 8
+          },
           "sleeper": {
             "receptions": 8
           }
@@ -8418,12 +8996,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 1.6,
-        "receptions": 4,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 12.6,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 136.3,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 2.2
+            "rushAttempts": 2.2,
+            "receptions": 21.1
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -8445,12 +9025,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
-        "receptions": 12,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 12.4,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 6.5,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 12.8
           },
           "sleeper": {
             "receptions": 12
@@ -8478,10 +9060,14 @@
       "team": "TEN",
       "pos": "TE",
       "projection": {
-        "receptions": 17,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 18.2,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 12.7,
         "sources": {
+          "fantasypros": {
+            "receptions": 19.3
+          },
           "sleeper": {
             "receptions": 17
           }
@@ -8501,12 +9087,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 3.3,
-        "receptions": 9,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 14.1,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 72.3,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 4.6
+            "rushAttempts": 4.6,
+            "receptions": 19.2
           },
           "sleeper": {
             "rushAttempts": 2,
@@ -8527,10 +9115,14 @@
       "team": "CAR",
       "pos": "TE",
       "projection": {
-        "receptions": 13,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 17.1,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 48,
         "sources": {
+          "fantasypros": {
+            "receptions": 21.2
+          },
           "sleeper": {
             "receptions": 13
           }
@@ -8550,12 +9142,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 3.1,
-        "receptions": 1,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 9.3,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 178.4,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 5.1
+            "rushAttempts": 5.1,
+            "receptions": 17.5
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -8576,10 +9170,14 @@
       "team": "WAS",
       "pos": "TE",
       "projection": {
-        "receptions": 11,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 11.1,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 0.9,
         "sources": {
+          "fantasypros": {
+            "receptions": 11.1
+          },
           "sleeper": {
             "receptions": 11
           }
@@ -8599,12 +9197,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.5,
-        "receptions": 15,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 9.2,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 126.1,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 3.4
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -8619,12 +9219,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.5,
-        "receptions": 10,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 14.2,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 58.7,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 18.3
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -8646,12 +9248,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 1.7,
-        "receptions": 8,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 9.7,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 34.2,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 2.3
+            "rushAttempts": 2.3,
+            "receptions": 11.3
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -8702,13 +9306,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 20.5,
-        "receptions": 1,
+        "receptions": 0.5,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 141.5,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 35
+            "rushAttempts": 35,
+            "receptions": 0
           },
           "sleeper": {
             "rushAttempts": 6,
@@ -8730,13 +9335,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 22,
-        "receptions": 2,
+        "receptions": 2.5,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 109.1,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 34
+            "rushAttempts": 34,
+            "receptions": 3
           },
           "sleeper": {
             "rushAttempts": 10,
@@ -8757,10 +9363,14 @@
       "team": "ATL",
       "pos": "TE",
       "projection": {
-        "receptions": 14,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 18,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 44,
         "sources": {
+          "fantasypros": {
+            "receptions": 21.9
+          },
           "sleeper": {
             "receptions": 14
           }
@@ -8787,7 +9397,8 @@
         "spreadPct": 66.7,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 16
+            "rushAttempts": 16,
+            "receptions": 2
           },
           "sleeper": {
             "passAttempts": 5,
@@ -8810,12 +9421,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
-        "receptions": 20,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 16.3,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 46.2,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 12.5
           },
           "sleeper": {
             "receptions": 20
@@ -8829,12 +9442,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 3.8,
-        "receptions": 21,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 12.6,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 134.7,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 4.6
+            "rushAttempts": 4.6,
+            "receptions": 4.1
           },
           "sleeper": {
             "rushAttempts": 3,
@@ -8856,13 +9471,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 14.5,
-        "receptions": 12,
+        "receptions": 6,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 200,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 0
           },
           "sleeper": {
             "rushAttempts": 29,
@@ -8884,13 +9500,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 28,
-        "receptions": 3,
+        "receptions": 2.5,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 42.9,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 34
+            "rushAttempts": 34,
+            "receptions": 2
           },
           "sleeper": {
             "rushAttempts": 22,
@@ -8905,13 +9522,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 22.5,
-        "receptions": 3,
+        "receptions": 4.5,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 111.1,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 35
+            "rushAttempts": 35,
+            "receptions": 6
           },
           "sleeper": {
             "rushAttempts": 10,
@@ -8933,10 +9551,14 @@
       "pos": "TE",
       "projection": {
         "rushAttempts": 1,
-        "receptions": 16,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 18.1,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 23.2,
         "sources": {
+          "fantasypros": {
+            "receptions": 20.2
+          },
           "sleeper": {
             "rushAttempts": 1,
             "receptions": 16
@@ -8986,12 +9608,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
-        "receptions": 9,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 10.4,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 26.9,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 11.8
           },
           "sleeper": {
             "receptions": 9
@@ -9028,10 +9652,14 @@
       "team": "ARI",
       "pos": "TE",
       "projection": {
-        "receptions": 18,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 20,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 20,
         "sources": {
+          "fantasypros": {
+            "receptions": 22
+          },
           "sleeper": {
             "receptions": 18
           }
@@ -9051,13 +9679,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 2.5,
-        "receptions": 2,
+        "receptions": 1,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 200,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 0
           },
           "sleeper": {
             "rushAttempts": 5,
@@ -9078,10 +9707,14 @@
       "team": "FA",
       "pos": "TE",
       "projection": {
-        "receptions": 16,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 12.5,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 56,
         "sources": {
+          "fantasypros": {
+            "receptions": 9
+          },
           "sleeper": {
             "receptions": 16
           }
@@ -9101,10 +9734,14 @@
       "pos": "TE",
       "projection": {
         "rushAttempts": 2,
-        "receptions": 15,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 21.5,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 60.5,
         "sources": {
+          "fantasypros": {
+            "receptions": 28
+          },
           "sleeper": {
             "rushAttempts": 2,
             "receptions": 15
@@ -9125,12 +9762,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.5,
-        "receptions": 2,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 9,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 155.3,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 15.9
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -9152,11 +9791,13 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 4.2,
+        "receptions": 23.7,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 4.2
+            "rushAttempts": 4.2,
+            "receptions": 23.7
           }
         }
       }
@@ -9166,10 +9807,14 @@
       "team": "FA",
       "pos": "TE",
       "projection": {
-        "receptions": 47,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 45.2,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 8,
         "sources": {
+          "fantasypros": {
+            "receptions": 43.4
+          },
           "sleeper": {
             "receptions": 47
           }
@@ -9224,10 +9869,14 @@
       "team": "DEN",
       "pos": "TE",
       "projection": {
-        "receptions": 11,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 15.2,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 55.3,
         "sources": {
+          "fantasypros": {
+            "receptions": 19.4
+          },
           "sleeper": {
             "receptions": 11
           }
@@ -9300,12 +9949,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
-        "receptions": 11,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 12.6,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 24.7,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 14.1
           },
           "sleeper": {
             "receptions": 11
@@ -9319,12 +9970,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.5,
-        "receptions": 14,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 15.8,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 22.8,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0.5
+            "rushAttempts": 0.5,
+            "receptions": 17.6
           },
           "sleeper": {
             "receptions": 14
@@ -9344,10 +9997,14 @@
       "team": "WAS",
       "pos": "TE",
       "projection": {
-        "receptions": 13,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 15.1,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 27.2,
         "sources": {
+          "fantasypros": {
+            "receptions": 17.1
+          },
           "sleeper": {
             "receptions": 13
           }
@@ -9367,12 +10024,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 1,
-        "receptions": 21,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 27.1,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 45,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 1
+            "rushAttempts": 1,
+            "receptions": 33.2
           },
           "sleeper": {
             "receptions": 21
@@ -9385,10 +10044,14 @@
       "team": "MIA",
       "pos": "TE",
       "projection": {
-        "receptions": 25,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 25.8,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 6.2,
         "sources": {
+          "fantasypros": {
+            "receptions": 26.6
+          },
           "sleeper": {
             "receptions": 25
           }
@@ -9429,10 +10092,14 @@
       "team": "HOU",
       "pos": "TE",
       "projection": {
-        "receptions": 12,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 15.8,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 47.6,
         "sources": {
+          "fantasypros": {
+            "receptions": 19.5
+          },
           "sleeper": {
             "receptions": 12
           }
@@ -9444,10 +10111,14 @@
       "team": "JAC",
       "pos": "TE",
       "projection": {
-        "receptions": 14,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 10.5,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 66.7,
         "sources": {
+          "fantasypros": {
+            "receptions": 7
+          },
           "sleeper": {
             "receptions": 14
           }
@@ -9471,10 +10142,14 @@
       "team": "MIN",
       "pos": "TE",
       "projection": {
-        "receptions": 13,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 15.8,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 35.4,
         "sources": {
+          "fantasypros": {
+            "receptions": 18.6
+          },
           "sleeper": {
             "receptions": 13
           }
@@ -9493,10 +10168,14 @@
       "team": "JAC",
       "pos": "TE",
       "projection": {
-        "receptions": 11,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 13,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 30.1,
         "sources": {
+          "fantasypros": {
+            "receptions": 14.9
+          },
           "sleeper": {
             "receptions": 11
           }
@@ -9509,11 +10188,13 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 13.4,
+        "receptions": 8.6,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 13.4
+            "rushAttempts": 13.4,
+            "receptions": 8.6
           }
         }
       },
@@ -9530,10 +10211,14 @@
       "team": "DAL",
       "pos": "TE",
       "projection": {
-        "receptions": 13,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 13.1,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 1.5,
         "sources": {
+          "fantasypros": {
+            "receptions": 13.2
+          },
           "sleeper": {
             "receptions": 13
           }
@@ -9553,11 +10238,13 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
+        "receptions": 3.3,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 3.3
           }
         }
       }
@@ -9568,13 +10255,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 6,
-        "receptions": 4,
+        "receptions": 2,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 200,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 0
           },
           "sleeper": {
             "rushAttempts": 12,
@@ -9595,10 +10283,14 @@
       "team": "IND",
       "pos": "TE",
       "projection": {
-        "receptions": 8,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 9.4,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 28.9,
         "sources": {
+          "fantasypros": {
+            "receptions": 10.7
+          },
           "sleeper": {
             "receptions": 8
           }
@@ -9618,12 +10310,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 1.5,
-        "receptions": 7,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 5.3,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 64.2,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 3.6
           },
           "sleeper": {
             "rushAttempts": 3,
@@ -9644,10 +10338,14 @@
       "team": "BUF",
       "pos": "TE",
       "projection": {
-        "receptions": 13,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 11.8,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 20.3,
         "sources": {
+          "fantasypros": {
+            "receptions": 10.6
+          },
           "sleeper": {
             "receptions": 13
           }
@@ -9749,12 +10447,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.5,
-        "receptions": 9,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 13.3,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 64.7,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0.5
+            "rushAttempts": 0.5,
+            "receptions": 17.6
           },
           "sleeper": {
             "receptions": 9
@@ -9833,11 +10533,13 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 121,
+        "receptions": 18,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 121
+            "rushAttempts": 121,
+            "receptions": 18
           }
         }
       },
@@ -9854,10 +10556,14 @@
       "team": "CIN",
       "pos": "TE",
       "projection": {
-        "receptions": 13,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 14.1,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 15.6,
         "sources": {
+          "fantasypros": {
+            "receptions": 15.2
+          },
           "sleeper": {
             "receptions": 13
           }
@@ -9876,10 +10582,14 @@
       "team": "DET",
       "pos": "TE",
       "projection": {
-        "receptions": 11,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 16,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 62.1,
         "sources": {
+          "fantasypros": {
+            "receptions": 20.9
+          },
           "sleeper": {
             "receptions": 11
           }
@@ -9922,10 +10632,14 @@
       "team": "BAL",
       "pos": "TE",
       "projection": {
-        "receptions": 5,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 7.4,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 64.9,
         "sources": {
+          "fantasypros": {
+            "receptions": 9.8
+          },
           "sleeper": {
             "receptions": 5
           }
@@ -9944,10 +10658,14 @@
       "team": "CIN",
       "pos": "TE",
       "projection": {
-        "receptions": 3,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 8.1,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 125.5,
         "sources": {
+          "fantasypros": {
+            "receptions": 13.1
+          },
           "sleeper": {
             "receptions": 3
           }
@@ -9991,12 +10709,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.5,
-        "receptions": 10,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 6.9,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 92,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 3.7
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -10018,11 +10738,13 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 37,
+        "receptions": 3,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 37
+            "rushAttempts": 37,
+            "receptions": 3
           }
         }
       }
@@ -10067,12 +10789,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
-        "receptions": 9,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 6.2,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 90.3,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 3.4
           },
           "sleeper": {
             "receptions": 9
@@ -10098,12 +10822,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
-        "receptions": 10,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 9.6,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 8.3,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 9.2
           },
           "sleeper": {
             "receptions": 10
@@ -10185,12 +10911,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.5,
-        "receptions": 1,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 0.5,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 200,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 0
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -10287,12 +11015,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
-        "receptions": 4,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 10,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 120,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 16
           },
           "sleeper": {
             "receptions": 4
@@ -10414,10 +11144,14 @@
       "team": "CIN",
       "pos": "TE",
       "projection": {
-        "receptions": 21,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 17,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 47.1,
         "sources": {
+          "fantasypros": {
+            "receptions": 13
+          },
           "sleeper": {
             "receptions": 21
           }
@@ -10429,10 +11163,14 @@
       "team": "NYJ",
       "pos": "TE",
       "projection": {
-        "receptions": 5,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 12.4,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 119,
         "sources": {
+          "fantasypros": {
+            "receptions": 19.7
+          },
           "sleeper": {
             "receptions": 5
           }
@@ -10466,10 +11204,14 @@
       "team": "DET",
       "pos": "TE",
       "projection": {
-        "receptions": 1,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 2.4,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 114.9,
         "sources": {
+          "fantasypros": {
+            "receptions": 3.7
+          },
           "sleeper": {
             "receptions": 1
           }
@@ -10527,10 +11269,14 @@
       "team": "DEN",
       "pos": "TE",
       "projection": {
-        "receptions": 3,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 7.5,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 119.5,
         "sources": {
+          "fantasypros": {
+            "receptions": 11.9
+          },
           "sleeper": {
             "receptions": 3
           }
@@ -10550,11 +11296,13 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 35,
+        "receptions": 1,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 35
+            "rushAttempts": 35,
+            "receptions": 1
           }
         }
       }
@@ -10631,6 +11379,16 @@
       "name": "Will Mallory",
       "team": "IND",
       "pos": "TE",
+      "projection": {
+        "receptions": 11,
+        "sourceCount": 1,
+        "confidence": "single",
+        "sources": {
+          "fantasypros": {
+            "receptions": 11
+          }
+        }
+      },
       "actual": {
         "season": 2025,
         "games": 2,
@@ -10659,10 +11417,14 @@
       "team": "HOU",
       "pos": "TE",
       "projection": {
-        "receptions": 5,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 7.2,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 60.1,
         "sources": {
+          "fantasypros": {
+            "receptions": 9.3
+          },
           "sleeper": {
             "receptions": 5
           }
@@ -10754,10 +11516,14 @@
       "team": "LV",
       "pos": "TE",
       "projection": {
-        "receptions": 2,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 2.9,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 62.1,
         "sources": {
+          "fantasypros": {
+            "receptions": 3.8
+          },
           "sleeper": {
             "receptions": 2
           }
@@ -10801,12 +11567,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
-        "receptions": 2,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 2.8,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 54.5,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 3.5
           },
           "sleeper": {
             "receptions": 2
@@ -10827,11 +11595,13 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 0,
+        "receptions": 0,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 0
           }
         }
       },
@@ -10909,11 +11679,13 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 0,
+        "receptions": 4.1,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 4.1
           }
         }
       }
@@ -11002,11 +11774,13 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 2.1,
+        "receptions": 7.9,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 2.1
+            "rushAttempts": 2.1,
+            "receptions": 7.9
           }
         }
       }
@@ -11017,11 +11791,13 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 6.6,
+        "receptions": 5.1,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 6.6
+            "rushAttempts": 6.6,
+            "receptions": 5.1
           }
         }
       }
@@ -11155,11 +11931,13 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
+        "receptions": 0,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 0
           }
         }
       },
@@ -11177,11 +11955,13 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 4.2,
+        "receptions": 0,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 4.2
+            "rushAttempts": 4.2,
+            "receptions": 0
           }
         }
       },
@@ -11240,11 +12020,13 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
+        "receptions": 0,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 0
           }
         }
       }
@@ -11284,11 +12066,13 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 4.1,
+        "receptions": 4.1,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 4.1
+            "rushAttempts": 4.1,
+            "receptions": 4.1
           }
         }
       }
@@ -11328,11 +12112,13 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 0,
+        "receptions": 3.9,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 3.9
           }
         }
       }
@@ -11450,11 +12236,13 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 2,
+        "receptions": 4.5,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 2
+            "rushAttempts": 2,
+            "receptions": 4.5
           }
         }
       }
@@ -11487,11 +12275,13 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.5,
-        "sourceCount": 2,
+        "receptions": 0,
+        "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 0
           },
           "sleeper": {
             "rushAttempts": 1
@@ -11558,11 +12348,13 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 1,
+        "receptions": 38,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 1
+            "rushAttempts": 1,
+            "receptions": 38
           }
         }
       }
@@ -11573,12 +12365,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 2.6,
-        "receptions": 12,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 11.9,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 1.7,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 2.2
+            "rushAttempts": 2.2,
+            "receptions": 11.8
           },
           "sleeper": {
             "rushAttempts": 3,
@@ -11785,7 +12579,8 @@
         "spreadPct": 85.7,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 35
+            "rushAttempts": 35,
+            "receptions": 2
           },
           "sleeper": {
             "rushAttempts": 14,
@@ -11806,10 +12601,14 @@
       "team": "CHI",
       "pos": "TE",
       "projection": {
-        "receptions": 14,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 10.4,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 69.2,
         "sources": {
+          "fantasypros": {
+            "receptions": 6.8
+          },
           "sleeper": {
             "receptions": 14
           }
@@ -11828,15 +12627,34 @@
         "last4SnapPct": 10.5
       }
     },
+    "bauer-sharp-te": {
+      "name": "Bauer Sharp",
+      "team": "TB",
+      "pos": "TE",
+      "projection": {
+        "receptions": 11,
+        "sourceCount": 1,
+        "confidence": "single",
+        "sources": {
+          "fantasypros": {
+            "receptions": 11
+          }
+        }
+      }
+    },
     "joe-royer-te": {
       "name": "Joe Royer",
       "team": "CLE",
       "pos": "TE",
       "projection": {
-        "receptions": 23,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 15.9,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 89.3,
         "sources": {
+          "fantasypros": {
+            "receptions": 8.8
+          },
           "sleeper": {
             "receptions": 23
           }
@@ -11849,10 +12667,14 @@
       "pos": "TE",
       "projection": {
         "rushAttempts": 2,
-        "receptions": 14,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 14.7,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 8.9,
         "sources": {
+          "fantasypros": {
+            "receptions": 15.3
+          },
           "sleeper": {
             "rushAttempts": 2,
             "receptions": 14
@@ -11884,10 +12706,14 @@
       "team": "GB",
       "pos": "TE",
       "projection": {
-        "receptions": 3,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 3.3,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 18.2,
         "sources": {
+          "fantasypros": {
+            "receptions": 3.6
+          },
           "sleeper": {
             "receptions": 3
           }
@@ -11906,10 +12732,14 @@
       "team": "ARI",
       "pos": "TE",
       "projection": {
-        "receptions": 8,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 5.9,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 71.2,
         "sources": {
+          "fantasypros": {
+            "receptions": 3.8
+          },
           "sleeper": {
             "receptions": 8
           }
@@ -11929,12 +12759,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.5,
-        "receptions": 13,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 9.7,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 68,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 6.4
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -11955,10 +12787,14 @@
       "team": "CLE",
       "pos": "TE",
       "projection": {
-        "receptions": 4,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 2,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 200,
         "sources": {
+          "fantasypros": {
+            "receptions": 0
+          },
           "sleeper": {
             "receptions": 4
           }
@@ -11977,10 +12813,14 @@
       "team": "TB",
       "pos": "TE",
       "projection": {
-        "receptions": 4,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 5.8,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 62.1,
         "sources": {
+          "fantasypros": {
+            "receptions": 7.6
+          },
           "sleeper": {
             "receptions": 4
           }
@@ -11999,10 +12839,14 @@
       "team": "SEA",
       "pos": "TE",
       "projection": {
-        "receptions": 3,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 3.2,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 12.5,
         "sources": {
+          "fantasypros": {
+            "receptions": 3.4
+          },
           "sleeper": {
             "receptions": 3
           }
@@ -12033,10 +12877,14 @@
       "team": "NE",
       "pos": "TE",
       "projection": {
-        "receptions": 3,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 1.5,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 200,
         "sources": {
+          "fantasypros": {
+            "receptions": 0
+          },
           "sleeper": {
             "receptions": 3
           }
@@ -12077,10 +12925,14 @@
       "team": "ATL",
       "pos": "TE",
       "projection": {
-        "receptions": 4,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 8.8,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 108.6,
         "sources": {
+          "fantasypros": {
+            "receptions": 13.5
+          },
           "sleeper": {
             "receptions": 4
           }
@@ -12099,10 +12951,14 @@
       "team": "BAL",
       "pos": "TE",
       "projection": {
-        "receptions": 11,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 7.2,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 107.7,
         "sources": {
+          "fantasypros": {
+            "receptions": 3.3
+          },
           "sleeper": {
             "receptions": 11
           }
@@ -12138,10 +12994,14 @@
       "team": "LAR",
       "pos": "TE",
       "projection": {
-        "receptions": 3,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 10,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 139.7,
         "sources": {
+          "fantasypros": {
+            "receptions": 16.9
+          },
           "sleeper": {
             "receptions": 3
           }
@@ -12161,11 +13021,13 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 2.1,
-        "sourceCount": 2,
+        "receptions": 3.5,
+        "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 2.1
+            "rushAttempts": 2.1,
+            "receptions": 3.5
           },
           "sleeper": {
             "rushAttempts": 2
@@ -12185,10 +13047,14 @@
       "team": "DAL",
       "pos": "TE",
       "projection": {
-        "receptions": 12,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 9.7,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 47.4,
         "sources": {
+          "fantasypros": {
+            "receptions": 7.4
+          },
           "sleeper": {
             "receptions": 12
           }
@@ -12207,10 +13073,14 @@
       "team": "SF",
       "pos": "TE",
       "projection": {
-        "receptions": 5,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 4.5,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 22.2,
         "sources": {
+          "fantasypros": {
+            "receptions": 4
+          },
           "sleeper": {
             "receptions": 5
           }
@@ -12228,6 +13098,16 @@
       "name": "Ben Sims",
       "team": "MIA",
       "pos": "TE",
+      "projection": {
+        "receptions": 19.5,
+        "sourceCount": 1,
+        "confidence": "single",
+        "sources": {
+          "fantasypros": {
+            "receptions": 19.5
+          }
+        }
+      },
       "actual": {
         "season": 2025,
         "games": 9,
@@ -12241,10 +13121,14 @@
       "team": "PHI",
       "pos": "TE",
       "projection": {
-        "receptions": 10,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 10.5,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 9.5,
         "sources": {
+          "fantasypros": {
+            "receptions": 11
+          },
           "sleeper": {
             "receptions": 10
           }
@@ -12263,10 +13147,14 @@
       "team": "TB",
       "pos": "TE",
       "projection": {
-        "receptions": 4,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 4.8,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 31.6,
         "sources": {
+          "fantasypros": {
+            "receptions": 5.5
+          },
           "sleeper": {
             "receptions": 4
           }
@@ -12308,12 +13196,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 4.6,
-        "receptions": 10,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 8.4,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 39.5,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 6.2
+            "rushAttempts": 6.2,
+            "receptions": 6.7
           },
           "sleeper": {
             "rushAttempts": 3,
@@ -12369,12 +13259,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
-        "receptions": 1,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 0.5,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 200,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 0
           },
           "sleeper": {
             "receptions": 1
@@ -12424,13 +13316,14 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 2,
-        "receptions": 4,
+        "receptions": 2,
         "sourceCount": 2,
         "confidence": "low",
         "spreadPct": 200,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 0
           },
           "sleeper": {
             "rushAttempts": 4,
@@ -12469,12 +13362,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
-        "receptions": 22,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 13.3,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 130.8,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 4.6
           },
           "sleeper": {
             "receptions": 22
@@ -12510,6 +13405,16 @@
       "name": "Jelani Woods",
       "team": "NYJ",
       "pos": "TE",
+      "projection": {
+        "receptions": 0,
+        "sourceCount": 1,
+        "confidence": "single",
+        "sources": {
+          "fantasypros": {
+            "receptions": 0
+          }
+        }
+      },
       "actual": {
         "season": 2025,
         "games": 4,
@@ -12524,11 +13429,13 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 0,
+        "receptions": 0,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 0
           }
         }
       },
@@ -12546,12 +13453,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 2,
-        "receptions": 21,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 10.5,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 200,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 0
           },
           "sleeper": {
             "rushAttempts": 4,
@@ -12610,12 +13519,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.5,
-        "receptions": 1,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 0.5,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 200,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 0
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -12649,11 +13560,13 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
+        "receptions": 6.8,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 6.8
           }
         }
       },
@@ -12671,11 +13584,13 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
+        "receptions": 3.1,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 3.1
           }
         }
       },
@@ -12693,11 +13608,13 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 32,
+        "receptions": 9,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 32
+            "rushAttempts": 32,
+            "receptions": 9
           }
         }
       },
@@ -12727,12 +13644,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 2.2,
-        "receptions": 2,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 1,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 200,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 2.2
+            "rushAttempts": 2.2,
+            "receptions": 0
           },
           "sleeper": {
             "receptions": 2
@@ -12746,11 +13665,13 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
+        "receptions": 0,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 0
           }
         }
       },
@@ -12804,11 +13725,13 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.5,
-        "sourceCount": 2,
+        "receptions": 1.8,
+        "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 1.8
           },
           "sleeper": {
             "rushAttempts": 1
@@ -12829,11 +13752,13 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 0,
+        "receptions": 0,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 0
           }
         }
       },
@@ -12911,12 +13836,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 2.7,
-        "receptions": 3,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 1.5,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 200,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 4.4
+            "rushAttempts": 4.4,
+            "receptions": 0
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -12938,11 +13865,13 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 0,
+        "receptions": 0,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 0
           }
         }
       },
@@ -12972,11 +13901,13 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 32,
+        "receptions": 1,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 32
+            "rushAttempts": 32,
+            "receptions": 1
           }
         }
       }
@@ -12987,11 +13918,13 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 31,
+        "receptions": 2,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 31
+            "rushAttempts": 31,
+            "receptions": 2
           }
         }
       }
@@ -13002,12 +13935,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 2.2,
-        "receptions": 2,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 1,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 200,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 2.2
+            "rushAttempts": 2.2,
+            "receptions": 0
           },
           "sleeper": {
             "receptions": 2
@@ -13028,11 +13963,13 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
+        "receptions": 2.9,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 2.9
           }
         }
       },
@@ -13072,11 +14009,13 @@
       "pos": "RB",
       "projection": {
         "rushAttempts": 0,
+        "receptions": 0,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 0
           }
         }
       }
@@ -13087,12 +14026,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 2.8,
-        "receptions": 4,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 3.5,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 31.9,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 4.5
+            "rushAttempts": 4.5,
+            "receptions": 2.9
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -13107,12 +14048,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
-        "receptions": 2,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 1,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 200,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 0
           },
           "sleeper": {
             "receptions": 2
@@ -13167,11 +14110,13 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
+        "receptions": 0,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 0
           }
         }
       },
@@ -13189,11 +14134,13 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.5,
-        "sourceCount": 2,
+        "receptions": 0,
+        "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 0
           },
           "sleeper": {
             "rushAttempts": 1
@@ -13214,12 +14161,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
-        "receptions": 3,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 3.2,
+        "sourceCount": 2,
+        "confidence": "high",
+        "spreadPct": 9.5,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 3.3
           },
           "sleeper": {
             "receptions": 3
@@ -13240,12 +14189,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
-        "receptions": 3,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 1.5,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 200,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 0
           },
           "sleeper": {
             "receptions": 3
@@ -13300,12 +14251,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0.5,
-        "receptions": 1,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 0.5,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 200,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 0
           },
           "sleeper": {
             "rushAttempts": 1,
@@ -13361,12 +14314,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
-        "receptions": 1,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 0.5,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 200,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 0
           },
           "sleeper": {
             "receptions": 1
@@ -13450,12 +14405,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
-        "receptions": 2,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 3,
+        "sourceCount": 2,
+        "confidence": "low",
+        "spreadPct": 66.7,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 4
           },
           "sleeper": {
             "receptions": 2
@@ -13476,11 +14433,13 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
+        "receptions": 0,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 0
           }
         }
       },
@@ -13510,11 +14469,13 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
+        "receptions": 0,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 0
           }
         }
       },
@@ -13559,11 +14520,13 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
+        "receptions": 0,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 0
           }
         }
       },
@@ -13615,11 +14578,13 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
+        "receptions": 3.3,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 3.3
           }
         }
       },
@@ -13637,12 +14602,14 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 5.7,
-        "receptions": 2,
-        "sourceCount": 1,
-        "confidence": "single",
+        "receptions": 1.9,
+        "sourceCount": 2,
+        "confidence": "medium",
+        "spreadPct": 16.2,
         "sources": {
           "fantasypros": {
-            "rushAttempts": 6.4
+            "rushAttempts": 6.4,
+            "receptions": 1.7
           },
           "sleeper": {
             "rushAttempts": 5,
@@ -13761,11 +14728,13 @@
       "pos": "WR",
       "projection": {
         "rushAttempts": 0,
+        "receptions": 0,
         "sourceCount": 1,
         "confidence": "single",
         "sources": {
           "fantasypros": {
-            "rushAttempts": 0
+            "rushAttempts": 0,
+            "receptions": 0
           }
         }
       }
