@@ -1,0 +1,80 @@
+.draft-context-tooltip {
+  --draft-tooltip-font-size: 17px;
+  pointer-events: auto;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  font-size: var(--draft-tooltip-font-size);
+  touch-action: pan-y;
+}
+
+.draft-context-tooltip__title {
+  font-size: calc(var(--draft-tooltip-font-size) + 3px);
+}
+
+.draft-context-tooltip__toolbar {
+  position: sticky;
+  top: -18px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  margin: -18px -20px 14px;
+  padding: 10px 12px;
+  background: rgba(18, 18, 18, 0.98);
+  border-bottom: 1px solid #777368;
+}
+
+.draft-context-tooltip__size-label {
+  margin-right: auto;
+  color: #a9a596;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.draft-context-tooltip__size-button {
+  min-width: 42px;
+  padding: 6px 9px;
+  border: 1px solid #a9a596;
+  background: #0d0d0d;
+  color: #f1efe4;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.draft-context-tooltip__size-button:hover,
+.draft-context-tooltip__size-button:focus-visible {
+  outline: none;
+  border-color: #ccff33;
+  color: #ccff33;
+}
+
+.draft-context-tooltip::-webkit-scrollbar {
+  width: 14px;
+}
+
+.draft-context-tooltip::-webkit-scrollbar-track {
+  background: #0d0d0d;
+  border-left: 1px solid #5f5c53;
+}
+
+.draft-context-tooltip::-webkit-scrollbar-thumb {
+  background: #777368;
+  border: 3px solid #0d0d0d;
+}
+
+.draft-context-tooltip::-webkit-scrollbar-thumb:hover {
+  background: #ccff33;
+}
+
+@media (max-width: 760px) {
+  .draft-context-tooltip__toolbar {
+    top: -16px;
+    margin: -16px -17px 12px;
+  }
+}
