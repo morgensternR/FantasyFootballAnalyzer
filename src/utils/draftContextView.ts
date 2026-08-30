@@ -26,10 +26,15 @@ interface TeamInfrastructureContext {
   history?: PlayCallerHistory;
   newCallerRank?: number;
   historyNote?: string;
+  offensiveLineRank?: number;
+  olPffRank?: number;
+  olSharpRank?: number;
+  offensiveLineNote?: string;
 }
 
 interface TeamInfrastructureFile {
   checkedDate?: string;
+  olCheckedDate?: string;
   sourceUrls?: string[];
   teams: Record<string, TeamInfrastructureContext>;
 }
@@ -43,7 +48,7 @@ export const OUTLOOK_GLOSSARY =
   'Season Outlook is the broad fantasy environment. For QB/RB/WR/TE/K it uses that player’s TEAM OFFENSE plus schedule. For D/ST it uses TEAM DEFENSE plus schedule. DEF means the strength of that NFL team’s defense against opposing offenses — it is not offensive-line defense or pass protection.';
 
 export const TEAM_CHANGES_GLOSSARY =
-  'Team Changes isolates coaching/play-caller and offensive-line/scheme context. A coordinator title change is not automatically negative: the actual play caller and that caller’s history matter more. First-time callers are uncertainty, not automatically bad.';
+  'Team Changes isolates coaching/play-caller and offensive-line/scheme context. A coordinator title change is not automatically negative: the actual play caller and that caller’s history matter more. First-time callers are uncertainty, not automatically bad. OL is one consensus rank; PFF and Sharp source ranks stay in the tooltip.';
 
 export const OVERALL_CONTEXT_GLOSSARY =
   'Overall CTX compresses Injury + Season Outlook + Team Changes + player-specific committee/scheme notes into one quick draft signal. It is a tiebreaker, not a replacement for rank, ADP, tier, or projected points.';
@@ -193,15 +198,19 @@ export function teamChangesForPlayer(
 
   const changed = team?.playCallerChange || team?.ocChange;
   const history = historyLabel(infra?.history);
+  const olRank = infra?.offensiveLineRank ?? team?.offensiveLineRank;
   const compact = changed
-    ? `${team?.playCallerChange ? 'New caller' : 'New OC'} · ${history}`
+    ? `${team?.playCallerChange ? 'New caller' : 'New OC'} · ${history}${olRank ? ` · OL #${olRank}` : ''}`
     : infra?.playCaller
-      ? `Stable · ${history}`
-      : 'Team note';
+      ? `Stable · ${history}${olRank ? ` · OL #${olRank}` : ''}`
+      : olRank
+        ? `OL #${olRank}`
+        : 'Team note';
 
   let tone = historyTone(infra?.history);
+  if (olRank && olRank >= 28) tone = worseTone(tone, 'warn');
   if (team?.contextTrend === 'major_concern') tone = 'bad';
-  else if (team?.contextTrend === 'down' && tone !== 'bad') tone = 'warn';
+  else if (team?.contextTrend === 'down' && tone !== 'bad') tone = worseTone(tone, 'warn');
 
   return {
     label: compact,
@@ -214,13 +223,17 @@ export function teamChangesForPlayer(
       infra?.newCallerRank ? `2026 new-caller fantasy outlook: #${infra.newCallerRank} of 18 (CBS)` : null,
       team?.playCallerChange != null ? `Play caller changed for 2026: ${team.playCallerChange ? 'Yes' : 'No'}` : null,
       team?.ocChange != null ? `OC title changed for 2026: ${team.ocChange ? 'Yes' : 'No'}` : null,
-      team?.offensiveLineRank ? `Offensive line: #${team.offensiveLineRank}` : 'Offensive line: separate rank not populated in this snapshot yet',
+      olRank ? `Offensive line consensus: #${olRank}` : 'Offensive line: not ranked yet',
+      infra?.olPffRank ? `OL source rank — PFF: #${infra.olPffRank}` : null,
+      infra?.olSharpRank ? `OL source rank — Sharp: #${infra.olSharpRank}` : null,
+      infra?.offensiveLineNote ? `OL note: ${infra.offensiveLineNote}` : null,
       team?.runBlockRank ? `Run blocking: #${team.runBlockRank}` : null,
       team?.passBlockRank ? `Pass protection: #${team.passBlockRank}` : null,
       team?.schemeNote ? `Scheme: ${team.schemeNote}` : null,
-      infra?.historyNote ? `History note: ${infra.historyNote}` : null,
+      infra?.historyNote ? `Play-caller note: ${infra.historyNote}` : null,
       team?.contextNote ? `2026 transition note: ${team.contextNote}` : null,
-      `Infrastructure checked: ${INFRASTRUCTURE.checkedDate ?? 'unknown'}`,
+      `Coaching context checked: ${INFRASTRUCTURE.checkedDate ?? 'unknown'}`,
+      olRank ? `OL context checked: ${INFRASTRUCTURE.olCheckedDate ?? 'unknown'}` : null,
     ]),
   };
 }
@@ -262,16 +275,17 @@ function overallScore(
   else if (schedule && schedule >= 21) score -= 0.75;
   if (team?.scheduleConfidence === 'low') score *= 0.9;
 
-  if (infra?.history === 'excellent') score += 1.25;
-  else if (infra?.history === 'positive') score += 0.75;
-  else if (infra?.history === 'concerning') score -= 0.75;
-  else if (infra?.history === 'poor') score -= 1.25;
-  // first_time / unknown are neutral: uncertainty belongs in the explanation,
-  // not an automatic performance penalty.
+  if (player.pos !== 'DST') {
+    if (infra?.history === 'excellent') score += 1.25;
+    else if (infra?.history === 'positive') score += 0.75;
+    else if (infra?.history === 'concerning') score -= 0.75;
+    else if (infra?.history === 'poor') score -= 1.25;
+    // first_time / unknown are neutral: uncertainty belongs in the explanation,
+    // not an automatic performance penalty.
 
-  if (team?.offensiveLineRank && player.pos !== 'DST') {
-    if (team.offensiveLineRank <= 8) score += 0.75;
-    else if (team.offensiveLineRank >= 25) score -= 0.75;
+    const olRank = infra?.offensiveLineRank ?? team?.offensiveLineRank;
+    if (olRank && olRank <= 8) score += 0.75;
+    else if (olRank && olRank >= 25) score -= 0.75;
   }
 
   if (team?.contextTrend === 'up') score += 0.5;
