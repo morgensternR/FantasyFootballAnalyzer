@@ -9,7 +9,7 @@ const SLEEPER_CACHE_KEY = 'ffa:sleeper-draft-context:v1';
 const TOOLTIP_ID = 'ffa-draft-context-tooltip';
 const FRESHNESS_ID = 'ffa-draft-data-freshness';
 const RESIZE_EDGE_PX = 10;
-const MIN_COLUMN_PX = 52;
+const MIN_COLUMN_PX = 32;
 
 interface TeamContextFile {
   contextDate?: string;
