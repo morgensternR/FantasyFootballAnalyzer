@@ -3,6 +3,7 @@ import infrastructureJson from '@/data/teamInfrastructure.2026.json';
 import { POOL } from '@/data/draftPool';
 import { SLEEPER_CONTEXT_UPDATED_EVENT } from '@/api/sleeperLiveContext';
 import { injuryOutlook } from './injuryOutlook';
+import { installDraftPickClock } from './draftPickClock';
 
 const COLUMN_STORAGE_KEY = 'ffa:draft-board-column-widths:v1';
 const SLEEPER_CACHE_KEY = 'ffa:sleeper-draft-context:v1';
@@ -274,6 +275,7 @@ export function installDraftBoardEnhancements(): () => void {
   if (typeof window === 'undefined' || typeof document === 'undefined') return () => {};
 
   const tip = ensureTooltip();
+  const removePickClock = installDraftPickClock();
   let activeTooltipTarget: HTMLElement | null = null;
   let resize: {
     table: HTMLTableElement;
@@ -399,6 +401,7 @@ export function installDraftBoardEnhancements(): () => void {
   queueMicrotask(enhanceTables);
 
   return () => {
+    removePickClock();
     observer.disconnect();
     document.removeEventListener('pointerover', onPointerOver, true);
     document.removeEventListener('pointerout', onPointerOut, true);
