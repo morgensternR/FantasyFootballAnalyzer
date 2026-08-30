@@ -6,7 +6,6 @@ import {
   prepareSleeperDraftContext,
   SLEEPER_CONTEXT_UPDATED_EVENT,
 } from './api/sleeperLiveContext'
-import { installDraftTooltipAccessibility } from './utils/draftTooltipAccessibility'
 import { installDraftBoardEnhancements } from './utils/draftBoardEnhancements'
 import { installDraftFreshnessPlacement } from './utils/draftFreshnessPlacement'
 import { sweepStaleCacheVersions } from './utils/leagueCache'
@@ -15,14 +14,9 @@ import App from './App.tsx'
 import './fonts.css'
 import './index.css'
 import './draftBoardEnhancements.css'
-import './draftTooltipAccessibility.css'
 
 initSentry()
 sweepStaleCacheVersions()
-// Install the tooltip guard first so moving the pointer into the context card
-// does not trigger the older hover-dismiss listener. The card can then be
-// scrolled and its text size adjusted in place.
-installDraftTooltipAccessibility()
 installDraftBoardEnhancements()
 installDraftFreshnessPlacement()
 
