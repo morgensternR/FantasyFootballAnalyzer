@@ -52,7 +52,13 @@ export function useSuggestedPicks(room: UseDraftRoomReturn, enabled: boolean): U
     [scoring, superflex],
   );
   const contextForPlayer = useCallback(
-    (p: PoolPlayer) => overallContextForPlayer(p, PLAYER_CONTEXTS, TEAM_CONTEXTS),
+    (p: PoolPlayer) => {
+      const context = overallContextForPlayer(p, PLAYER_CONTEXTS, TEAM_CONTEXTS);
+      // The generic suggestion helper treats a neutral informational note as a
+      // tiny positive. Overall CTX has an explicit Neutral state, so map that
+      // state to the helper's no-adjustment sentinel instead.
+      return context.label === 'Neutral' ? { ...context, label: '—' } : context;
+    },
     [],
   );
 
