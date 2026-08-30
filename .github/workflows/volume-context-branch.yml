@@ -58,4 +58,8 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add src/data/volumeContext.*
           git commit -m "Update 2026 volume context"
-          git push
+          # Documentation/source changes may land while the fetch/build job is
+          # running. Rebase the generated-data commit on the current feature
+          # branch instead of rejecting the push as non-fast-forward.
+          git pull --rebase origin draft-risk-dashboard
+          git push origin HEAD:draft-risk-dashboard
