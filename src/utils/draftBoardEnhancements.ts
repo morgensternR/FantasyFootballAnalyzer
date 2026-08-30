@@ -377,6 +377,10 @@ export function installDraftBoardEnhancements(): () => void {
     resetColumnWidths(table);
   };
 
+  const onWindowResize = () => {
+    if (!tip.hidden && activeTooltipTarget) positionTooltip(tip, activeTooltipTarget);
+  };
+
   const observer = new MutationObserver(enhanceTables);
   observer.observe(document.getElementById('root') ?? document.body, { childList: true, subtree: true });
 
@@ -390,9 +394,7 @@ export function installDraftBoardEnhancements(): () => void {
   document.addEventListener('pointercancel', endResize, true);
   document.addEventListener('dblclick', onDoubleClick, true);
   window.addEventListener(SLEEPER_CONTEXT_UPDATED_EVENT, updateFreshnessBadge);
-  window.addEventListener('resize', () => {
-    if (!tip.hidden && activeTooltipTarget) positionTooltip(tip, activeTooltipTarget);
-  });
+  window.addEventListener('resize', onWindowResize);
 
   queueMicrotask(enhanceTables);
 
@@ -408,6 +410,7 @@ export function installDraftBoardEnhancements(): () => void {
     document.removeEventListener('pointercancel', endResize, true);
     document.removeEventListener('dblclick', onDoubleClick, true);
     window.removeEventListener(SLEEPER_CONTEXT_UPDATED_EVENT, updateFreshnessBadge);
+    window.removeEventListener('resize', onWindowResize);
     tip.remove();
     document.getElementById(FRESHNESS_ID)?.remove();
   };
