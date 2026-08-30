@@ -42,16 +42,16 @@ interface TeamInfrastructureFile {
 const INFRASTRUCTURE = infrastructureJson as TeamInfrastructureFile;
 
 export const INJURY_GLOSSARY =
-  'Current player availability. Sleeper is the live factual backbone; injury news/reporting can add prognosis separately. Healthy means Sleeper currently carries no injury designation.';
+  'Current player availability. Sleeper is the live factual backbone for individual players; injury news/reporting can add prognosis separately. D/ST needs a unit-level defensive injury rollup and is not labeled healthy from a missing single-player record.';
 
 export const OUTLOOK_GLOSSARY =
   'Season Outlook is the broad fantasy environment. For QB/RB/WR/TE/K it uses that player’s TEAM OFFENSE plus schedule. For D/ST it uses TEAM DEFENSE plus schedule. DEF means the strength of that NFL team’s defense against opposing offenses — it is not offensive-line defense or pass protection.';
 
 export const TEAM_CHANGES_GLOSSARY =
-  'Team Changes isolates coaching/play-caller and offensive-line/scheme context. A coordinator title change is not automatically negative: the actual play caller and that caller’s history matter more. First-time callers are uncertainty, not automatically bad. OL is one consensus rank; PFF and Sharp source ranks stay in the tooltip.';
+  'Team Changes isolates offensive coaching/play-caller and offensive-line/scheme context for offensive fantasy players. A coordinator title change is not automatically negative: the actual play caller and that caller’s history matter more. First-time callers are uncertainty, not automatically bad. OL is one consensus rank; PFF and Sharp source ranks stay in the tooltip. D/ST does not inherit offensive infrastructure context.';
 
 export const OVERALL_CONTEXT_GLOSSARY =
-  'Overall CTX compresses Injury + Season Outlook + Team Changes + player-specific committee/scheme notes into one quick draft signal. It is a tiebreaker, not a replacement for rank, ADP, tier, or projected points.';
+  'Overall CTX compresses Injury + Season Outlook + relevant Team Changes + player-specific committee/scheme notes into one quick draft signal. It is a tiebreaker, not a replacement for rank, ADP, tier, or projected points.';
 
 function bulletTitle(title: string, lines: Array<string | null | undefined>): string {
   return [title, '', ...lines.filter(Boolean).map(line => `• ${line}`)].join('\n');
@@ -94,6 +94,18 @@ function injurySeverity(status?: string): 'healthy' | 'minor' | 'major' {
 }
 
 export function injuryContextForPlayer(player: PoolPlayer): PlayerContextLabel {
+  if (player.pos === 'DST') {
+    return {
+      label: '—',
+      tone: 'neutral',
+      title: bulletTitle('Injury / availability', [
+        'D/ST represents an entire defensive unit, not one Sleeper player.',
+        'A missing single-player injury designation must not be interpreted as a healthy defense.',
+        'Unit-level defensive starter injuries can be added as a separate team-defense input later.',
+      ]),
+    };
+  }
+
   const severity = injurySeverity(player.injuryStatus);
   if (severity === 'healthy') {
     return {
@@ -185,6 +197,18 @@ export function teamChangesForPlayer(
   player: PoolPlayer,
   teamContexts: Record<string, TeamContext>,
 ): PlayerContextLabel {
+  if (player.pos === 'DST') {
+    return {
+      label: 'DEF only',
+      tone: 'neutral',
+      title: bulletTitle('Team Changes', [
+        'Offensive coordinator, offensive play-caller, and offensive-line changes are not applied to D/ST.',
+        'Use the DEF + SOS Season Outlook for the current D/ST baseline.',
+        'A separate defensive coordinator/personnel-change layer is not populated yet.',
+      ]),
+    };
+  }
+
   const team = teamContexts[player.team];
   const infra = INFRASTRUCTURE.teams[player.team];
 
@@ -258,9 +282,11 @@ function overallScore(
 ): number {
   let score = 0;
 
-  const injury = injurySeverity(player.injuryStatus);
-  if (injury === 'major') score -= 3;
-  else if (injury === 'minor') score -= 1;
+  if (player.pos !== 'DST') {
+    const injury = injurySeverity(player.injuryStatus);
+    if (injury === 'major') score -= 3;
+    else if (injury === 'minor') score -= 1;
+  }
 
   const strengthRank = player.pos === 'DST' ? team?.defenseRank : team?.offenseRank;
   if (strengthRank && strengthRank <= 5) score += 2;
@@ -286,13 +312,13 @@ function overallScore(
     const olRank = infra?.offensiveLineRank ?? team?.offensiveLineRank;
     if (olRank && olRank <= 8) score += 0.75;
     else if (olRank && olRank >= 25) score -= 0.75;
+
+    if (team?.contextTrend === 'up') score += 0.5;
+    else if (team?.contextTrend === 'down') score -= 0.35;
+    else if (team?.contextTrend === 'major_concern') score -= 0.75;
   }
 
-  if (team?.contextTrend === 'up') score += 0.5;
-  else if (team?.contextTrend === 'down') score -= 0.35;
-  else if (team?.contextTrend === 'major_concern') score -= 0.75;
-
-  return score + playerSpecificScore(playerContext);
+  return score + (player.pos === 'DST' ? 0 : playerSpecificScore(playerContext));
 }
 
 function overallLabel(score: number): { label: string; tone: RiskTone } {
@@ -321,12 +347,12 @@ export function overallContextForPlayer(
   return {
     ...result,
     title: bulletTitle(`Overall CTX: ${result.label}`, [
-      `Injury: ${injury.label}`,
+      player.pos === 'DST' ? null : `Injury: ${injury.label}`,
       `Season Outlook: ${outlook.label}`,
-      `Team Changes: ${changes.label}`,
-      playerContext?.committeeRisk ? `Committee risk: ${playerContext.committeeRisk}` : null,
-      playerContext?.campSignal ? `Camp/preseason: ${playerContext.campSignal}` : null,
-      playerContext?.schemeFit && playerContext.schemeFit !== 'unknown' ? `Player scheme fit: ${playerContext.schemeFit}` : null,
+      player.pos === 'DST' ? 'Team Changes: offensive infrastructure excluded for D/ST' : `Team Changes: ${changes.label}`,
+      player.pos === 'DST' ? null : playerContext?.committeeRisk ? `Committee risk: ${playerContext.committeeRisk}` : null,
+      player.pos === 'DST' ? null : playerContext?.campSignal ? `Camp/preseason: ${playerContext.campSignal}` : null,
+      player.pos === 'DST' ? null : playerContext?.schemeFit && playerContext.schemeFit !== 'unknown' ? `Player scheme fit: ${playerContext.schemeFit}` : null,
       'This is a compact tiebreaker. Rank, tier, ADP and projections remain primary.',
     ]),
   };
