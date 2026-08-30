@@ -105,6 +105,25 @@ body.draft-column-resizing * {
 
 th[data-volume-enabled="1"] {
   min-width: 7rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+th[data-volume-enabled="1"][data-volume-sort-direction="desc"]::before {
+  content: "↓ ";
+  color: var(--bone);
+  font-weight: 900;
+}
+
+th[data-volume-enabled="1"][data-volume-sort-direction="asc"]::before {
+  content: "↑ ";
+  color: var(--bone);
+  font-weight: 900;
+}
+
+th[data-volume-enabled="1"]:focus-visible {
+  outline: 2px solid var(--bone);
+  outline-offset: -3px;
 }
 
 /* The clock is rendered as a pseudo-element on the existing React-owned tab
