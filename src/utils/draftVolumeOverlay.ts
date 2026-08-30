@@ -22,10 +22,14 @@ function draftBoardTable(): HTMLTableElement | null {
 }
 
 function clearCell(cell: HTMLTableCellElement): void {
+  const originalTitle = cell.dataset.volumeRoleTitle;
   cell.classList.remove('draft-volume-cell');
   delete cell.dataset.volumeLabel;
   delete cell.dataset.draftVolumeTooltip;
   delete cell.dataset.volumePlayerId;
+  delete cell.dataset.volumeRoleTitle;
+  cell.removeAttribute('aria-describedby');
+  if (originalTitle) cell.setAttribute('title', originalTitle);
 }
 
 function ensureTooltip(): HTMLDivElement {
@@ -94,7 +98,7 @@ function decorateTable(table: HTMLTableElement): void {
     const roleCell = cells[roleIndex];
     const hit = volumeEntryByRenderedPlayerText(playerCell.textContent ?? '');
     if (!hit) {
-      clearCell(roleCell);
+      if (roleCell.classList.contains('draft-volume-cell')) clearCell(roleCell);
       continue;
     }
 
@@ -110,7 +114,7 @@ function decorateTable(table: HTMLTableElement): void {
     const tooltip = volumeTooltip(player, roleTitle, hit.context);
 
     if (!label && !tooltip) {
-      clearCell(roleCell);
+      if (roleCell.classList.contains('draft-volume-cell')) clearCell(roleCell);
       continue;
     }
     roleCell.dataset.volumePlayerId = hit.id;
