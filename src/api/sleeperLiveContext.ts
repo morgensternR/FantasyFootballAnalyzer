@@ -122,7 +122,13 @@ function factsFromRaw(id: string, raw: SleeperLiveRawPlayer): SleeperPlayerFacts
 
 export function applySleeperFactsToPlayer(player: PoolPlayer, facts: SleeperPlayerFacts): void {
   if (facts.team && player.pos !== 'DST') player.team = facts.team;
+
   if (facts.depthChartOrder != null) player.depthChartOrder = facts.depthChartOrder;
+  else delete player.depthChartOrder;
+  if (facts.depthChartPosition) player.depthChartPosition = facts.depthChartPosition;
+  else delete player.depthChartPosition;
+  if (facts.practiceParticipation) player.practiceParticipation = facts.practiceParticipation;
+  else delete player.practiceParticipation;
 
   if (facts.injuryStatus) {
     player.injuryStatus = facts.injuryStatus;
