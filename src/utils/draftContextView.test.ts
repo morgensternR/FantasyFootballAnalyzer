@@ -74,11 +74,24 @@ describe('split draft context views', () => {
       }),
     );
 
-    expect(changes.label).toBe('New caller · First-time');
+    expect(changes.label).toBe('New caller · First-time · OL #26');
     expect(changes.tone).toBe('neutral');
     expect(changes.title).toContain('• Actual play caller: Declan Doyle');
     expect(changes.title).toContain('• Play-caller history: First-time');
     expect(changes.title).toContain('• 2026 new-caller fantasy outlook: #6 of 18 (CBS)');
+  });
+
+  it('shows one OL consensus rank while retaining PFF and Sharp source ranks in the bullets', () => {
+    const changes = teamChangesForPlayer(
+      player({ team: 'ATL' }),
+      contexts('ATL', { ocChange: true, playCallerChange: true, contextTrend: 'stable' }),
+    );
+
+    expect(changes.label).toContain('OL #10');
+    expect(changes.title).toContain('• Offensive line consensus: #10');
+    expect(changes.title).toContain('• OL source rank — PFF: #9');
+    expect(changes.title).toContain('• OL source rank — Sharp: #10');
+    expect(changes.title).toContain('Chris Lindstrom');
   });
 
   it('shows live practice participation in the injury bullets', () => {
