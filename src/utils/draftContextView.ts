@@ -96,6 +96,7 @@ export function injuryContextForPlayer(player: PoolPlayer): PlayerContextLabel {
       tone: 'good',
       title: bulletTitle('Injury / availability', [
         'Status: Healthy / no current Sleeper injury designation',
+        player.practiceParticipation ? `Practice: ${player.practiceParticipation}` : null,
         'Live Sleeper status refreshes daily when the app is used',
         'A separate prognosis source can still add return-timeline context later',
       ]),
@@ -109,9 +110,10 @@ export function injuryContextForPlayer(player: PoolPlayer): PlayerContextLabel {
     title: bulletTitle('Injury / availability', [
       `Status: ${status}`,
       player.injuryBodyPart ? `Body part: ${player.injuryBodyPart}` : null,
+      player.practiceParticipation ? `Practice: ${player.practiceParticipation}` : null,
       player.injuryStartDate ? `Started: ${player.injuryStartDate}` : null,
       player.injuryNotes ? `Sleeper note: ${player.injuryNotes}` : null,
-      'Status is refreshed from Sleeper when the daily app cache is stale',
+      'Status/practice are refreshed from Sleeper when the daily app cache is stale',
     ]),
   };
 }
@@ -264,7 +266,8 @@ function overallScore(
   else if (infra?.history === 'positive') score += 0.75;
   else if (infra?.history === 'concerning') score -= 0.75;
   else if (infra?.history === 'poor') score -= 1.25;
-  else if (infra?.history === 'first_time') score -= 0.25;
+  // first_time / unknown are neutral: uncertainty belongs in the explanation,
+  // not an automatic performance penalty.
 
   if (team?.offensiveLineRank && player.pos !== 'DST') {
     if (team.offensiveLineRank <= 8) score += 0.75;
