@@ -15,6 +15,7 @@ export interface ActiveDraftIdentity {
   leagueId: string;
   season: number;
   eventCount: number;
+  pickStartedAt: number;
 }
 
 export interface DraftPickClockSetting {
@@ -26,12 +27,14 @@ interface StoredDraftSession {
   config?: {
     leagueKey?: string;
   };
-  events?: unknown[];
+  events?: Array<{ ts?: number }>;
   phase?: string;
   savedAt?: number;
 }
 
-function parseLeagueKey(leagueKey: string): Omit<ActiveDraftIdentity, 'eventCount'> | null {
+function parseLeagueKey(
+  leagueKey: string,
+): Omit<ActiveDraftIdentity, 'eventCount' | 'pickStartedAt'> | null {
   const parts = leagueKey.split(':');
   if (parts.length < 3) return null;
   const platform = parts[0] as DraftClockPlatform;
@@ -59,9 +62,12 @@ export function readActiveDraftIdentity(): ActiveDraftIdentity | null {
     if (!newest?.session.config?.leagueKey) return null;
     const parsed = parseLeagueKey(newest.session.config.leagueKey);
     if (!parsed) return null;
+    const events = Array.isArray(newest.session.events) ? newest.session.events : [];
+    const latestEventTs = Number(events[events.length - 1]?.ts);
     return {
       ...parsed,
-      eventCount: Array.isArray(newest.session.events) ? newest.session.events.length : 0,
+      eventCount: events.length,
+      pickStartedAt: Number.isFinite(latestEventTs) ? latestEventTs : newest.savedAt || Date.now(),
     };
   } catch (err) {
     logger.debug('[draftPickClock] Could not read active draft identity:', err);
@@ -287,12 +293,12 @@ export function installDraftPickClock(): () => void {
       if (identityChanged) {
         identity = active;
         lastEventCount = active.eventCount;
-        pickStartedAt = Date.now();
+        pickStartedAt = active.pickStartedAt;
         setting = null;
         void resolveSetting(active);
       } else if (active.eventCount !== lastEventCount) {
         lastEventCount = active.eventCount;
-        pickStartedAt = Date.now();
+        pickStartedAt = active.pickStartedAt;
       }
     }
 
