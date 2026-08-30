@@ -1,0 +1,48 @@
+{
+  "_schema": {
+    "description": "2026 offensive infrastructure context used by the draft-room Team Changes view. Play-caller history is descriptive, not a projection, and first-time callers are treated as uncertainty rather than automatically bad.",
+    "historyValues": ["excellent", "positive", "neutral", "concerning", "poor", "first_time", "unknown"],
+    "experienceValues": ["first_time", "limited", "experienced", "veteran"],
+    "newCallerRank": "CBS Fantasy rank among the 18 new 2026 play-callers; lower is more favorable for 2026 fantasy outlook. Omitted for returning play-callers."
+  },
+  "checkedDate": "2026-08-30",
+  "sourceUrls": [
+    "https://www.cbssports.com/nfl/news/2026-nfl-offensive-infrastructure-rankings/",
+    "https://www.cbssports.com/fantasy/football/news/new-play-caller-nfl-fantasy-football-rankings/",
+    "https://www.cbssports.com/nfl/news/nfl-coaching-grades-2026-offensive-defensive-coordinator-hires/"
+  ],
+  "teams": {
+    "ARI": {"playCaller":"Mike LaFleur","experience":"experienced","history":"neutral","newCallerRank":4,"historyNote":"Experienced Shanahan/McVay-tree coach. His prior Jets play-calling stint was poor, while CBS grades Arizona's current play-caller slot around average; 2026 fantasy change outlook ranks 4th among new callers."},
+    "ATL": {"offensiveCoordinator":"Tommy Rees","playCaller":"Tommy Rees","experience":"limited","history":"concerning","newCallerRank":17,"historyNote":"Called nine Browns games in 2025 plus Notre Dame/Alabama. Cleveland finished near the bottom in scoring and total offense, though personnel and QB instability were major confounders."},
+    "BAL": {"offensiveCoordinator":"Declan Doyle","playCaller":"Declan Doyle","experience":"first_time","history":"first_time","newCallerRank":6,"historyNote":"First NFL play-calling season. CBS gives first-time callers an average baseline rather than assuming they are poor; fantasy change outlook ranks 6th among the 18 new callers."},
+    "BUF": {"offensiveCoordinator":"Pete Carmichael Jr.","playCaller":"Joe Brady","experience":"experienced","history":"positive","historyNote":"Joe Brady remains the play-caller despite the OC title changing. CBS gives Brady a 4/5 play-caller grade."},
+    "CAR": {"offensiveCoordinator":"Brad Idzik","playCaller":"Brad Idzik","experience":"first_time","history":"first_time","newCallerRank":18,"historyNote":"First NFL play-calling season after serving as Carolina's OC without calling plays. Scheme continuity reduces change risk, but CBS ranks the fantasy change 18th of 18 new callers."},
+    "CHI": {"offensiveCoordinator":"Press Taylor","playCaller":"Ben Johnson","experience":"experienced","history":"excellent","historyNote":"CBS places Johnson among the small handful of elite offensive minds/play-callers."},
+    "CIN": {"playCaller":"Zac Taylor","experience":"veteran","history":"positive","historyNote":"Established caller; CBS grades Taylor 3.5/5 in its 2026 infrastructure model."},
+    "CLE": {"playCaller":"Todd Monken","experience":"veteran","history":"positive","newCallerRank":9,"historyNote":"CBS calls Monken a very good play-caller and gives him a 4/5 grade; 2026 fantasy change outlook ranks 9th among new callers."},
+    "DAL": {"playCaller":"Brian Schottenheimer","experience":"experienced","history":"positive","historyNote":"Returning play-caller; CBS describes his 2026 play-caller grade as above average."},
+    "DEN": {"offensiveCoordinator":"Davis Webb","playCaller":"Davis Webb","experience":"first_time","history":"first_time","newCallerRank":7,"historyNote":"First NFL play-calling season. Sean Payton handed play-calling to Webb; CBS treats first-time callers as average until they establish a record."},
+    "DET": {"offensiveCoordinator":"Drew Petzing","playCaller":"Drew Petzing","experience":"experienced","history":"positive","newCallerRank":2,"historyNote":"CBS gives Petzing an above-average play-caller grade and ranks Detroit's change 2nd among the 18 new 2026 callers."},
+    "GB": {"playCaller":"Matt LaFleur","experience":"veteran","history":"positive","historyNote":"Established caller; CBS rates Green Bay's play-calling advantage above Kellen Moore's in its infrastructure comparison."},
+    "HOU": {"offensiveCoordinator":"Nick Caley","playCaller":"Nick Caley","experience":"experienced","history":"positive","historyNote":"Returning caller; CBS explicitly describes Caley as above average."},
+    "IND": {"playCaller":"Shane Steichen","experience":"experienced","history":"positive","historyNote":"Returning caller; CBS identifies play-calling as an advantage for Indianapolis."},
+    "JAC": {"playCaller":"Liam Coen","experience":"experienced","history":"excellent","historyNote":"CBS says Coen has established himself as one of the NFL's best play-callers."},
+    "KC": {"offensiveCoordinator":"Eric Bieniemy","playCaller":"Andy Reid","experience":"veteran","history":"excellent","historyNote":"Reid remains the play-caller despite the OC change. CBS grades him 4.5/5, noting a modest downgrade from prior 5/5 seasons after recent offensive regression."},
+    "LAC": {"offensiveCoordinator":"Mike McDaniel","playCaller":"Mike McDaniel","experience":"experienced","history":"excellent","newCallerRank":1,"historyNote":"CBS grades McDaniel 4.5/5 and ranks the Chargers' change No. 1 among the 18 new 2026 play-callers for fantasy."},
+    "LAR": {"playCaller":"Sean McVay","experience":"veteran","history":"excellent","historyNote":"CBS places McVay among the league's elite offensive minds and top play-callers."},
+    "LV": {"playCaller":"Klint Kubiak","experience":"experienced","history":"positive","newCallerRank":3,"historyNote":"CBS calls Kubiak a very good play-caller after Seattle's highly efficient 2025 offense; 2026 fantasy change ranks 3rd among new callers."},
+    "MIA": {"offensiveCoordinator":"Bobby Slowik","playCaller":"Bobby Slowik","experience":"experienced","history":"neutral","newCallerRank":15,"historyNote":"Previously called Houston's offense in 2023-24. CBS expects a run-heavy West Coast approach in Miami and ranks the fantasy change 15th among new callers."},
+    "MIN": {"playCaller":"Kevin O'Connell","experience":"veteran","history":"positive","historyNote":"Returning caller; CBS gives O'Connell a 4/5 play-caller grade."},
+    "NE": {"offensiveCoordinator":"Josh McDaniels","playCaller":"Josh McDaniels","experience":"veteran","history":"positive","historyNote":"Returning experienced caller; CBS cites New England's play-caller advantage as a strength in its infrastructure ranking."},
+    "NO": {"playCaller":"Kellen Moore","experience":"experienced","history":"positive","historyNote":"Returning caller with substantial experience. CBS rates him below Matt LaFleur but still within an above-average offensive environment."},
+    "NYG": {"offensiveCoordinator":"Matt Nagy","playCaller":"Matt Nagy","experience":"veteran","history":"concerning","newCallerRank":13,"historyNote":"CBS explicitly rates Nagy as a below-average play-caller; 2026 fantasy change ranks 13th among the new callers."},
+    "NYJ": {"offensiveCoordinator":"Frank Reich","playCaller":"Frank Reich","experience":"veteran","history":"poor","newCallerRank":16,"historyNote":"CBS gives Reich a below-average grade and says it was even lower than Nagy's because of his previous two NFL stops."},
+    "PHI": {"offensiveCoordinator":"Sean Mannion","playCaller":"Sean Mannion","experience":"first_time","history":"first_time","newCallerRank":5,"historyNote":"First NFL play-calling season. CBS gives first-time callers an average baseline; fantasy change outlook ranks 5th among the 18 new callers."},
+    "PIT": {"playCaller":"Mike McCarthy","experience":"veteran","history":"positive","newCallerRank":12,"historyNote":"CBS gives McCarthy a slightly above-average play-caller grade; fantasy change ranks 12th among new callers."},
+    "SEA": {"offensiveCoordinator":"Brian Fleury","playCaller":"Brian Fleury","experience":"first_time","history":"first_time","newCallerRank":11,"historyNote":"First NFL play-calling season after Klint Kubiak's departure. CBS gives first-time callers an average baseline and ranks this change 11th among new callers."},
+    "SF": {"playCaller":"Kyle Shanahan","experience":"veteran","history":"excellent","historyNote":"CBS calls Shanahan one of the NFL's best play-callers."},
+    "TB": {"offensiveCoordinator":"Zac Robinson","playCaller":"Zac Robinson","experience":"experienced","history":"neutral","newCallerRank":14,"historyNote":"Two seasons of Falcons play-calling showed adaptable personnel usage but mixed results. CBS ranks Tampa's 2026 fantasy change 14th among new callers."},
+    "TEN": {"offensiveCoordinator":"Brian Daboll","playCaller":"Brian Daboll","experience":"veteran","history":"neutral","newCallerRank":8,"historyNote":"CBS grades Daboll around average as a play-caller, an upgrade over Tennessee's prior situation; fantasy change ranks 8th among new callers."},
+    "WAS": {"offensiveCoordinator":"David Blough","playCaller":"David Blough","experience":"first_time","history":"first_time","newCallerRank":10,"historyNote":"First NFL play-calling season. CBS assigns first-time callers a neutral 3/5 baseline; fantasy change ranks 10th among new callers."}
+  }
+}
