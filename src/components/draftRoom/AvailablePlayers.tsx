@@ -9,12 +9,20 @@ import playerContextData from '@/data/playerContext.2026.json';
 import teamContextData from '@/data/teamContext.2026.json';
 import { marketAdp } from '@/utils/consensus';
 import {
-  contextLabelForPlayer,
-  CONTEXT_GLOSSARY,
   type PlayerContextFile,
   type TeamContextFile,
 } from '@/utils/contextLabels';
-import { candidateByeFit, GLOSSARY, playerRisk, playerRole, toneClass } from '@/utils/draftRisk';
+import {
+  INJURY_GLOSSARY,
+  OUTLOOK_GLOSSARY,
+  OVERALL_CONTEXT_GLOSSARY,
+  TEAM_CHANGES_GLOSSARY,
+  injuryContextForPlayer,
+  overallContextForPlayer,
+  seasonOutlookForPlayer,
+  teamChangesForPlayer,
+} from '@/utils/draftContextView';
+import { candidateByeFit, GLOSSARY, playerRole, toneClass } from '@/utils/draftRisk';
 import { inflateValue } from '@/utils/inflation';
 import { normalizeName } from '@/utils/playerNames';
 import { injuryAbbrev, injuryTitle } from '@/utils/injury';
@@ -176,7 +184,7 @@ export function AvailablePlayers({
 
   const visible = rows.slice(0, MAX_ROWS);
   const colCount =
-    (isAuction ? 16 : 13) + (showYahoo ? 1 : 0) + (onQuickDraft ? 1 : 0) + (queue ? 1 : 0);
+    (isAuction ? 18 : 15) + (showYahoo ? 1 : 0) + (onQuickDraft ? 1 : 0) + (queue ? 1 : 0);
   const cutoffAt =
     picksUntilMine != null &&
     picksUntilMine > 0 &&
@@ -249,8 +257,10 @@ export function AvailablePlayers({
             {visible.map((p, i) => {
               const role = playerRole(p);
               const byeFit = candidateByeFit(p, myRosterEntries, config.rosterSlots);
-              const risk = playerRisk(p);
-              const context = contextLabelForPlayer(p, PLAYER_CONTEXTS, TEAM_CONTEXTS);
+              const injury = injuryContextForPlayer(p);
+              const outlook = seasonOutlookForPlayer(p, TEAM_CONTEXTS);
+              const changes = teamChangesForPlayer(p, TEAM_CONTEXTS);
+              const overall = overallContextForPlayer(p, PLAYER_CONTEXTS, TEAM_CONTEXTS);
               return (
                 <Fragment key={p.id}>
                   {i === cutoffAt && (
@@ -301,10 +311,12 @@ export function AvailablePlayers({
                       <span className={styles.mSub}>
                         {p.pos}
                         {p.posRank} · {p.team} · Bye {p.bye ?? '-'}
-                        <span className={toneClass(role.tone, styles)} title={role.title}>NFL role: {role.label}</span>
-                        <span className={toneClass(byeFit.tone, styles)} title={byeFit.title}>Bye fit: {byeFit.label}</span>
-                        <span className={toneClass(risk.tone, styles)} title={risk.title}>Risk: {risk.label}</span>
-                        <span className={toneClass(context.tone, styles)} title={context.title}>Context: {context.label}</span>
+                        <span className={toneClass(role.tone, styles)} title={role.title}>Role: {role.label}</span>
+                        <span className={toneClass(byeFit.tone, styles)} title={byeFit.title}>Bye: {byeFit.label}</span>
+                        <span className={toneClass(injury.tone, styles)} title={injury.title}>Injury: {injury.label}</span>
+                        <span className={toneClass(outlook.tone, styles)} title={outlook.title}>Outlook: {outlook.label}</span>
+                        <span className={toneClass(changes.tone, styles)} title={changes.title}>Team: {changes.label}</span>
+                        <span className={toneClass(overall.tone, styles)} title={overall.title}>Overall: {overall.label}</span>
                         {p.bye !== null && crowdedByes.has(p.bye) && (
                           <span className={styles.byeWarn} title="You already have two or more skill starters on this bye">
                             ⚠
@@ -400,8 +412,10 @@ export function AvailablePlayers({
                 <th title="Week the player's team sits out. ⚠ marks byes where you already have two or more skill starters.">Bye</th>
                 <th title={GLOSSARY.role}>NFL Role</th>
                 <th title={GLOSSARY.byeFit}>Bye Fit</th>
-                <th title={GLOSSARY.risk}>Risk</th>
-                <th title={CONTEXT_GLOSSARY}>Context</th>
+                <th title={INJURY_GLOSSARY}>Injury</th>
+                <th title={OUTLOOK_GLOSSARY}>Outlook</th>
+                <th title={TEAM_CHANGES_GLOSSARY}>Team Changes</th>
+                <th title={OVERALL_CONTEXT_GLOSSARY}>Overall CTX</th>
                 <th
                   className={`${styles.num} ${styles.sortable} ${sortBy === 'adp' ? styles.sorted : ''}`}
                   onClick={() => setSort('adp')}
@@ -494,8 +508,10 @@ export function AvailablePlayers({
               {visible.map((p, i) => {
                 const role = playerRole(p);
                 const byeFit = candidateByeFit(p, myRosterEntries, config.rosterSlots);
-                const risk = playerRisk(p);
-                const context = contextLabelForPlayer(p, PLAYER_CONTEXTS, TEAM_CONTEXTS);
+                const injury = injuryContextForPlayer(p);
+                const outlook = seasonOutlookForPlayer(p, TEAM_CONTEXTS);
+                const changes = teamChangesForPlayer(p, TEAM_CONTEXTS);
+                const overall = overallContextForPlayer(p, PLAYER_CONTEXTS, TEAM_CONTEXTS);
                 return (
                   <Fragment key={p.id}>
                     {i === cutoffAt && (
@@ -603,8 +619,10 @@ export function AvailablePlayers({
                       </td>
                       <td className={toneClass(role.tone, styles)} title={role.title}>{role.label}</td>
                       <td className={toneClass(byeFit.tone, styles)} title={byeFit.title}>{byeFit.label}</td>
-                      <td className={toneClass(risk.tone, styles)} title={risk.title}>{risk.label}</td>
-                      <td className={toneClass(context.tone, styles)} title={context.title}>{context.label}</td>
+                      <td className={toneClass(injury.tone, styles)} title={injury.title}>{injury.label}</td>
+                      <td className={toneClass(outlook.tone, styles)} title={outlook.title}>{outlook.label}</td>
+                      <td className={toneClass(changes.tone, styles)} title={changes.title}>{changes.label}</td>
+                      <td className={toneClass(overall.tone, styles)} title={overall.title}>{overall.label}</td>
                       {(() => {
                         const a = adp(p);
                         const fell = !isAuction && derived.pickCount > 0 && a != null && a < derived.pickCount + 1;
