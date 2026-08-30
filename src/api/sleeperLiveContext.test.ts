@@ -36,7 +36,7 @@ function cache(partial: Partial<SleeperDraftContextCache> = {}): SleeperDraftCon
 }
 
 describe('Sleeper live draft context', () => {
-  it('applies current team, depth and injury facts without changing player identity', () => {
+  it('applies current team, depth, practice and injury facts without changing player identity', () => {
     const p = player();
 
     applySleeperFactsToPlayer(p, {
@@ -45,7 +45,9 @@ describe('Sleeper live draft context', () => {
       injuryStatus: 'Questionable',
       injuryBodyPart: 'Hamstring',
       injuryStartDate: '2026-08-10',
+      practiceParticipation: 'Limited',
       depthChartOrder: 2,
+      depthChartPosition: 'LWR',
       rookie: false,
     });
 
@@ -53,24 +55,28 @@ describe('Sleeper live draft context', () => {
     expect(p.sleeperId).toBe('1234');
     expect(p.team).toBe('SEA');
     expect(p.depthChartOrder).toBe(2);
+    expect(p.depthChartPosition).toBe('LWR');
+    expect(p.practiceParticipation).toBe('Limited');
     expect(p.injuryStatus).toBe('Questionable');
     expect(p.injuryBodyPart).toBe('Hamstring');
     expect(p.injuryStartDate).toBe('2026-08-10');
   });
 
-  it('clears stale bundled injury details when Sleeper reports the player healthy', () => {
+  it('clears stale bundled injury/practice/depth details when Sleeper no longer reports them', () => {
     const p = player({
       injuryStatus: 'PUP',
       injuryBodyPart: 'Knee',
       injuryNotes: 'Old bundled note',
       injuryStartDate: '2026-07-20',
+      practiceParticipation: 'DNP',
+      depthChartOrder: 3,
+      depthChartPosition: 'RB',
     });
 
     applySleeperFactsToPlayer(p, {
       sleeperId: '1234',
       team: 'SF',
       status: 'Active',
-      depthChartOrder: 1,
       rookie: false,
     });
 
@@ -78,7 +84,9 @@ describe('Sleeper live draft context', () => {
     expect(p.injuryBodyPart).toBeUndefined();
     expect(p.injuryNotes).toBeUndefined();
     expect(p.injuryStartDate).toBeUndefined();
-    expect(p.depthChartOrder).toBe(1);
+    expect(p.practiceParticipation).toBeUndefined();
+    expect(p.depthChartOrder).toBeUndefined();
+    expect(p.depthChartPosition).toBeUndefined();
   });
 
   it('does not rewrite DST franchise identity from player facts', () => {
