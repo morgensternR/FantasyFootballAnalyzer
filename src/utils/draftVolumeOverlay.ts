@@ -374,8 +374,8 @@ export function installDraftVolumeOverlay(): () => void {
   document.addEventListener('pointerout', onPointerOut, true);
   document.addEventListener('focusin', onFocusIn, true);
   document.addEventListener('focusout', onFocusOut, true);
-  document.addEventListener('click', onClick);
-  document.addEventListener('keydown', onKeyDown);
+  document.addEventListener('click', onClick, true);
+  document.addEventListener('keydown', onKeyDown, true);
   window.addEventListener('resize', onResize);
   queueMicrotask(decorate);
 
@@ -385,8 +385,8 @@ export function installDraftVolumeOverlay(): () => void {
     document.removeEventListener('pointerout', onPointerOut, true);
     document.removeEventListener('focusin', onFocusIn, true);
     document.removeEventListener('focusout', onFocusOut, true);
-    document.removeEventListener('click', onClick);
-    document.removeEventListener('keydown', onKeyDown);
+    document.removeEventListener('click', onClick, true);
+    document.removeEventListener('keydown', onKeyDown, true);
     window.removeEventListener('resize', onResize);
     tip.remove();
     const table = draftBoardTable();
