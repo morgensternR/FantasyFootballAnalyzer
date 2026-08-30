@@ -51,6 +51,16 @@ interface VolumeFile {
 
 const DATA = volumeContextData as VolumeFile;
 const SOURCE_BY_ID = new Map(DATA.sources.map(source => [source.id, source]));
+const SOURCE_LABEL_FALLBACKS: Record<string, string> = {
+  fantasypros: 'FantasyPros consensus',
+  sleeper: 'Sleeper',
+  'nflverse-snaps': 'nflverse/PFR snap counts',
+  '4for4': '4for4',
+  footballguys: 'Footballguys',
+  rotowire: 'RotoWire',
+  fantasylife: 'Fantasy Life',
+  cbs: 'CBS Sports',
+};
 
 export const VOLUME_GLOSSARY =
   'Projected offensive workload plus previous-season snap usage. Projection numbers are a consensus of available sources; snap percentage is historical actual usage, not a projected 2026 snap share.';
@@ -92,7 +102,10 @@ function confidenceText(confidence: VolumeConfidence, sourceCount: number, sprea
   return `${label}${spreadPct != null ? ` · ${spreadPct}% source spread` : ''} · ${sourceCount} sources`;
 }
 
-function projectionLine(player: PoolPlayer, projection: NonNullable<VolumePlayerContext['projection']>): string {
+function projectionLine(
+  player: PoolPlayer,
+  projection: VolumeSourceProjection & { opportunities?: number },
+): string {
   if (player.pos === 'QB') {
     return [
       projection.passAttempts != null ? `${rounded(projection.passAttempts)} pass attempts` : null,
@@ -135,13 +148,9 @@ export function volumeTooltip(
 
     for (const [sourceId, projection] of Object.entries(context.projection.sources)) {
       const source = SOURCE_BY_ID.get(sourceId);
-      const detail = projectionLine(player, {
-        ...projection,
-        sourceCount: 1,
-        confidence: 'single',
-        sources: {},
-      });
-      if (detail) lines.push(`• ${source?.label ?? sourceId}: ${detail}`);
+      const detail = projectionLine(player, projection);
+      const label = source?.label ?? SOURCE_LABEL_FALLBACKS[sourceId] ?? sourceId;
+      if (detail) lines.push(`• ${label}: ${detail}`);
     }
   }
 
