@@ -1,0 +1,90 @@
+.draft-context-tooltip {
+  position: fixed;
+  z-index: 100000;
+  width: min(720px, calc(100vw - 32px));
+  max-height: min(66vh, 660px);
+  overflow-y: auto;
+  padding: 18px 20px 20px;
+  background: #181818;
+  color: #f1efe4;
+  border: 2px solid #d7d2c2;
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.65);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 17px;
+  line-height: 1.52;
+  pointer-events: none;
+  white-space: normal;
+}
+
+.draft-context-tooltip[hidden] {
+  display: none;
+}
+
+.draft-context-tooltip__title {
+  margin-bottom: 12px;
+  color: #ccff33;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.draft-context-tooltip__body {
+  display: grid;
+  gap: 8px;
+}
+
+.draft-context-tooltip__bullet {
+  position: relative;
+  padding-left: 1.2rem;
+}
+
+.draft-context-tooltip__bullet::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #ccff33;
+  font-weight: 900;
+}
+
+.draft-context-tooltip__line {
+  color: #d7d2c2;
+}
+
+.draft-resizable-table thead th {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.draft-resizable-table thead th::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10px;
+  height: 100%;
+  cursor: col-resize;
+  z-index: 4;
+}
+
+.draft-resizable-table thead th:hover::after {
+  background: linear-gradient(
+    to right,
+    transparent 4px,
+    rgba(204, 255, 51, 0.72) 4px,
+    rgba(204, 255, 51, 0.72) 6px,
+    transparent 6px
+  );
+}
+
+body.draft-column-resizing,
+body.draft-column-resizing * {
+  cursor: col-resize !important;
+  user-select: none !important;
+}
+
+/* Feature #2 (freshness badge) stays disabled until it is reintroduced
+   separately. The interaction installer still maintains its internal badge,
+   but it is never allowed to surface in this scoped #3/#4 rollout. */
+.draft-data-freshness {
+  display: none !important;
+}
