@@ -82,6 +82,31 @@ body.draft-column-resizing * {
   user-select: none !important;
 }
 
+/* Volume is a second line inside the existing NFL Role cell rather than a
+   React-external table column. This preserves React's table structure while
+   still putting workload next to depth-chart role on the scan line. */
+.draft-volume-cell::after {
+  content: attr(data-volume-label);
+  display: block;
+  margin-top: 0.22rem;
+  color: var(--bone-dim);
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0.055em;
+  white-space: nowrap;
+}
+
+.draft-volume-cell:hover::after,
+.draft-volume-cell:focus-within::after {
+  color: var(--bone);
+}
+
+th[data-volume-enabled="1"] {
+  min-width: 7rem;
+}
+
 /* The clock is rendered as a pseudo-element on the existing React-owned tab
    bar. No node is inserted/reparented, so React remains the sole owner of the
    Draft Room DOM. JS only updates data attributes once the draft is already
