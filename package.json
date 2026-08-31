@@ -10,7 +10,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build && tsx scripts/prerender.tsx",
     "build:award-icons": "tsx scripts/sliceAwardIcons.ts",
-    "build:draft-data": "tsx scripts/buildDraftPool.ts",
+    "build:draft-data": "tsx scripts/buildDraftPool.ts && tsx scripts/augmentSleeperPool.ts",
     "context:check": "tsx scripts/validateContextOverlay.ts",
     "context:keys": "tsx scripts/listContextOverlayKeys.ts",
     "fetch:rankings": "tsx scripts/fetchRankings.ts",
