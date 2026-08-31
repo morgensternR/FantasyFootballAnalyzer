@@ -34,13 +34,14 @@ function externalPlayerFromPick(pick: SleeperLivePick): ExternalDraftPlayer {
   const first = pick.metadata?.first_name?.trim();
   const last = pick.metadata?.last_name?.trim();
   const name = [first, last].filter(Boolean).join(' ') || `Sleeper player ${pick.player_id}`;
+  const injuryStatus = pick.metadata?.injury_status || undefined;
   return {
     platform: 'sleeper',
     platformPlayerId: pick.player_id,
     name,
     pos: normalizeSleeperPosition(pick.metadata?.position),
     team: pick.metadata?.team?.trim().toUpperCase() || 'FA',
-    injuryStatus: pick.metadata?.injury_status || undefined,
+    ...(injuryStatus ? { injuryStatus } : {}),
   };
 }
 
@@ -170,12 +171,13 @@ export function useLiveDraftSync(league: League, room: UseDraftRoomReturn): UseL
           }
 
           const amount = Number(pick.metadata?.amount);
+          const externalFields = externalPlayer ? { externalPlayer } : {};
           batch.push(
             config.draftType === 'auction' && Number.isFinite(amount) && amount > 0
               ? {
                   kind: 'auction_sale' as const,
                   playerId,
-                  externalPlayer,
+                  ...externalFields,
                   nominatedById: teamId,
                   wonById: teamId,
                   price: amount,
@@ -183,7 +185,7 @@ export function useLiveDraftSync(league: League, room: UseDraftRoomReturn): UseL
               : {
                   kind: 'snake_pick' as const,
                   playerId,
-                  externalPlayer,
+                  ...externalFields,
                   teamId,
                   isKeeper: pick.is_keeper ?? undefined,
                 },
