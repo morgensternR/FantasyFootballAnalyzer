@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { League } from '@/types';
-import { getLeagueDrafts, getLiveDraftPicks } from '@/api/sleeperDraft';
+import { getLeagueDrafts, getLiveDraftPicks, type SleeperLivePick } from '@/api/sleeperDraft';
 import { logger } from '@/utils/logger';
+import type { DraftEventInput, ExternalDraftPlayer } from '@/types/draft';
 import type { UseDraftRoomReturn } from './useDraftRoom';
 
 // Sleeper's public API asks clients to stay below roughly 1000 calls/minute.
@@ -23,6 +24,26 @@ export interface UseLiveDraftSyncReturn {
   toggle: () => void;
 }
 
+function normalizeSleeperPosition(raw?: string): string {
+  const pos = raw?.trim().toUpperCase() || 'OTHER';
+  if (pos === 'DEF' || pos === 'D/ST') return 'DST';
+  return pos;
+}
+
+function externalPlayerFromPick(pick: SleeperLivePick): ExternalDraftPlayer {
+  const first = pick.metadata?.first_name?.trim();
+  const last = pick.metadata?.last_name?.trim();
+  const name = [first, last].filter(Boolean).join(' ') || `Sleeper player ${pick.player_id}`;
+  return {
+    platform: 'sleeper',
+    platformPlayerId: pick.player_id,
+    name,
+    pos: normalizeSleeperPosition(pick.metadata?.position),
+    team: pick.metadata?.team?.trim().toUpperCase() || 'FA',
+    injuryStatus: pick.metadata?.injury_status || undefined,
+  };
+}
+
 // Auto-ingests Sleeper draft picks into the event log so nobody has to
 // transcribe a live draft by hand. Sleeper is authoritative for PICK
 // PROGRESSION; the bundled pool is only authoritative for our analysis. That
@@ -40,7 +61,7 @@ export function useLiveDraftSync(league: League, room: UseDraftRoomReturn): UseL
   const draftIdRef = useRef<string | null>(null);
   const inFlightRef = useRef(false);
   // Drafted-player identity is normally enough to dedupe, but an external
-  // Sleeper player is intentionally absent from derived.draftedPlayerIds.
+  // Sleeper player is intentionally absent from the bundled analysis pool.
   // Keep the authoritative Sleeper pick numbers too so that same oddball pick
   // never gets re-fed on every 750 ms poll.
   const syncedPickNosRef = useRef(new Set<number>());
@@ -116,18 +137,17 @@ export function useLiveDraftSync(league: League, room: UseDraftRoomReturn): UseL
         // Map the whole backlog first, then ingest it as ONE validated batch:
         // logEvent per pick would validate every pick against the same
         // pre-batch board and stamp them with the same stale seq.
-        const batch = [];
+        const batch: DraftEventInput[] = [];
         const pickNos: number[] = [];
         for (const pick of fresh) {
           if (syncedPickNosRef.current.has(pick.pick_no)) continue;
 
           const mappedPlayerId = bySleeperId.get(pick.player_id);
-          // An unknown player must still advance the draft. validateEvent does
-          // not require a pool hit in live mode; deriveDraftState deliberately
-          // ignores an unmodeled player for roster analytics while event count
-          // still advances the authoritative snake clock. Prefixing the raw
-          // Sleeper id keeps it collision-proof and identifiable in saved logs.
+          // An unknown player must still advance the draft. The event carries
+          // Sleeper's name/position/team metadata so deriveDraftState can count
+          // the actual roster slot while leaving rank/value intentionally blank.
           const playerId = mappedPlayerId ?? `${EXTERNAL_PLAYER_PREFIX}${pick.player_id}`;
+          const externalPlayer = mappedPlayerId ? undefined : externalPlayerFromPick(pick);
           const teamId = pick.roster_id !== null ? String(pick.roster_id) : null;
 
           if (mappedPlayerId && derived.draftedPlayerIds.has(mappedPlayerId)) {
@@ -155,6 +175,7 @@ export function useLiveDraftSync(league: League, room: UseDraftRoomReturn): UseL
               ? {
                   kind: 'auction_sale' as const,
                   playerId,
+                  externalPlayer,
                   nominatedById: teamId,
                   wonById: teamId,
                   price: amount,
@@ -162,6 +183,7 @@ export function useLiveDraftSync(league: League, room: UseDraftRoomReturn): UseL
               : {
                   kind: 'snake_pick' as const,
                   playerId,
+                  externalPlayer,
                   teamId,
                   isKeeper: pick.is_keeper ?? undefined,
                 },
