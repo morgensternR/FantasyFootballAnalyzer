@@ -1,8 +1,15 @@
 import { useCallback, useMemo } from 'react';
+import playerContextJson from '@/data/playerContext.2026.json';
+import teamContextJson from '@/data/teamContext.2026.json';
 import type { PoolPlayer } from '@/types/draft';
 import type { UseDraftRoomReturn } from '@/hooks/useDraftRoom';
 import { useTargets } from '@/hooks/useTargets';
 import { marketAdp } from '@/utils/consensus';
+import {
+  type PlayerContextFile,
+  type TeamContextFile,
+} from '@/utils/contextLabels';
+import { overallContextForPlayer } from '@/utils/draftContextView';
 import { availableHandcuffs } from '@/utils/stacks';
 import { suggestPicks } from '@/utils/suggestions';
 import { simulateTakenOdds } from '@/utils/survival';
@@ -17,16 +24,17 @@ export interface UseSuggestedPicksReturn {
 }
 
 const EMPTY: UseSuggestedPicksReturn = { suggested: new Map(), handcuffFor: new Map() };
+const PLAYER_CONTEXTS = (playerContextJson as PlayerContextFile).players;
+const TEAM_CONTEXTS = (teamContextJson as TeamContextFile).teams;
 
-// Snake-draft advice for the user's team, formerly SuggestionsPanel's guts:
-// survival odds + roster fit + tier urgency, with human-readable reasons.
+// Snake-draft advice for the user's team: survival odds + roster fit + tier
+// urgency. Overall CTX is deliberately only a small tiebreaker, not a
+// replacement for rank/value/need/survival.
 export function useSuggestedPicks(room: UseDraftRoomReturn, enabled: boolean): UseSuggestedPicksReturn {
   const { config, derived, scaledValues, scoring, pool } = room;
   const { starred, avoided } = useTargets(config.season);
   const me = derived.teams.get(config.myTeamId);
 
-  // The user's reserved keepers count as roster for advice purposes
-  // (handcuffs, stacks, byes) before the cost round logs the pick.
   const keeperPlayers = useMemo(() => {
     const mine = (config.keepers ?? []).filter(
       k => k.teamId === config.myTeamId && derived.reservedPlayerIds.has(k.playerId),
@@ -43,8 +51,17 @@ export function useSuggestedPicks(room: UseDraftRoomReturn, enabled: boolean): U
     (p: PoolPlayer) => marketAdp(p, scoring, superflex),
     [scoring, superflex],
   );
+  const contextForPlayer = useCallback(
+    (p: PoolPlayer) => {
+      const context = overallContextForPlayer(p, PLAYER_CONTEXTS, TEAM_CONTEXTS);
+      // The generic suggestion helper treats a neutral informational note as a
+      // tiny positive. Overall CTX has an explicit Neutral state, so map that
+      // state to the helper's no-adjustment sentinel instead.
+      return context.label === 'Neutral' ? { ...context, label: '—' } : context;
+    },
+    [],
+  );
 
-  // Simulated odds each board player is gone before the user's next pick.
   const takenOdds = useMemo(() => {
     if (!enabled || !me) return null;
     return simulateTakenOdds({
@@ -85,6 +102,7 @@ export function useSuggestedPicks(room: UseDraftRoomReturn, enabled: boolean): U
       starred,
       avoided,
       keeperPlayers,
+      contextForPlayer,
     });
     const suggested = new Map(picks.map(s => [s.player.id, s.reasons]));
 
@@ -95,5 +113,5 @@ export function useSuggestedPicks(room: UseDraftRoomReturn, enabled: boolean): U
         .map(({ starter, handcuff }) => [handcuff.id, starter.name]),
     );
     return { suggested, handcuffFor };
-  }, [enabled, me, derived, config.rosterSlots, config.teams, config.myTeamId, config.snakeFormat, scaledValues, scoring, takenOdds, starred, avoided, keeperPlayers]);
+  }, [enabled, me, derived, config.rosterSlots, config.teams, config.myTeamId, config.snakeFormat, scaledValues, scoring, takenOdds, starred, avoided, keeperPlayers, contextForPlayer]);
 }

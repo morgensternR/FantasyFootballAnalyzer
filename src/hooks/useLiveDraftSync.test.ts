@@ -19,7 +19,7 @@ vi.mock('@/api/sleeperDraft', () => ({
 import { getLeagueDrafts, getLiveDraftPicks } from '@/api/sleeperDraft';
 import { useLiveDraftSync } from './useLiveDraftSync';
 
-const POLL_MS = 10_000; // mirrors the private POLL_MS in useLiveDraftSync.ts
+const POLL_MS = 750; // mirrors the private POLL_MS in useLiveDraftSync.ts
 
 const mockedGetLeagueDrafts = vi.mocked(getLeagueDrafts);
 const mockedGetLiveDraftPicks = vi.mocked(getLiveDraftPicks);
@@ -244,15 +244,23 @@ describe('useLiveDraftSync', () => {
     expect(result.current.status).toBe('syncing');
   });
 
-  it('stops and does not log a pick whose player is missing from the bundled pool', async () => {
+  it('keeps sync alive through an unranked Sleeper player and catches the next normal pick', async () => {
     const logEvents = vi.fn(() => null);
-    // Pool knows nothing about 'sleeper-missing'.
     const pool = makePool([makePoolPlayer('pool-1', 'sleeper-1')]);
     const room = makeRoom({ logEvents, pool });
     mockedGetLeagueDrafts.mockResolvedValue([makeDraftStub()]);
-    mockedGetLiveDraftPicks.mockResolvedValue([
-      makePick({ pick_no: 1, player_id: 'sleeper-missing' }),
-    ]);
+    const oddball = makePick({
+      pick_no: 1,
+      roster_id: 1,
+      player_id: 'sleeper-missing',
+      metadata: { first_name: 'Old', last_name: 'Player', position: 'RB', team: 'FA' },
+    });
+    mockedGetLiveDraftPicks
+      .mockResolvedValueOnce([oddball])
+      .mockResolvedValueOnce([
+        oddball,
+        makePick({ pick_no: 2, roster_id: 2, player_id: 'sleeper-1' }),
+      ]);
 
     const { result } = renderHook(() => useLiveDraftSync(makeLeague(), room));
 
@@ -261,10 +269,42 @@ describe('useLiveDraftSync', () => {
       await vi.advanceTimersByTimeAsync(0);
     });
 
-    expect(logEvents).not.toHaveBeenCalled();
-    expect(result.current.enabled).toBe(false);
-    expect(result.current.status).toBe('error');
-    expect(result.current.error).toMatch(/missing from the bundled pool/);
+    expect(logEvents).toHaveBeenNthCalledWith(1, [
+      {
+        kind: 'snake_pick',
+        playerId: 'sleeper-external:sleeper-missing',
+        externalPlayer: {
+          platform: 'sleeper',
+          platformPlayerId: 'sleeper-missing',
+          name: 'Old Player',
+          pos: 'RB',
+          team: 'FA',
+        },
+        teamId: '1',
+        isKeeper: undefined,
+      },
+    ]);
+    expect(result.current.enabled).toBe(true);
+    expect(result.current.status).toBe('syncing');
+    expect(result.current.error).toBeNull();
+
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(POLL_MS);
+    });
+
+    // Pick 1 was consumed by pick_no even though it is not in our analysis
+    // pool; only the newly-arrived ranked player is fed on the second poll.
+    expect(logEvents).toHaveBeenCalledTimes(2);
+    expect(logEvents).toHaveBeenNthCalledWith(2, [
+      {
+        kind: 'snake_pick',
+        playerId: 'pool-1',
+        teamId: '2',
+        isKeeper: undefined,
+      },
+    ]);
+    expect(result.current.enabled).toBe(true);
+    expect(result.current.status).toBe('syncing');
   });
 
   it('skips picks whose player is already on the board (auto-logged keepers)', async () => {

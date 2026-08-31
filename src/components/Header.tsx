@@ -197,6 +197,30 @@ export function Header({
                 >
                   Draft
                 </Link>
+                {location.pathname === '/draft-room' && onRefresh && (
+                  <button
+                    type="button"
+                    onClick={() => { playClick(); onRefresh(); }}
+                    className={styles.exportButton}
+                    title="Clear the cached league snapshot and fetch current league settings and draft order"
+                    aria-label="Refresh league and draft order"
+                    disabled={isRefreshing}
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      className={`${styles.refreshIcon} ${isRefreshing ? styles.refreshIconSpinning : ''}`}
+                      aria-hidden="true"
+                    >
+                      <polyline points="23 4 23 10 17 10" />
+                      <polyline points="1 20 1 14 7 14" />
+                      <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" />
+                    </svg>
+                    {isRefreshing ? 'Refreshing…' : 'Refresh League'}
+                  </button>
+                )}
                 <Link
                   to="/rankings"
                   className={`${styles.navLink} ${isRankings ? styles.active : ''}`}

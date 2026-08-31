@@ -30,10 +30,12 @@ import { TeamBoard } from '@/components/draftRoom/TeamBoard';
 import { TeamsTab } from '@/components/draftRoom/TeamsTab';
 import { TierBoard } from '@/components/draftRoom/TierBoard';
 import { detectRun } from '@/utils/draftAlerts';
+import { installDraftBoardEnhancements } from '@/utils/draftBoardEnhancements';
 import { fullPositions } from '@/utils/draftEngine';
 import { picksUntilMine } from '@/utils/pickPreview';
 import { nextPickFor } from '@/utils/snakeOrder';
 import styles from './DraftRoomPage.module.css';
+import '../draftBoardInteractions.css';
 
 // Elapsed time since the last logged pick, ticking once a second. Helps
 // pace a live room ("we've been on this nomination for two minutes").
@@ -130,6 +132,17 @@ export function DraftRoomPage({ league, justConnected }: DraftRoomPageProps) {
   useEffect(() => {
     setBoardTab(phase === 'complete' ? 'teams' : 'board');
   }, [phase]);
+
+  // Large context cards and drag-resizable columns are intentionally mounted
+  // only after START has already transitioned the room to drafting. Keeping
+  // these DOM interactions out of app startup/setup prevents them from
+  // interfering with the reducer transition that opens a mock draft. Cleanup
+  // runs whenever the board tab unmounts, the draft ends/resets, or we switch
+  // to the phone layout.
+  useEffect(() => {
+    if (phase !== 'drafting' || isPhone || boardTab !== 'board') return;
+    return installDraftBoardEnhancements();
+  }, [phase, isPhone, boardTab]);
 
   // Clear a selection that got drafted out from under us (mock AI picks).
   useEffect(() => {

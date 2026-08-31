@@ -504,15 +504,25 @@ function App() {
           <Route
             path="/draft-room"
             element={league ? (
-              // Key on the league fingerprint so a year switch (Header
-              // YearSelector) or a guest-settings change, which swaps `league`
-              // in place without unmounting this route, remounts the Draft Room
-              // with fresh config. useDraftRoom derives config only on mount, so
-              // without this the board keeps the previous league's teams /
-              // scoring / roster slots. (league.season covers ESPN/Yahoo year
-              // switches that keep the same id; leagueKeyFor uses POOL.season.)
+              // Key on the league's draft-setup fingerprint so a forced refresh
+              // that changes Sleeper order/settings rebuilds useDraftRoom's
+              // mount-time config immediately. Do not key on loadedAt or live
+              // picks: a harmless refresh during a running draft must not reset
+              // the room merely because the fetch timestamp changed.
               <DraftRoomPage
-                key={`${league.platform}:${league.id}:${league.season}:${league.totalTeams}:${league.scoringType}:${league.rosterSlots?.SUPERFLEX ?? 0}`}
+                key={[
+                  league.platform,
+                  league.id,
+                  league.season,
+                  league.totalTeams,
+                  league.scoringType,
+                  league.draftType,
+                  league.draftFormat ?? '',
+                  league.auctionBudget ?? '',
+                  league.rosterSlots ? JSON.stringify(league.rosterSlots) : '',
+                  league.upcomingDraft?.order?.join(',') ?? '',
+                  league.teams.map(t => `${t.id}:${t.name}`).join('|'),
+                ].join(':')}
                 league={league}
                 justConnected={!!(location.state as { justConnected?: boolean } | null)?.justConnected}
               />

@@ -1,6 +1,6 @@
 // Minimal Sleeper draft endpoints for live draft sync. Deliberately
 // separate from sleeper.ts (the full league loader): these two calls are
-// polled every few seconds on draft day and carry no auth.
+// polled rapidly on draft day and carry no auth.
 
 const BASE_URL = 'https://api.sleeper.app/v1';
 
@@ -12,6 +12,16 @@ export interface SleeperDraftStub {
   start_time: number | null;
 }
 
+export interface SleeperLivePickMetadata {
+  amount?: string;
+  first_name?: string;
+  last_name?: string;
+  position?: string;
+  team?: string;
+  status?: string;
+  injury_status?: string;
+}
+
 export interface SleeperLivePick {
   player_id: string;
   roster_id: number | null;
@@ -19,7 +29,9 @@ export interface SleeperLivePick {
   round: number;
   pick_no: number;
   is_keeper: boolean | null;
-  metadata?: { amount?: string };
+  // Sleeper includes enough player metadata on a draft pick to keep a live
+  // room coherent even when player_id is absent from our analysis pool.
+  metadata?: SleeperLivePickMetadata;
 }
 
 async function fetchJson<T>(path: string): Promise<T> {
