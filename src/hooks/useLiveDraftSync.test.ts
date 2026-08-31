@@ -211,7 +211,7 @@ describe('useLiveDraftSync', () => {
       },
     ]);
     expect(result.current.status).toBe('syncing');
-  });
+  })
 
   it('ingests a multi-pick backlog as one ordered batch (not per-pick calls)', async () => {
     // Toggling sync on mid-draft delivers every already-made pick in a single
@@ -249,12 +249,16 @@ describe('useLiveDraftSync', () => {
     const pool = makePool([makePoolPlayer('pool-1', 'sleeper-1')]);
     const room = makeRoom({ logEvents, pool });
     mockedGetLeagueDrafts.mockResolvedValue([makeDraftStub()]);
+    const oddball = makePick({
+      pick_no: 1,
+      roster_id: 1,
+      player_id: 'sleeper-missing',
+      metadata: { first_name: 'Old', last_name: 'Player', position: 'RB', team: 'FA' },
+    });
     mockedGetLiveDraftPicks
+      .mockResolvedValueOnce([oddball])
       .mockResolvedValueOnce([
-        makePick({ pick_no: 1, roster_id: 1, player_id: 'sleeper-missing' }),
-      ])
-      .mockResolvedValueOnce([
-        makePick({ pick_no: 1, roster_id: 1, player_id: 'sleeper-missing' }),
+        oddball,
         makePick({ pick_no: 2, roster_id: 2, player_id: 'sleeper-1' }),
       ]);
 
@@ -269,6 +273,13 @@ describe('useLiveDraftSync', () => {
       {
         kind: 'snake_pick',
         playerId: 'sleeper-external:sleeper-missing',
+        externalPlayer: {
+          platform: 'sleeper',
+          platformPlayerId: 'sleeper-missing',
+          name: 'Old Player',
+          pos: 'RB',
+          team: 'FA',
+        },
         teamId: '1',
         isKeeper: undefined,
       },
