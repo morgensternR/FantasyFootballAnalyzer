@@ -23,6 +23,12 @@ import { loadLastConnection } from '@/utils/lastConnection';
 import type { ScoringType } from '@/utils/valueScaling';
 import { draftValues, vorConfigFor } from '@/utils/projectionValues';
 
+// Live Sleeper sync records a pick with this prefix when Sleeper accepts a
+// player that is not in our analysis/ranking pool. The event intentionally
+// advances draft order without pretending we know that player's fantasy
+// value. It is a valid saved-draft id, not evidence that the pool changed.
+const SLEEPER_EXTERNAL_PLAYER_PREFIX = 'sleeper-external:';
+
 // Used when the platform didn't expose roster settings (Yahoo default shape).
 // Shared with the Rankings page so both surfaces price the pool identically.
 export const DEFAULT_ROSTER_SLOTS: RosterSlots = {
@@ -237,12 +243,16 @@ export function useDraftRoom(league: League): UseDraftRoomReturn {
   const [resumable, setResumable] = useState<DraftRoomSession | null>(() => {
     const session = loadDraftRoom(leagueKeyFor(league));
     if (!session) return null;
-    // A session whose picks reference ids the current pool doesn't know is
-    // from an older pool build (ids were rank-based before they were made
-    // stable). Resuming it would map picks to the wrong players.
+    // Old rank-based ids are unsafe to resume because they can point at a
+    // different player after a pool rebuild. A sleeper-external:* event is the
+    // opposite: it is deliberately outside the ranked pool because Sleeper
+    // accepted an unusual player, and keeping it is required to preserve pick
+    // count/order after a reload during the real draft.
     const known = new Set(POOL.players.map(p => p.id));
+    const validEventId = (playerId: string) =>
+      known.has(playerId) || playerId.startsWith(SLEEPER_EXTERNAL_PLAYER_PREFIX);
     const stale =
-      session.events.some(e => !known.has(e.playerId)) ||
+      session.events.some(e => !validEventId(e.playerId)) ||
       (session.config.keepers ?? []).some(k => !known.has(k.playerId));
     if (stale) {
       clearDraftRoom(leagueKeyFor(league));
