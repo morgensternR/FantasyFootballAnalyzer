@@ -12,6 +12,19 @@ export interface DraftRoomTeam {
   ownerName?: string;
 }
 
+// A player that the platform accepted in the real draft even though the
+// bundled analysis pool does not contain him. This keeps the live draft
+// authoritative without inventing a rank/value: the metadata is only enough
+// to show the pick and consume the correct roster slot.
+export interface ExternalDraftPlayer {
+  platform: 'sleeper';
+  platformPlayerId: string;
+  name: string;
+  pos: string;
+  team: string;
+  injuryStatus?: string;
+}
+
 // A pre-draft keeper: the player is reserved for the team and automatically
 // logged when the draft starts (auction) or reaches its cost round (snake).
 export interface KeeperAssignment {
@@ -79,6 +92,9 @@ export type DraftEvent =
       seq: number;
       ts: number;
       playerId: string;
+      // Present only when the real platform knows a pick our analysis pool
+      // does not. Never used to fabricate market value/rank.
+      externalPlayer?: ExternalDraftPlayer;
       nominatedById: string;
       wonById: string;
       price: number;
@@ -95,6 +111,7 @@ export type DraftEvent =
       seq: number;
       ts: number;
       playerId: string;
+      externalPlayer?: ExternalDraftPlayer;
       teamId: string;
       // Auto-logged keeper pick (not a live selection).
       isKeeper?: boolean;
@@ -181,6 +198,10 @@ export interface PoolPlayer {
 export interface DraftPoolFile {
   season: number;
   generatedAt: string;
-  baseline: { budget: number; teams: number; rounds: number };
+  baseline: {
+    budget: number;
+    teams: number;
+    rounds: number;
+  };
   players: PoolPlayer[];
 }
