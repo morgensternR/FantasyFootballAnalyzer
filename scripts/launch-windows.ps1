@@ -51,15 +51,20 @@ function Ensure-Node {
 
   if ($major) {
     & $winget.Source upgrade --id OpenJS.NodeJS.LTS -e --source winget --accept-package-agreements --accept-source-agreements
-    if ($LASTEXITCODE -ne 0) {
-      & $winget.Source install --id OpenJS.NodeJS.LTS -e --source winget --accept-package-agreements --accept-source-agreements
-    }
   } else {
     & $winget.Source install --id OpenJS.NodeJS.LTS -e --source winget --accept-package-agreements --accept-source-agreements
   }
 
   Refresh-ProcessPath
   $major = Get-NodeMajor
+  if ($major -lt $NodeMinimumMajor) {
+    # The existing Node install may not have been registered as the winget LTS
+    # package. Give the normal LTS installer one explicit chance before failing.
+    & $winget.Source install --id OpenJS.NodeJS.LTS -e --source winget --accept-package-agreements --accept-source-agreements
+    Refresh-ProcessPath
+    $major = Get-NodeMajor
+  }
+
   $npm = Get-Command npm.cmd -ErrorAction SilentlyContinue
   if ($major -lt $NodeMinimumMajor -or -not $npm) {
     throw "Node.js installation finished, but this Windows session cannot see Node $NodeMinimumMajor+ yet. Close this launcher and double-click it once more."
@@ -81,7 +86,8 @@ function Ensure-Dependencies {
     if (-not (Test-Path $stampPath)) {
       $needsInstall = $true
     } else {
-      $oldHash = (Get-Content -Raw -Path $stampPath -ErrorAction SilentlyContinue).Trim()
+      $oldHash = [string](Get-Content -Raw -Path $stampPath -ErrorAction SilentlyContinue)
+      $oldHash = $oldHash.Trim()
       if ($oldHash -ne $lockHash) { $needsInstall = $true }
     }
   }
