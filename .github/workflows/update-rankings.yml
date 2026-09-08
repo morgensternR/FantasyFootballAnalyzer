@@ -1,14 +1,11 @@
-# Keeps draft rankings and auction values fresh: fetches FantasyPros, ESPN,
-# Sleeper, and Yahoo data, rebuilds the bundled pool, and redeploys the site
-# when the data actually changed. Runs daily and on demand (Actions tab ->
-# Update rankings -> Run workflow).
+# Keeps draft rankings, auction values, projected volume, and snap context fresh.
+# Fetches FantasyPros, ESPN, Sleeper, Yahoo, and the volume/snap sources,
+# rebuilds the bundled data, and redeploys when the data actually changed.
 
 name: Update rankings
 
 on:
   schedule:
-    # Daily at 11:00 UTC (early morning US). Rankings move most July-September;
-    # the fetch is three cheap requests, so daily year-round is fine.
     - cron: '0 11 * * *'
   workflow_dispatch:
 
@@ -16,8 +13,6 @@ permissions:
   contents: write
   issues: write
 
-# Shares the deploy-pages group with ci.yml's master pushes so the two
-# gh-pages publishes serialize instead of racing (last writer wins).
 concurrency:
   group: deploy-pages
   cancel-in-progress: false
@@ -25,7 +20,7 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v7
 
@@ -42,21 +37,24 @@ jobs:
       - name: Rebuild draft pool
         run: npm run build:draft-data
 
+      # Must run after build:draft-data because volume-source rows join to the
+      # stable player ids in the freshly rebuilt pool. Projection sources are
+      # best-effort individually; the script refuses to replace good volume
+      # data when every projection source is unavailable.
+      - name: Refresh volume projections and snap context
+        run: npm run update:volume
+
       - name: Detect real changes (ignore fetch timestamps)
         id: diff
         run: |
           if git diff --quiet -I '"(generatedAt|fetchedAt)"' -- data/raw src/data; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             git checkout -- .
-            echo "No ranking changes since last run."
+            echo "No ranking/volume changes since last run."
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
 
-      # Surface salary-sheet drift the build tolerated (rows it rode through and
-      # recorded in the misses report) so we mend the name before the gap grows.
-      # Non-fatal: a run warning + job-summary note, only when something changed
-      # this run, so known drift is flagged once rather than re-pinged daily.
       - name: Surface salary drift
         if: steps.diff.outputs.changed == 'true'
         run: |
@@ -79,11 +77,6 @@ jobs:
         if: steps.diff.outputs.changed == 'true'
         run: npm run test:run
 
-      # Build BEFORE committing, as a gate: tests don't catch build/config
-      # errors (a vitest-4 type change once broke `vite build` while every test
-      # passed). Verifying the artifact compiles here means we never push a data
-      # commit that the deploy can't build, which would leave master ahead of
-      # production.
       - name: Build site
         if: steps.diff.outputs.changed == 'true'
         run: npm run build
@@ -94,31 +87,18 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/raw src/data
-          git commit -m "Update draft rankings data"
-          # master may have moved while this job ran; rebase our one data
-          # commit on top rather than failing the push.
+          git commit -m "Update draft rankings and volume data"
           git pull --rebase origin master
           git push
 
-      # The pre-commit "Build site" step gated OUR data tree, but the rebase
-      # above may have pulled in a concurrently-pushed human commit. Rebuild
-      # from the rebased tree so the deployed dist/ matches what was actually
-      # pushed - otherwise that human change is silently dropped from production.
       - name: Rebuild rebased tree for deploy
         if: steps.diff.outputs.changed == 'true'
         run: npm run build
-        # This build's dist/ is what deploys, and during draft season this is
-        # the dominant deploy path. Without the Sentry env, production errors
-        # from these releases arrive with no source maps and stay minified.
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
           SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
 
-      # This job must deploy its own commit. The push above uses the default
-      # GITHUB_TOKEN, and GitHub does not trigger workflows (including ci.yml)
-      # from GITHUB_TOKEN pushes - so relying on ci.yml to deploy the data
-      # commit would silently never run. dist/ is the artifact the gate built.
       - name: Deploy to GitHub Pages
         if: steps.diff.outputs.changed == 'true'
         uses: peaceiris/actions-gh-pages@v4
@@ -126,8 +106,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
 
-      # A red scheduled run is invisible unless someone watches the Actions
-      # tab; file (or refresh) an issue so the failure lands in notifications.
       - name: Report failure as an issue
         if: failure()
         env:

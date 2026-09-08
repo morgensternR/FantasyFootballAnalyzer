@@ -243,6 +243,27 @@ export function reservedKeepersFor(
   return out;
 }
 
+function externalPlayerForEvent(event: DraftEvent): PoolPlayer | null {
+  const external = event.externalPlayer;
+  if (!external) return null;
+  return {
+    id: event.playerId,
+    name: external.name,
+    team: external.team,
+    pos: external.pos,
+    // These sentinel values are never used to place the player on the
+    // available board: external players exist only after their authoritative
+    // platform pick has occurred. They intentionally carry no market value.
+    posRank: Number.MAX_SAFE_INTEGER,
+    overallRank: Number.MAX_SAFE_INTEGER,
+    tier: Number.MAX_SAFE_INTEGER,
+    bye: null,
+    baseValue: null,
+    sleeperId: external.platform === 'sleeper' ? external.platformPlayerId : undefined,
+    injuryStatus: external.injuryStatus,
+  };
+}
+
 export function deriveDraftState(
   config: DraftRoomConfig,
   pool: PoolPlayer[],
@@ -273,9 +294,9 @@ export function deriveDraftState(
   events.forEach((event, i) => {
     const teamId = event.kind === 'auction_sale' ? event.wonById : event.teamId;
     const team = teams.get(teamId);
-    const player = playerById.get(event.playerId);
-    if (!team || !player) return; // corrupt event; validateEvent prevents these
-    draftedPlayerIds.add(player.id);
+    const player = playerById.get(event.playerId) ?? externalPlayerForEvent(event);
+    if (!team || !player) return; // corrupt/legacy event with no resolvable player
+    draftedPlayerIds.add(event.playerId);
     team.picks.push({ event, player, pickNumber: i + 1 });
     if (event.kind === 'auction_sale') team.spent += event.price;
     assignSlot(team.slotsFilled, config.rosterSlots, player.pos);
@@ -382,6 +403,13 @@ export function fullPositions(team: TeamDraftState | undefined): Set<string> {
   return new Set(team ? STARTER_POSITIONS.filter(pos => team.fullAt[pos]) : []);
 }
 
+function eventPosition(state: DerivedDraftState, event: DraftEvent): StarterPos | null {
+  const raw = event.externalPlayer?.pos ?? state.available.find(p => p.id === event.playerId)?.pos;
+  const normalized = raw === 'DEF' || raw === 'D/ST' ? 'DST' : raw;
+  const pos = normalized as StarterPos | undefined;
+  return pos && STARTER_POSITIONS.includes(pos) ? pos : null;
+}
+
 // Returns a human-readable rejection, or null when the event is legal.
 // The reducer refuses to append invalid events, so derived state never has
 // to cope with overdrawn budgets or doubled players.
@@ -407,7 +435,7 @@ export function validateEvent(
     if (!winner) return 'Unknown winning team.';
     if (!state.teams.has(event.nominatedById)) return 'Unknown nominating team.';
     if (winner.openSlots <= 0) return 'That team has no roster spots left.';
-    const pos = poolPosition(state, event.playerId);
+    const pos = eventPosition(state, event);
     if (pos && winner.fullAt[pos]) return `That team cannot roster another ${pos}.`;
     if (!Number.isInteger(event.price) || event.price < 1) return 'Price must be at least $1.';
     if (event.price > winner.maxBid) {
@@ -426,14 +454,8 @@ export function validateEvent(
       return 'That team is not on the clock.';
     }
     if (team.openSlots <= 0) return 'That team has no roster spots left.';
-    const pos = poolPosition(state, event.playerId);
+    const pos = eventPosition(state, event);
     if (pos && team.fullAt[pos]) return `That team cannot roster another ${pos}.`;
   }
   return null;
-}
-
-function poolPosition(state: DerivedDraftState, playerId: string): StarterPos | null {
-  const player = state.available.find(p => p.id === playerId);
-  const pos = player?.pos as StarterPos | undefined;
-  return pos && STARTER_POSITIONS.includes(pos) ? pos : null;
 }

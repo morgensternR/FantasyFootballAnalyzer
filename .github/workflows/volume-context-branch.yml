@@ -1,0 +1,74 @@
+name: Draft context branch gate
+
+on:
+  push:
+    branches: [draft-risk-dashboard]
+    paths:
+      - 'scripts/fetchRankings.ts'
+      - 'scripts/buildDraftPool.ts'
+      - 'scripts/augmentSleeperPool.ts'
+      - 'scripts/updateVolumeContext.ts'
+      - 'src/hooks/useLiveDraftSync.ts'
+      - 'src/hooks/useLiveDraftSync.test.ts'
+      - 'src/utils/consensus.ts'
+      - 'src/utils/volumeContext.ts'
+      - 'src/utils/volumeContext.test.ts'
+      - 'src/utils/draftVolumeOverlay.ts'
+      - 'src/utils/draftPickClock.ts'
+      - 'src/draftBoardInteractions.css'
+      - 'src/data/draftPool*.json'
+      - 'src/data/volumeContext*.json'
+      - 'src/data/volumeContext.ts'
+      - 'package.json'
+      - '.github/workflows/volume-context-branch.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: draft-context-branch
+  cancel-in-progress: true
+
+jobs:
+  context:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      # The feature branch can otherwise sit for weeks with the Sleeper/ESPN/
+      # FantasyPros snapshots from the day it diverged from master. A live draft
+      # must not compare today's Sleeper room with month-old ADP data.
+      - name: Refresh rankings, player pool, volume, and snaps
+        run: npm run update:rankings
+
+      - name: Test
+        run: npm run test:run
+
+      - name: Build
+        run: npm run build
+
+      # GITHUB_TOKEN pushes do not recursively trigger this workflow, so the
+      # generated-data commit can safely materialize the fresh snapshots once
+      # after relevant branch changes.
+      - name: Commit generated draft context
+        run: |
+          if git diff --quiet -I '"(generatedAt|fetchedAt)"' -- data/raw src/data; then
+            echo "Draft context already current."
+            git checkout -- data/raw src/data
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/raw src/data
+          git commit -m "Update 2026 draft context"
+          git pull --rebase origin draft-risk-dashboard
+          git push origin HEAD:draft-risk-dashboard

@@ -1,0 +1,15 @@
+{
+  "_schema": {
+    "description": "Manual player-level draft context overlay. Keep sourced and dated when populated.",
+    "fields": {
+      "roleTag": "Workhorse | Lead committee | Pass-catching committee | Goal-line committee | Handcuff+ | Pure handcuff | Unclear",
+      "committeeRisk": "low | medium | high",
+      "campSignal": "First-team reps up | Rotating with starters | Buried for now | Injury-limited | Beat hype only | Unknown",
+      "schemeFit": "good | neutral | risk | unknown",
+      "draftNote": "short draft-room note visible once wired",
+      "confidence": "high | medium | low",
+      "sourceUrls": "array of source URLs used to maintain the note"
+    }
+  },
+  "players": {}
+}

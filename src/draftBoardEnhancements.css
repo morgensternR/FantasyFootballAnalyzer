@@ -1,0 +1,124 @@
+.draft-context-tooltip {
+  position: fixed;
+  z-index: 100000;
+  width: min(720px, calc(100vw - 32px));
+  max-height: min(66vh, 660px);
+  overflow-y: auto;
+  padding: 18px 20px 20px;
+  background: #181818;
+  color: #f1efe4;
+  border: 2px solid #d7d2c2;
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.65);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 17px;
+  line-height: 1.52;
+  pointer-events: none;
+  white-space: normal;
+}
+
+.draft-context-tooltip[hidden] {
+  display: none;
+}
+
+.draft-context-tooltip__title {
+  margin-bottom: 12px;
+  color: #ccff33;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.draft-context-tooltip__body {
+  display: grid;
+  gap: 8px;
+}
+
+.draft-context-tooltip__bullet {
+  position: relative;
+  padding-left: 1.2rem;
+}
+
+.draft-context-tooltip__bullet::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #ccff33;
+  font-weight: 900;
+}
+
+.draft-context-tooltip__line {
+  color: #d7d2c2;
+}
+
+.draft-resizable-table thead th {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.draft-resizable-table thead th::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10px;
+  height: 100%;
+  cursor: col-resize;
+  z-index: 4;
+}
+
+.draft-resizable-table thead th:hover::after {
+  background: linear-gradient(to right, transparent 4px, rgba(204, 255, 51, 0.72) 4px, rgba(204, 255, 51, 0.72) 6px, transparent 6px);
+}
+
+body.draft-column-resizing,
+body.draft-column-resizing * {
+  cursor: col-resize !important;
+  user-select: none !important;
+}
+
+/* This is deliberately normal-flow UI, not a fixed overlay. */
+.draft-data-freshness {
+  position: static;
+  z-index: auto;
+  align-self: flex-start;
+  width: fit-content;
+  max-width: 100%;
+  margin: -0.2rem 0 0.1rem;
+  padding: 6px 9px;
+  background: rgba(10, 10, 10, 0.94);
+  color: #d7d2c2;
+  border: 1px solid #777368;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.45);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: 0.035em;
+  white-space: normal;
+}
+
+.draft-data-freshness::first-letter {
+  color: #ccff33;
+}
+
+.draft-data-freshness[hidden] {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .draft-context-tooltip {
+    width: calc(100vw - 20px);
+    max-height: 62vh;
+    padding: 16px 17px 18px;
+    font-size: 16px;
+  }
+
+  .draft-context-tooltip__title {
+    font-size: 19px;
+  }
+
+  .draft-data-freshness {
+    width: 100%;
+    font-size: 10px;
+  }
+}

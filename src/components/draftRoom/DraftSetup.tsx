@@ -21,6 +21,7 @@ import {
   settingsFromConfig,
   type DraftPreset,
 } from '@/utils/draftPresets';
+import { DraftSetupWarningsPanel } from './DraftSetupWarningsPanel';
 import styles from './DraftSetup.module.css';
 
 interface DraftSetupProps {
@@ -363,6 +364,7 @@ export function DraftSetup({ room, league }: DraftSetupProps) {
             : 'The board is ordered by dynasty value (whole-roster, not this-year-only). ADP and projection figures are still redraft, so lean on the dynasty order.'}
         </div>
       )}
+      <DraftSetupWarningsPanel league={league} config={config} />
       {resumable && (
         <div className={styles.resume}>
           <div className={styles.resumeText}>
