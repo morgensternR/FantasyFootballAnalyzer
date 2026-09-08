@@ -6,11 +6,11 @@ import type { DraftEventInput, ExternalDraftPlayer } from '@/types/draft';
 import type { UseDraftRoomReturn } from './useDraftRoom';
 
 // Sleeper's public API asks clients to stay below roughly 1000 calls/minute.
-// 750 ms is ~80 pick-feed calls/minute while Live Sync is enabled, leaving a
-// wide safety margin while keeping normal pick-detection latency below a
-// second before network time. Do not run this poll anywhere except an active
-// Sleeper live draft.
-const POLL_MS = 750;
+// 250 ms is ~240 pick-feed calls/minute while Live Sync is enabled. That is
+// still well below Sleeper's general ceiling while cutting average poll wait
+// to ~125 ms before network time. Do not run this poll anywhere except an
+// active Sleeper live draft.
+const POLL_MS = 250;
 const EXTERNAL_PLAYER_PREFIX = 'sleeper-external:';
 
 export type LiveSyncStatus = 'idle' | 'connecting' | 'syncing' | 'error';
@@ -64,7 +64,7 @@ export function useLiveDraftSync(league: League, room: UseDraftRoomReturn): UseL
   // Drafted-player identity is normally enough to dedupe, but an external
   // Sleeper player is intentionally absent from the bundled analysis pool.
   // Keep the authoritative Sleeper pick numbers too so that same oddball pick
-  // never gets re-fed on every 750 ms poll.
+  // never gets re-fed on every 250 ms poll.
   const syncedPickNosRef = useRef(new Set<number>());
 
   // A guest's `platform` is just the Rankings delta lens, not a real Sleeper
