@@ -19,7 +19,7 @@ vi.mock('@/api/sleeperDraft', () => ({
 import { getLeagueDrafts, getLiveDraftPicks } from '@/api/sleeperDraft';
 import { useLiveDraftSync } from './useLiveDraftSync';
 
-const POLL_MS = 750; // mirrors the private POLL_MS in useLiveDraftSync.ts
+const POLL_MS = 250; // mirrors the private POLL_MS in useLiveDraftSync.ts
 
 const mockedGetLeagueDrafts = vi.mocked(getLeagueDrafts);
 const mockedGetLiveDraftPicks = vi.mocked(getLiveDraftPicks);
